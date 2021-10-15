@@ -1,3 +1,23 @@
-hi this is a test
-test
-test2
+Guidelines of the project:
+
+1.	Download .csv dataset called Google-Playstore (LAB04 > slide 8)
+2.	Filter this dataset with all the educational categories
+3.	Use google-play-scraper (LAB03 > slide 21) to select only the apps from the dataset that are games
+    (filter with genreId = "GAME_" while using the apps' ID)
+4.	Use play-scraper (LAB03 > slide 21) to enrich the dataset (add age range...)
+
+At the end, we should have a database composed of serious games and their characteristics:
+    - Title
+    - Description
+    - Learning category
+    - Ratings
+    - Expert validation
+    - Reviews
+    - Age range
+
+5. Clean the database by selecting only games with ratings > 4, number of reviews > 500 ... for example
+
+6. Transform the dataset into a .csv or .json file
+
+7. Import it in SQLite or others
+
