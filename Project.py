@@ -7,14 +7,16 @@ import pandas as pd
 df = pd.read_csv(r'C:\Users\Gilles FACCIN\Desktop\Polimi 2021-2022\E-HEALTH METHODS\Practices\Google-Playstore.csv')
 print(df)
 
-df_edu = df.loc[df_edu["Category"] == ["4 year old kids","4 year olds","Education","Educational","Family","Learn"]]
+
+
+
+
+df_edu = df[df["Category"] == "4 year old kids"]
+#"Education","Educational","Family","Learn"]]
 df_edu.head()
 
-# result = app("com.orange.coloring.learn.kids", lang = "en", country = "us")
-# json_result = json.dumps(result)
-# json_result = json.loads(json_result)
 
-# print(json_result)
+
 # print(json_result["age"])
 
 # Extract information (title, description, learning category, ratings, expert validation, reviews, age range, games)

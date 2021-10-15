@@ -15,9 +15,14 @@ At the end, we should have a database composed of serious games and their charac
     - Reviews
     - Age range
 
-5. Clean the database by selecting only games with ratings > 4, number of reviews > 500 ... for example
+5. Clean the database by selecting only games with specific features
+
+Features:
+    - ratings > ? % above the average(all the apps) --> look at the average first to decide the %
+    -
+
 
 6. Transform the dataset into a .csv or .json file
 
-7. Import it in SQLite or others
+7. Import it on SQLite or others
 
