@@ -4,17 +4,22 @@ import play_scraper
 from google_play_scraper import app
 import pandas as pd
 
+
+def filter(df):
+    df_edu = df[(df["Category"] == "Education")
+                | (df["Category"] == "Educational")
+                | (df["Category"] == "Family")
+                | (df["Category"] == "Learn")
+                | (df["Category"] == "4 year old kids")
+                | (df["Category"] == "4 year olds")]
+    return df_edu
+
 df = pd.read_csv(r'C:\Users\Gilles FACCIN\Desktop\Polimi 2021-2022\E-HEALTH METHODS\Practices\Google-Playstore.csv')
-print(df)
 
+df_edu = filter(df)
+print(df_edu)
 
-
-
-
-df_edu = df[df["Category"] == "4 year old kids"]
-#"Education","Educational","Family","Learn"]]
-df_edu.head()
-
+# and = &, not = ~, or = |
 
 
 # print(json_result["age"])
