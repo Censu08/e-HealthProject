@@ -1,0 +1,9 @@
+Problems to solve:
+
+    - Apps ID in Google-Playstore.csv don't necessarily match with the ones in google-play-scraper
+      (Is it ok to use try/except?)
+    - Explain the strategy of cleaning the initial dataset by removing the problematic lines
+    - For loop to find the games: very long, is it ok?
+    - Where can we find the learning category, the expert validation or the age?
+    - What do we need to put in the dataset at the end, exactly?
+    - What is the last step of Phase I exactly?

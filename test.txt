@@ -4,25 +4,42 @@ Guidelines of the project:
 2.	Filter this dataset with all the educational categories
 3.	Use google-play-scraper (LAB03 > slide 21) to select only the apps from the dataset that are games
     (filter with genreId = "GAME_" while using the apps' ID)
-4.	Use play-scraper (LAB03 > slide 21) to enrich the dataset (add age range...)
+4.	Use google-play-scraper (LAB03 > slide 21) to enrich the dataset
 
 At the end, we should have a database composed of serious games and their characteristics:
-    - Title
+    - Title (name)
     - Description
     - Learning category
     - Ratings
     - Expert validation
     - Reviews
-    - Age range
+    - Age range (3 categories, else NaN)
+    - Feedback ratio (rating counts/installs)
+    - Price (0 --> free, else)
 
-5. Clean the database by selecting only games with specific features
+5. Clean the database by deleting some columns and selecting only games with specific features
+
+Deleted columns:
+    - Minimum installs
+    - Maximum installs
+    - Free
+    - Currency
+    - Size
+    - Minimum Android
+    - Developper Id/Website/Email
+    - Released
+    - Content rating
+    - Editors Choice
+    - Scraped Time
 
 Features:
+    - rating counts > ? (according to the median of rating counts)
     - ratings > ? % above the average(all the apps) --> look at the average first to decide the %
-    -
-
+    - feedback ratio > ? (according to the numbers)
+    - last updated < 6 months
+    - privacy policy presented
 
 6. Transform the dataset into a .csv or .json file
 
-7. Import it on SQLite or others
+7. Import it and build it on SQLite or others
 
