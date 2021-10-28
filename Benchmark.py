@@ -4,7 +4,7 @@ import pandas as pd
 df_sg = pd.read_csv(r'C:\Users\Gilles FACCIN\Desktop\POLIMI 2021-2022\E-HEALTH METHODS\PROJECT\dataset_seriousgames.csv', sep = ",")
 ID_sg = df_sg["App Id"]
 
-# We take the benchmark dataset and we extract the fake games, the random apps and the serious games
+# We take the benchmark dataset and we extract the fake games, the random apps and the serious games as lists
 df_bm = pd.read_csv(r'C:\Users\Gilles FACCIN\Desktop\POLIMI 2021-2022\E-HEALTH METHODS\PROJECT\benchmark_data.csv', sep = ";")
 fake_games = df_bm["FAKE GAMES"]
 random_apps = df_bm["RANDOM APPS"]
