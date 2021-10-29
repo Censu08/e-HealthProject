@@ -14,9 +14,9 @@ def filter(df):
                  | (df["Category"] == "Learn")
                  | (df["Category"] == "4 year old kids")
                  | (df["Category"] == "4 year olds"))
-                & (df["Rating"] >= 4)
-                & (df["Rating Count"] >= 50000)]
-    return df
+                & (df["Rating"] >= 4) #lower it
+                & (df["Rating Count"] >= 50000)] #lower it
+    return df #goal size = 1000 < x < 2000
 
 
 ##select only the apps from the dataset that are games
@@ -169,3 +169,31 @@ def main():
 main()
 
 
+#building the database with tinyDB
+
+#from pymed import PubMed
+#pubmed = PubMed(tool='name_of_the_database', email='simonecensuales1998@gmail.com')
+
+#results = pubmed.query('App Name', max_results = 50) (?)
+#results = pubmed.query(App Name, max_results = 50) (?)
+||
+\/
+#papers = []
+#for res in results:
+#   papers.append(res.toDict())
+#THE ISSUE HERE IS THAT WE WILL HAVE ALL THE PAPERS TOGETHER
+#SO WE NEED TO FIND A WAY TO DISTINGUISH THE PAPERS OF EACH APPLICATIONS
+#MAYBE USING A DOUBLE LIST?
+
+#or
+
+#papersInPubMed = [][]
+#for app in db:
+#   result = pubmed.query('app['App Name']', max_results = 50)
+#   for res in result:
+#       papersInPubMed[res].append(res.toDict())
+
+#then we have to decide if the papers will be merged in our database
+#or
+#we can build another database concerning only the publictions and the 
+#pubmed id of the application
