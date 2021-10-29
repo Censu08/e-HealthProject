@@ -169,15 +169,28 @@ def main():
 main()
 
 
-#building the database with tinyDB
+#BUILDING DATABASE WITH TINYDB
+#FROM CSV TO JSON
+
+#df.to_json (r'path where the JSON file will be stored\JSON name file.json')
+
+#from tinydb import TinyDB, Query
+#db = TinyDB('path of the json file.json')
+#document = Query()
+#for app in db:
+# print(app)
+# print(app['appName'])
+#
+#print(db.get(document.appID == 'some app id')) it will return just one docuemnt, the match
+#print(db.search(document.score > 4)) it will return an ARRAY of documents
 
 #from pymed import PubMed
 #pubmed = PubMed(tool='name_of_the_database', email='simonecensuales1998@gmail.com')
 
 #results = pubmed.query('App Name', max_results = 50) (?)
 #results = pubmed.query(App Name, max_results = 50) (?)
-||
-\/
+#||
+#\/
 #papers = []
 #for res in results:
 #   papers.append(res.toDict())
