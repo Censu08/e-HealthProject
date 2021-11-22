@@ -147,7 +147,7 @@ def find_age_range(df):
 def main():
     print("Reading the input")
     print("")
-    df = pd.read_csv(r'Google-Playstore.csv')
+    df = pd.read_csv(r'Sources/Google-Playstore.csv')
     # Filtering the dataset with educational apps respecting specific features
     df_edu = filter(df)
     # The dataset now only contains specific lines and has an index composed of the remaining rows' numbers

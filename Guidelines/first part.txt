@@ -43,3 +43,6 @@ Features:
 
 7. Import it and build it on SQLite or others
 
+8. Check algorithm performance (create manually a new dataset (120: 60/60 serious and not serious games) and display the
+   accuracy, the specificity and the sensitivity)
+
