@@ -5,18 +5,21 @@ import play_scraper
 import pandas as pd
 from google_play_scraper import app
 import re
+from tinydb import TinyDB, Query
+from pymed import PubMed
 
-#Filter this dataset with all the educational and family-related categories + specific features
+
+# Filter this dataset with all the educational and family-related categories + specific features
 def filter(df):
     df = df[((df["Category"] == "Education")
-                 | (df["Category"] == "Educational")
-                 | (df["Category"] == "Family")
-                 | (df["Category"] == "Learn")
-                 | (df["Category"] == "4 year old kids")
-                 | (df["Category"] == "4 year olds"))
-                & (df["Rating"] >= 4) #lower it
-                & (df["Rating Count"] >= 50000)] #lower it
-    return df #goal size = 1000 < x < 2000
+             | (df["Category"] == "Educational")
+             | (df["Category"] == "Family")
+             | (df["Category"] == "Learn")
+             | (df["Category"] == "4 year old kids")
+             | (df["Category"] == "4 year olds"))
+            & (df["Rating"] >= 4.5)  # lower it
+            & (df["Rating Count"] >= 50000)]  # lower it
+    return df  # goal size = 1000 < x < 2000
 
 
 ##select only the apps from the dataset that are games
@@ -32,18 +35,20 @@ def select_games(df):
             if cat_app[:4] != "GAME":
                 not_games.append(i)
         except:
-            #print(i)
+            # print(i)
             problematic_apps.append(i)
             continue
     df = df.drop(index=problematic_apps, axis=0)
     df_g = df.drop(index=not_games, axis=0)
     return df_g
 
+
 ##delete the apps without a clear age range nor learning category
 def filter_non_enrichable(df):
     df = df[((df["Learning_category"] != "")
-                 & (df["Age_range"] != ""))]
+             & (df["Age_range"] != ""))]
     return df
+
 
 ## enrich the dataset
 def enrich_dataframe(df):
@@ -63,7 +68,6 @@ def enrich_dataframe(df):
 
 
 ## Use of NLP to enrich the dataset with more detailed features
-
 
 
 def find_lc(df):
@@ -106,8 +110,6 @@ def find_lc(df):
     return df
 
 
-
-
 def find_age_range(df):
     # Complete the age range
     # List of age ranges
@@ -144,6 +146,95 @@ def find_age_range(df):
     return df
 
 
+def searchKeyword(megaString):
+    points = 0
+    with open('Sources/StudyType/1/MetaAnalysis.txt') as f:
+        for line in f:
+            stripped_line = line.strip()
+            if stripped_line in megaString:
+                points = points + 4
+                break
+    with open('Sources/StudyType/1/ObservationalStudy.txt') as f:
+        for line in f:
+            stripped_line = line.strip()
+            if stripped_line in megaString:
+                points = points + 3
+                break
+    with open('Sources/StudyType/1/RCT.txt') as f:
+        for line in f:
+            stripped_line = line.strip()
+            if stripped_line in megaString:
+                points = points + 2
+                break
+    with open('Sources/StudyType/1/SystematicReview.txt') as f:
+        for line in f:
+            stripped_line = line.strip()
+            if stripped_line in megaString:
+                points = points + 1
+                break
+    return points
+
+
+###some papers dont have conclusions or results
+def metaPaperCreator(appDocumented):
+    result = ""
+    for paper in appDocumented[1]:
+        str1 = paper['title']
+        if str1 is None:
+            str1 = ""
+        str2 = paper['abstract']
+        if str2 is None:
+            str2 = ""
+        str3 = ""
+        for keyword in paper['keywords']:
+            if keyword is not None:
+                str3 = str3 + keyword + " "
+        str4 = paper['journal']
+        if str4 is None:
+            str4 = ""
+        str5 = paper['conclusions']
+        if str5 is None:
+            str5 = ""
+        str6 = paper['results']
+        if str6 is None:
+            str6 = ""
+        result = result + str1 + str2 + str3 + str4 + str5 + str6
+    return result
+
+
+def validate(level):
+    if level >= 3:
+        return True
+    else:
+        return False
+
+def pubmedSearch(queryKeyword):
+    pubmed = PubMed(tool='name_of_the_database', email='simonecensuales1998@gmail.com')
+    results = pubmed.query(queryKeyword, max_results=2)  # queryKeyword in AND con game
+    papers = []
+    for res in results:
+        papers.append(res.toDict())
+    return papers
+
+
+def buildDatabase(df_edu_g):
+    df_edu_g.to_json(r'dataset_seriousgames.json')
+    # db = TinyDB('dataset_seriousgames.json')
+    document = Query()
+    appDocumented = []
+    for app in df_edu_g['App Name']:
+        appDocumented.append([app, pubmedSearch(app)])
+    return appDocumented
+
+def real_validator(df):
+    appDocumented = buildDatabase(df)
+    for x in appDocumented:
+        megaString = metaPaperCreator(x)
+        appValidationLevel = searchKeyword(megaString)
+        validation = validate(appValidationLevel)
+        print(validation)
+
+
 def main():
     print("Reading the input")
     print("")
@@ -164,49 +255,55 @@ def main():
     df_edu_g = find_age_range(df_edu_g)
     df_edu_g = filter_non_enrichable(df_edu_g)
     print(df_edu_g)
-    df_edu_g.to_csv(r'dataset_seriousgames.csv', index=False)
-
-main()
+    df_edu_g.to_csv(r'/Outputs/dataset_seriousgames.csv', index=False)
 
 
-#BUILDING DATABASE WITH TINYDB
-#FROM CSV TO JSON
 
-#df.to_json (r'path where the JSON file will be stored\JSON name file.json')
 
-#from tinydb import TinyDB, Query
-#db = TinyDB('path of the json file.json')
-#document = Query()
-#for app in db:
+def main2():
+    df = pd.read_csv(r'Outputs/dataset_seriousgames.csv')
+    real_validator(df)
+
+main2()
+
+# BUILDING DATABASE WITH TINYDB
+# FROM CSV TO JSON
+
+# df.to_json (r'path where the JSON file will be stored\JSON name file.json')
+
+# from tinydb import TinyDB, Query
+# db = TinyDB('path of the json file.json')
+# document = Query()
+# for app in db:
 # print(app)
 # print(app['appName'])
 #
-#print(db.get(document.appID == 'some app id')) it will return just one docuemnt, the match
-#print(db.search(document.score > 4)) it will return an ARRAY of documents
+# print(db.get(document.appID == 'some app id')) it will return just one docuemnt, the match
+# print(db.search(document.score > 4)) it will return an ARRAY of documents
 
-#from pymed import PubMed
-#pubmed = PubMed(tool='name_of_the_database', email='simonecensuales1998@gmail.com')
+# from pymed import PubMed
+# pubmed = PubMed(tool='name_of_the_database', email='simonecensuales1998@gmail.com')
 
-#results = pubmed.query('App Name', max_results = 50) (?)
-#results = pubmed.query(App Name, max_results = 50) (?)
-#||
-#\/
-#papers = []
-#for res in results:
+# results = pubmed.query('App Name', max_results = 50) (?)
+# results = pubmed.query(App Name, max_results = 50) (?)
+# ||
+# \/
+# papers = []
+# for res in results:
 #   papers.append(res.toDict())
-#THE ISSUE HERE IS THAT WE WILL HAVE ALL THE PAPERS TOGETHER
-#SO WE NEED TO FIND A WAY TO DISTINGUISH THE PAPERS OF EACH APPLICATIONS
-#MAYBE USING A DOUBLE LIST?
+# THE ISSUE HERE IS THAT WE WILL HAVE ALL THE PAPERS TOGETHER
+# SO WE NEED TO FIND A WAY TO DISTINGUISH THE PAPERS OF EACH APPLICATIONS
+# MAYBE USING A DOUBLE LIST?
 
-#or
+# or
 
-#papersInPubMed = [][]
-#for app in db:
-#   result = pubmed.query('app['App Name']', max_results = 50)
+# #papersInPubMed = [][]
+# #for app in db:
+# #   result = pubmed.query('app['App Name']', max_results = 50)
 #   for res in result:
 #       papersInPubMed[res].append(res.toDict())
 
-#then we have to decide if the papers will be merged in our database
-#or
-#we can build another database concerning only the publictions and the 
-#pubmed id of the application
+# then we have to decide if the papers will be merged in our database
+# or
+# we can build another database concerning only the publictions and the
+# pubmed id of the application
