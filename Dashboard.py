@@ -58,6 +58,8 @@ def update_output(value, df_sg):
     df = df_sg[((df_sg["Learning_category"] == value))]
     return df["App Name"]
 
+
+
 @app.callback(
     Output('dd-output-container2', 'children'),
     Input('demo-dropdown2', 'value')
