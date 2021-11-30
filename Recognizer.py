@@ -1,16 +1,14 @@
 ### Phase I: Identification of serious games for kids
 
 import json
-import play_scraper
 import pandas as pd
 from google_play_scraper import app
-import re
-from tinydb import TinyDB, Query
+# from tinydb import Query
 from pymed import PubMed
 
 
 # Filter this dataset with all the educational and family-related categories + specific features
-def filter(df):
+def game_filter(df):
     df = df[((df["Category"] == "Education")
              | (df["Category"] == "Educational")
              | (df["Category"] == "Family")
@@ -22,7 +20,7 @@ def filter(df):
     return df  # goal size = 1000 < x < 2000
 
 
-##select only the apps from the dataset that are games
+# select only the apps from the dataset that are games
 def select_games(df):
     problematic_apps = []
     not_games = []
@@ -34,8 +32,7 @@ def select_games(df):
             cat_app = json_app_edu["genreId"]
             if cat_app[:4] != "GAME":
                 not_games.append(i)
-        except:
-            # print(i)
+        except (Exception,):
             problematic_apps.append(i)
             continue
     df = df.drop(index=problematic_apps, axis=0)
@@ -43,7 +40,7 @@ def select_games(df):
     return df_g
 
 
-##delete the apps without a clear age range nor learning category
+# delete the apps without a clear age range nor learning category
 def filter_non_enrichable(df):
     df = df[((df["Learning_category"] != "")
              & (df["Age_range"] != ""))]
@@ -69,6 +66,23 @@ def enrich_dataframe(df):
 
 ## Use of NLP to enrich the dataset with more detailed features
 
+def finder(df, keywords, learning_cat):
+    lc = []
+    for i in range(len(df)):
+        desc = df.iloc[i]["Description"]
+        mx = 0
+        cat = ""
+        for j in range(len(keywords)):
+            nb = []
+            for k in range(len(keywords[j])):
+                nb.append(desc.count(keywords[j][k]))
+            m = max(nb)
+            if m > mx:
+                mx = m
+                cat = learning_cat[j]
+        lc.append(cat)
+    return lc
+
 
 def find_lc(df):
     # Complete learning category
@@ -90,23 +104,8 @@ def find_lc(df):
     sport = ["sport", "ball", "run", "coach", "score", "train", "team", "shot"]
 
     # List of all keywords combined
-    keywords_cat = [science, counting, language, creativity, shape, food, music, sport]
-    lc = []
-    for i in range(len(df)):
-        desc = df.iloc[i]["Description"]
-        Mx = 0
-        cat = ""
-        for j in range(len(keywords_cat)):
-            m = 0
-            nb = []
-            for k in range(len(keywords_cat[j])):
-                nb.append(desc.count(keywords_cat[j][k]))
-            m = max(nb)
-            if m > Mx:
-                Mx = m
-                cat = learning_cat[j]
-        lc.append(cat)
-    df["Learning_category"] = lc
+    keywords = [science, counting, language, creativity, shape, food, music, sport]
+    df["Learning_category"] = finder(df, keywords, learning_cat)
     return df
 
 
@@ -126,59 +125,44 @@ def find_age_range(df):
               "grown-up", "majority"]  # 20 and more year-old
 
     # List of all keywords combined
-    keywords_age = [babies, children, adolescents, adults]
-    ar = []
-    for i in range(len(df)):
-        desc = df.iloc[i]["Description"]
-        Mx = 0
-        age = ""
-        for j in range(len(keywords_age)):
-            m = 0
-            nb = []
-            for k in range(len(keywords_age[j])):
-                nb.append(desc.count(keywords_age[j][k]))
-            m = max(nb)
-            if m > Mx:
-                Mx = m
-                age = age_range[j]
-        ar.append(age)
-    df["Age_range"] = ar
+    keywords = [babies, children, adolescents, adults]
+    df["Age_range"] = finder(df, keywords, age_range)
     return df
 
 
-def searchKeyword(megaString):
+def search_keyword(mega_string):
     points = 0
     with open('Sources/StudyType/1/MetaAnalysis.txt') as f:
         for line in f:
             stripped_line = line.strip()
-            if stripped_line in megaString:
+            if stripped_line in mega_string:
                 points = points + 4
                 break
     with open('Sources/StudyType/1/ObservationalStudy.txt') as f:
         for line in f:
             stripped_line = line.strip()
-            if stripped_line in megaString:
+            if stripped_line in mega_string:
                 points = points + 3
                 break
     with open('Sources/StudyType/1/RCT.txt') as f:
         for line in f:
             stripped_line = line.strip()
-            if stripped_line in megaString:
+            if stripped_line in mega_string:
                 points = points + 2
                 break
     with open('Sources/StudyType/1/SystematicReview.txt') as f:
         for line in f:
             stripped_line = line.strip()
-            if stripped_line in megaString:
+            if stripped_line in mega_string:
                 points = points + 1
                 break
     return points
 
 
-###some papers dont have conclusions or results
-def metaPaperCreator(appDocumented):
+# some papers dont have conclusions or results
+def meta_paper_creator(app_documented):
     result = ""
-    for paper in appDocumented[1]:
+    for paper in app_documented[1]:
         str1 = paper['title']
         if str1 is None:
             str1 = ""
@@ -208,39 +192,41 @@ def validate(level):
     else:
         return False
 
-def pubmedSearch(queryKeyword):
+
+def pubmed_search(query_keyword):
     pubmed = PubMed(tool='name_of_the_database', email='simonecensuales1998@gmail.com')
-    results = pubmed.query(queryKeyword, max_results=2)  # queryKeyword in AND con game
+    results = pubmed.query(query_keyword, max_results=2)  # query_keyword in AND con game
     papers = []
     for res in results:
         papers.append(res.toDict())
     return papers
 
 
-def buildDatabase(df_edu_g):
+def build_database(df_edu_g):
     df_edu_g.to_json(r'dataset_seriousgames.json')
     # db = TinyDB('dataset_seriousgames.json')
-    document = Query()
-    appDocumented = []
-    for app in df_edu_g['App Name']:
-        appDocumented.append([app, pubmedSearch(app)])
-    return appDocumented
+    app_documented = []
+    for application in df_edu_g['App Name']:
+        app_documented.append([application, pubmed_search(application)])
+    return app_documented
 
-def real_validator(df):
-    appDocumented = buildDatabase(df)
-    for x in appDocumented:
-        megaString = metaPaperCreator(x)
-        appValidationLevel = searchKeyword(megaString)
-        validation = validate(appValidationLevel)
+
+def real_validator():
+    df = pd.read_csv(r'Outputs/dataset_seriousgames.csv')
+    app_documented = build_database(df)
+    for x in app_documented:
+        mega_string = meta_paper_creator(x)
+        app_validation_level = search_keyword(mega_string)
+        validation = validate(app_validation_level)
         print(validation)
 
 
-def main():
+def read_serious_games():
     print("Reading the input")
     print("")
     df = pd.read_csv(r'Sources/Google-Playstore.csv')
     # Filtering the dataset with educational apps respecting specific features
-    df_edu = filter(df)
+    df_edu = game_filter(df)
     # The dataset now only contains specific lines and has an index composed of the remaining rows' numbers
     # Reinitialisation of the index to be [0,1,...,n]
     df_edu = df_edu.set_index([pd.Index([i for i in range(len(df_edu))])])
@@ -258,13 +244,25 @@ def main():
     df_edu_g.to_csv(r'/Outputs/dataset_seriousgames.csv', index=False)
 
 
+def print_dashboard():
+    print("ueeeeeeeeeeeeee")
 
 
-def main2():
-    df = pd.read_csv(r'Outputs/dataset_seriousgames.csv')
-    real_validator(df)
+def main():
+    option = 1
+    while option != 0:
+        option = int(input("Enter option: "))
+        if option == 1:
+            read_serious_games()
+        if option == 2:
+            real_validator()
+        if option == 3:
+            print_dashboard()
+        else:
+            continue
 
-main2()
+
+main()
 
 # BUILDING DATABASE WITH TINYDB
 # FROM CSV TO JSON
