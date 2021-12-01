@@ -1,5 +1,3 @@
-### Phase I: Identification of serious games for kids
-
 import json
 import pandas as pd
 from google_play_scraper import app
@@ -41,13 +39,13 @@ def select_games(df):
 
 
 # delete the apps without a clear age range nor learning category
-def filter_non_enrichable(df):
+def filter_non_reachable(df):
     df = df[((df["Learning_category"] != "")
              & (df["Age_range"] != ""))]
     return df
 
 
-## enrich the dataset
+# enrich the dataset
 def enrich_dataframe(df):
     desc_app = []
     rev_app = []
@@ -64,7 +62,7 @@ def enrich_dataframe(df):
     return df
 
 
-## Use of NLP to enrich the dataset with more detailed features
+# Use of NLP to enrich the dataset with more detailed features
 
 def finder(df, keywords, learning_cat):
     lc = []
@@ -91,11 +89,11 @@ def find_lc(df):
     # List of keywords per category
     science = ["science", "nature", "physics", "chemistry", "biology", "mathematics", "plants", "informatics",
                "programming", "star", "planet", "galaxy", "scientific", "robot", "life", "laboratory", "virus"]
-    counting = ["counting", "number", "addition", "substraction", "division", "multiplication", "add", "fraction",
+    counting = ["counting", "number", "addition", "subtraction", "division", "multiplication", "add", "fraction",
                 "mathematics", "sum", "product"]
     language = ["language", "english", "spanish", "chinese", "vocabulary", "writing", "reading", "grammar"
                                                                                                  "translation",
-                "linguistic", "speech", "slang", "mother tongue", "billingual", "latin"]
+                "linguistic", "speech", "slang", "mother tongue", "bilingual", "latin"]
     creativity = ["creativity", "drawing", "color", "design", "imagination", "idea", "painting", "pencil", "artist"]
     shape = ["shape", "triangle", "rectangle", "square", "round", "circle", "cube", "sphere", "icon"]
     food = ["food", "health", "nutrition", "ingredients", "cook", "meal", "vegetable", "fruit", "meat", "drink"]
@@ -119,7 +117,7 @@ def find_age_range(df):
     children = ["child", "children", "kid", "4 year-old", "5 year-old", "6 year-old", "7 year-old", "8 year-old",
                 "9 year-old", "10 year-old", "11 year-old", "12 year-old", "toddler", "elementary school",
                 "childhood", "preschool"]  # 4-12 year-old
-    adolescents = ["teenage", "adolescent", "middle school", "highschool", "13 year-old", "14 year-old", "15 year-old",
+    adolescents = ["teenage", "adolescent", "middle school", "high school", "13 year-old", "14 year-old", "15 year-old",
                    "16 year-old", "17 year-old", "18 year-old", "19 year-old"]  # 13-19 year-old
     adults = ["adult", "student", "university", "old", "middle-aged", "20 year-old", "mature",
               "grown-up", "majority"]  # 20 and more year-old
@@ -132,29 +130,53 @@ def find_age_range(df):
 
 def search_keyword(mega_string):
     points = 0
-    with open('Sources/StudyType/1/MetaAnalysis.txt') as f:
+    with open('../Sources/Studies/CaseControl.txt') as f:
         for line in f:
             stripped_line = line.strip()
             if stripped_line in mega_string:
                 points = points + 4
                 break
-    with open('Sources/StudyType/1/ObservationalStudy.txt') as f:
-        for line in f:
-            stripped_line = line.strip()
-            if stripped_line in mega_string:
-                points = points + 3
-                break
-    with open('Sources/StudyType/1/RCT.txt') as f:
+    with open('../Sources/Studies/CaseSeries.txt') as f:
         for line in f:
             stripped_line = line.strip()
             if stripped_line in mega_string:
                 points = points + 2
                 break
-    with open('Sources/StudyType/1/SystematicReview.txt') as f:
+    with open('../Sources/Studies/CohortStudy.txt') as f:
+        for line in f:
+            stripped_line = line.strip()
+            if stripped_line in mega_string:
+                points = points + 5
+                break
+    with open('../Sources/Studies/MetaAnalysis.txt') as f:
+        for line in f:
+            stripped_line = line.strip()
+            if stripped_line in mega_string:
+                points = points + 7
+                break
+    with open('../Sources/Studies/ObservationalStudy.txt') as f:
+        for line in f:
+            stripped_line = line.strip()
+            if stripped_line in mega_string:
+                points = points + 3
+                break
+    with open('../Sources/Studies/Other.txt') as f:
         for line in f:
             stripped_line = line.strip()
             if stripped_line in mega_string:
                 points = points + 1
+                break
+    with open('../Sources/Studies/RCT.txt') as f:
+        for line in f:
+            stripped_line = line.strip()
+            if stripped_line in mega_string:
+                points = points + 6
+                break
+    with open('../Sources/Studies/SystematicReview.txt') as f:
+        for line in f:
+            stripped_line = line.strip()
+            if stripped_line in mega_string:
+                points = points + 7
                 break
     return points
 
@@ -203,8 +225,8 @@ def pubmed_search(query_keyword):
 
 
 def build_database(df_edu_g):
-    df_edu_g.to_json(r'dataset_seriousgames.json')
-    # db = TinyDB('dataset_seriousgames.json')
+    df_edu_g.to_json(r'dataset_serious_games.json')
+    # db = TinyDB('dataset_serious_games.json')
     app_documented = []
     for application in df_edu_g['App Name']:
         app_documented.append([application, pubmed_search(application)])
@@ -212,7 +234,7 @@ def build_database(df_edu_g):
 
 
 def real_validator():
-    df = pd.read_csv(r'Outputs/dataset_seriousgames.csv')
+    df = pd.read_csv(r'Outputs/dataset_serious_games.csv')
     app_documented = build_database(df)
     for x in app_documented:
         mega_string = meta_paper_creator(x)
@@ -224,7 +246,7 @@ def real_validator():
 def read_serious_games():
     print("Reading the input")
     print("")
-    df = pd.read_csv(r'Sources/Google-Playstore.csv')
+    df = pd.read_csv(r'../Sources/Google-Playstore.csv')
     # Filtering the dataset with educational apps respecting specific features
     df_edu = game_filter(df)
     # The dataset now only contains specific lines and has an index composed of the remaining rows' numbers
@@ -239,69 +261,10 @@ def read_serious_games():
     # Use of NLP to add learning categories and age ranges
     df_edu_g = find_lc(df_edu_g)
     df_edu_g = find_age_range(df_edu_g)
-    df_edu_g = filter_non_enrichable(df_edu_g)
+    df_edu_g = filter_non_reachable(df_edu_g)
     print(df_edu_g)
-    df_edu_g.to_csv(r'/Outputs/dataset_seriousgames.csv', index=False)
+    df_edu_g.to_csv(r'/Outputs/dataset_serious_games.csv', index=False)
 
 
 def print_dashboard():
     print("ueeeeeeeeeeeeee")
-
-
-def main():
-    option = 1
-    while option != 0:
-        option = int(input("Enter option: "))
-        if option == 1:
-            read_serious_games()
-        if option == 2:
-            real_validator()
-        if option == 3:
-            print_dashboard()
-        else:
-            continue
-
-
-main()
-
-# BUILDING DATABASE WITH TINYDB
-# FROM CSV TO JSON
-
-# df.to_json (r'path where the JSON file will be stored\JSON name file.json')
-
-# from tinydb import TinyDB, Query
-# db = TinyDB('path of the json file.json')
-# document = Query()
-# for app in db:
-# print(app)
-# print(app['appName'])
-#
-# print(db.get(document.appID == 'some app id')) it will return just one docuemnt, the match
-# print(db.search(document.score > 4)) it will return an ARRAY of documents
-
-# from pymed import PubMed
-# pubmed = PubMed(tool='name_of_the_database', email='simonecensuales1998@gmail.com')
-
-# results = pubmed.query('App Name', max_results = 50) (?)
-# results = pubmed.query(App Name, max_results = 50) (?)
-# ||
-# \/
-# papers = []
-# for res in results:
-#   papers.append(res.toDict())
-# THE ISSUE HERE IS THAT WE WILL HAVE ALL THE PAPERS TOGETHER
-# SO WE NEED TO FIND A WAY TO DISTINGUISH THE PAPERS OF EACH APPLICATIONS
-# MAYBE USING A DOUBLE LIST?
-
-# or
-
-# #papersInPubMed = [][]
-# #for app in db:
-# #   result = pubmed.query('app['App Name']', max_results = 50)
-#   for res in result:
-#       papersInPubMed[res].append(res.toDict())
-
-# then we have to decide if the papers will be merged in our database
-# or
-# we can build another database concerning only the publictions and the
-# pubmed id of the application
