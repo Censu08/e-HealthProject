@@ -5,7 +5,7 @@ from dash.dependencies import Input, Output
 from dash import html
 import pandas as pd
 
-df_sg = pd.read_csv(r'Outputs/dataset_seriousgames.csv', sep =",")
+df_sg = pd.read_csv(r'../Outputs/dataset_seriousgames.csv', sep =",")
 
 app = dash.Dash(__name__)
 
