@@ -219,7 +219,8 @@ def real_validator():
         app_validation_level = search_keyword(mega_string)
         validation = validate(app_validation_level)
         print(validation)
-
+    app_doc = pd.Dataframe(app_documented)
+    app_doc.to_csv("dataset_papers.csv", index=False)
 
 def read_serious_games():
     print("Reading the input")
