@@ -3,7 +3,7 @@ Guidelines of the project:
 1.	Download .csv dataset called Google-Playstore (LAB04 > slide 8)
 2.	Filter this dataset with all the educational categories
 3.	Use google-play-scraper (LAB03 > slide 21) to select only the apps from the dataset that are games
-    (filter with genreId = "GAME_" while using the apps' ID)
+    (game_filter with genreId = "GAME_" while using the apps' ID)
 4.	Use google-play-scraper (LAB03 > slide 21) to enrich the dataset
 
 At the end, we should have a database composed of serious games and their characteristics:
