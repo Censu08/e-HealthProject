@@ -205,8 +205,10 @@ def metaPaperCreator(appDocumented):
 def validate(level):
     if level >= 3:
         return True
+        #aggiungere ad una lista e ritornarla
     else:
         return False
+        #aggiungere ad una lista e ritornarla
 
 def pubmedSearch(queryKeyword):
     pubmed = PubMed(tool='name_of_the_database', email='simonecensuales1998@gmail.com')
@@ -220,7 +222,7 @@ def pubmedSearch(queryKeyword):
 def buildDatabase(df_edu_g):
     df_edu_g.to_json(r'dataset_seriousgames.json')
     # db = TinyDB('dataset_seriousgames.json')
-    document = Query()
+    #document = Query()
     appDocumented = []
     for app in df_edu_g['App Name']:
         appDocumented.append([app, pubmedSearch(app)])
@@ -233,7 +235,6 @@ def real_validator(df):
         appValidationLevel = searchKeyword(megaString)
         validation = validate(appValidationLevel)
         print(validation)
-
 
 def main():
     print("Reading the input")
@@ -266,44 +267,24 @@ def main2():
 
 main2()
 
-# BUILDING DATABASE WITH TINYDB
-# FROM CSV TO JSON
 
-# df.to_json (r'path where the JSON file will be stored\JSON name file.json')
 
-# from tinydb import TinyDB, Query
-# db = TinyDB('path of the json file.json')
-# document = Query()
-# for app in db:
-# print(app)
-# print(app['appName'])
-#
-# print(db.get(document.appID == 'some app id')) it will return just one docuemnt, the match
-# print(db.search(document.score > 4)) it will return an ARRAY of documents
 
-# from pymed import PubMed
-# pubmed = PubMed(tool='name_of_the_database', email='simonecensuales1998@gmail.com')
 
-# results = pubmed.query('App Name', max_results = 50) (?)
-# results = pubmed.query(App Name, max_results = 50) (?)
-# ||
-# \/
-# papers = []
-# for res in results:
-#   papers.append(res.toDict())
-# THE ISSUE HERE IS THAT WE WILL HAVE ALL THE PAPERS TOGETHER
-# SO WE NEED TO FIND A WAY TO DISTINGUISH THE PAPERS OF EACH APPLICATIONS
-# MAYBE USING A DOUBLE LIST?
 
-# or
 
-# #papersInPubMed = [][]
-# #for app in db:
-# #   result = pubmed.query('app['App Name']', max_results = 50)
-#   for res in result:
-#       papersInPubMed[res].append(res.toDict())
 
-# then we have to decide if the papers will be merged in our database
-# or
-# we can build another database concerning only the publictions and the
-# pubmed id of the application
+
+
+
+
+
+
+
+
+
+
+
+
+
+
