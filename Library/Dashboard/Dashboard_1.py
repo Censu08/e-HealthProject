@@ -23,7 +23,20 @@ dropdown = html.Div([
     dcc.Dropdown(id='dropdown_d2', options=[{'label': i, 'value': i} for i in df["Age_range"].unique()], value=None)
 ])
 
-# Dash table
+# Dash tables
+columns_i = [
+    dict(id='learning_category', name='Learning category'),
+    dict(id='counts', name='Number of App', type='numeric'),
+]
+data_i = [
+    dict(learning_category='counting', counts=20,),
+    dict(learning_category='science', counts=14),
+    dict(learning_category='food', counts=7),
+    dict(learning_category='sport', counts=5),
+    dict(learning_category='shape', counts=3),
+    dict(learning_category='music', counts=2),
+    dict(learning_category='language', counts=3),
+]
 final_table = html.Div(id="final_table")
 
 app.layout = html.Div([dropdown, final_table])
@@ -54,9 +67,19 @@ def update_table(d1, d2):
             columns=[{"name": i, "id": i} for i in df_filtered.columns],
             data=df_filtered.to_dict('records'),
         )]
+    elif (d1 != None and d2 == None):
+        df_filtered = df[(df["Learning_category"] == d1)]
+        return [dt.DataTable(
+            id='table',
+            columns=[{"name": i, "id": i} for i in df_filtered.columns],
+            data=df_filtered.to_dict('records'),
+        )]
     else:
         print("none")
-        return []
+        return [dt.DataTable(
+            columns=columns_i,
+            data=data_i
+        )]
 
 if __name__ == "__main__":
     app.run_server(debug=True)
