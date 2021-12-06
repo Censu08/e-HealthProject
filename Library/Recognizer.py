@@ -130,49 +130,49 @@ def find_age_range(df):
 
 def search_keyword(mega_string):
     points = 0
-    with open('../Sources/Studies/CaseControl.txt') as f:
+    with open('Sources/Studies/CaseControl.txt') as f:
         for line in f:
             stripped_line = line.strip()
             if stripped_line in mega_string:
                 points = points + 4
                 break
-    with open('../Sources/Studies/CaseSeries.txt') as f:
+    with open('Sources/Studies/CaseSeries.txt') as f:
         for line in f:
             stripped_line = line.strip()
             if stripped_line in mega_string:
                 points = points + 2
                 break
-    with open('../Sources/Studies/CohortStudy.txt') as f:
+    with open('Sources/Studies/CohortStudy.txt') as f:
         for line in f:
             stripped_line = line.strip()
             if stripped_line in mega_string:
                 points = points + 5
                 break
-    with open('../Sources/Studies/MetaAnalysis.txt') as f:
+    with open('Sources/Studies/MetaAnalysis.txt') as f:
         for line in f:
             stripped_line = line.strip()
             if stripped_line in mega_string:
                 points = points + 7
                 break
-    with open('../Sources/Studies/ObservationalStudy.txt') as f:
+    with open('Sources/Studies/ObservationalStudy.txt') as f:
         for line in f:
             stripped_line = line.strip()
             if stripped_line in mega_string:
                 points = points + 3
                 break
-    with open('../Sources/Studies/Other.txt') as f:
+    with open('Sources/Studies/Other.txt') as f:
         for line in f:
             stripped_line = line.strip()
             if stripped_line in mega_string:
                 points = points + 1
                 break
-    with open('../Sources/Studies/RCT.txt') as f:
+    with open('Sources/Studies/RCT.txt') as f:
         for line in f:
             stripped_line = line.strip()
             if stripped_line in mega_string:
                 points = points + 6
                 break
-    with open('../Sources/Studies/SystematicReview.txt') as f:
+    with open('Sources/Studies/SystematicReview.txt') as f:
         for line in f:
             stripped_line = line.strip()
             if stripped_line in mega_string:
@@ -225,29 +225,37 @@ def pubmed_search(query_keyword):
 
 
 def build_database(df_edu_g):
-    df_edu_g.to_json(r'dataset_serious_games.json')
+    # df_edu_g.to_json(r'Outputs/dataset_serious_games.json')
     # db = TinyDB('dataset_serious_games.json')
     app_documented = []
-    for application in df_edu_g['App Name']:
-        app_documented.append([application, pubmed_search(application)])
+    for x in df_edu_g:
+        app_documented.append([x['App Name'], x['Category'], pubmed_search(x['App Name'])])
     return app_documented
 
 
 def real_validator():
     df = pd.read_csv(r'Outputs/dataset_serious_games.csv')
-    app_documented = build_database(df)
+    app_documented = build_database(df) #NEW ONE
+    non_validated_apps = []
+    validated_app = []
     for x in app_documented:
         mega_string = meta_paper_creator(x)
         app_validation_level = search_keyword(mega_string)
         validation = validate(app_validation_level)
+        if validation:
+            validated_app.append(x)
+        else:
+            non_validated_apps.append(x)
         print(validation)
+    similarity_function_list(validated_app, non_validated_apps)
     app_doc = pd.Dataframe(app_documented)
-    app_doc.to_csv("dataset_papers.csv", index=False)
+    app_doc.to_csv("/Outputs/dataset_papers.csv", index=False)
+
 
 def read_serious_games():
     print("Reading the input")
     print("")
-    df = pd.read_csv(r'../Sources/Google-Playstore.csv')
+    df = pd.read_csv(r'Sources/Google-Playstore.csv')
     # Filtering the dataset with educational apps respecting specific features
     df_edu = game_filter(df)
     # The dataset now only contains specific lines and has an index composed of the remaining rows' numbers
@@ -267,5 +275,24 @@ def read_serious_games():
     df_edu_g.to_csv(r'/Outputs/dataset_serious_games.csv', index=False)
 
 
-def print_dashboard():
-    print("ueeeeeeeeeeeeee")
+def similarity_function_list(non_validated_apps, validated_app):
+    for applicazione in non_validated_apps:
+        similarity_function(applicazione, validated_app)
+
+
+def similarity_function(non_validated_application, validated_app):
+    category = non_validated_application[1]
+    print("Finding apps similar to " + non_validated_application)
+    suggested_apps = []
+    for x in validated_app:
+        if len(suggested_apps) == 3:
+            break
+        if x["Category"] == category:
+            suggested_apps.append(x)
+    if len(suggested_apps) == 0:
+        print("There are no similar applicazione to the one analysed")
+    if len(suggested_apps) != 0:
+        print("Similar apps founded: " + str(len(suggested_apps)))
+        for x in range(len(suggested_apps)):
+            print(suggested_apps)
+

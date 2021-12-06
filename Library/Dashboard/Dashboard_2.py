@@ -8,7 +8,7 @@ from dash import dash_table
 from dash.dependencies import Input, Output, State
 
 ## Importation of our database
-df = pd.read_csv(r'Outputs/dataset_seriousgames.csv', sep =",")
+df = pd.read_csv(r'../../Outputs/dataset_serious_games.csv', sep =",")
 df = df[["App Name","Category","Rating","Rating Count","Developer Id","Reviews","Description","Learning_category","Age_range"]]
 
 ## Dashboard

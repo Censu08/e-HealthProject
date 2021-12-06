@@ -3,10 +3,10 @@ import pandas as pd
 
 def run_benchmark_first_part():
     # We take the final dataset of serious games found with our algorithm and we extract the column "App Id"
-    df_sg = pd.read_csv(r'../Outputs/dataset_seriousgames.csv', sep=",")
+    df_sg = pd.read_csv(r'Outputs/dataset_serious_games.csv', sep=",")
     ID_sg = df_sg["App Id"]
     # We take the benchmark dataset and we extract the fake games, the random apps and the serious games
-    df_bm = pd.read_csv(r'../Sources/benchmark_data.csv', sep=";")
+    df_bm = pd.read_csv(r'Sources/benchmark_data.csv', sep=";")
     fake_games = df_bm["FAKE GAMES"]
     random_apps = df_bm["RANDOM APPS"]
     serious_games = df_bm["SERIOUS GAMES"]
