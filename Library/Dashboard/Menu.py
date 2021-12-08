@@ -11,7 +11,7 @@ from dash import html
 from dash import dash_table
 from dash.dependencies import Input, Output, State
 
-## Importation of our database
+## Importation of our databases
 df = pd.read_csv(r'Outputs/dataset_serious_games.csv', sep =",")
 df = df[["App Name","App Id","Category","Rating","Rating Count","Installs","Price","Developer Id","Last Updated",
          "Description","Reviews","Learning_category","Age_range"]]

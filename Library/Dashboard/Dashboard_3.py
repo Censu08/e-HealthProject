@@ -10,7 +10,7 @@ from dash.dependencies import Input, Output, State
 ## Importation of our database
 df2 = pd.read_csv(r'C:/Users/Gilles FACCIN/PycharmProjects/e-HealthProject/Outputs/dataset_papers2.csv', sep =",")
 
-## Dashboard
+
 app = dash.Dash()
 application = app.server
 
