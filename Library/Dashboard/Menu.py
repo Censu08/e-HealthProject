@@ -15,6 +15,7 @@ from dash.dependencies import Input, Output, State
 df = pd.read_csv(r'Outputs/dataset_serious_games.csv', sep =",")
 df = df[["App Name","Category","Rating","Rating Count","Developer Id","Reviews","Learning_category","Age_range"]]
 df2 = pd.read_csv(r'Outputs/dataset_papers2.csv', sep =",")
+validated_app = [i for i in df2["App Name"].unique()]
 
 app = dash.Dash(__name__, suppress_callback_exceptions=True)
 application = app.server
@@ -145,20 +146,27 @@ def update_dropdown_2(d1):
 def update_table(d1, d2):
     if(d1 != None and d2 != None):
         df_filtered = df[(df["Learning_category"]==d1) & (df["Age_range"]==d2)]
-        return [dt.DataTable(
+        return [html.Div([html.H3('Results found:')],
+                     style={'textAlign': 'center'}),
+                html.Div([len(df_filtered)],
+                     style={'textAlign': 'center'}),
+            dt.DataTable(
             id='table',
             columns=[{"name": i, "id": i} for i in df_filtered.columns],
             data=df_filtered.to_dict('records'),
         )]
     elif (d1 != None and d2 == None):
         df_filtered = df[(df["Learning_category"] == d1)]
-        return [dt.DataTable(
+        return [html.Div([html.H3('Results found:')],
+                     style={'textAlign': 'center'}),
+                html.Div([len(df_filtered)],
+                         style={'textAlign': 'center'}),
+                dt.DataTable(
             id='table',
             columns=[{"name": i, "id": i} for i in df_filtered.columns],
-            data=df_filtered.to_dict('records'),
-        )]
+            data=df_filtered.to_dict('records'),)
+        ]
     else:
-        print("none")
         return [dt.DataTable(
             columns=columns_i,
             data=data_i
@@ -199,14 +207,42 @@ def update_dropdown_3_2(d1,d2):
 def update_table_2(d1, d2, d3):
     if(d1 != None and d2 != None and d3 != None):
         df_filtered = df[(df["Learning_category"]==d1) & (df["Age_range"]==d2) & (df["App Name"]==d3)]
-        return [dt.DataTable(
+        if d3 in validated_app:
+            df2_filtered = df2[(df2["App Name"] == d3)]
+            return [html.Div([html.H3('Number of associated papers:')]),
+                    html.Div([len(df2_filtered)]),
+                    dt.DataTable(id='table',
+                                columns=[{"name": i, "id": i} for i in df_filtered.columns],
+                                data=df_filtered.to_dict('records'),)]
+        else:
+            return [dt.DataTable(id='table2',
+                                columns=[{"name": i, "id": i} for i in df_filtered.columns],
+                                data=df_filtered.to_dict('records'),)]
+    elif (d1 != None and d2 != None and d3 == None):
+        df_filtered = df[(df["Learning_category"] == d1) & (df["Age_range"] == d2)]
+        return [html.Div([html.H3('Results found:')],
+                     style={'textAlign': 'center'}),
+                html.Div([len(df_filtered)],
+                     style={'textAlign': 'center'}),
+            dt.DataTable(
+            id='table2',
+            columns=[{"name": i, "id": i} for i in df_filtered.columns],
+            data=df_filtered.to_dict('records'),
+        )]
+    elif (d1 != None and d2 == None and d3 == None):
+        df_filtered = df[(df["Learning_category"] == d1)]
+        return [html.Div([html.H3('Results found:')],
+                     style={'textAlign': 'center'}),
+                html.Div([len(df_filtered)],
+                     style={'textAlign': 'center'}),
+            dt.DataTable(
             id='table2',
             columns=[{"name": i, "id": i} for i in df_filtered.columns],
             data=df_filtered.to_dict('records'),
         )]
     else:
-        print("none")
         return []
+
 
 # TAB n°3: Callback to update second dropdown based on first dropdown
 @app.callback(Output('dropdown_d2_3', 'options'),

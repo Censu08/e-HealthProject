@@ -10,6 +10,8 @@ from dash.dependencies import Input, Output, State
 ## Importation of our database
 df = pd.read_csv(r'../../Outputs/dataset_serious_games.csv', sep =",")
 df = df[["App Name","Category","Rating","Rating Count","Developer Id","Reviews","Description","Learning_category","Age_range"]]
+df2 = pd.read_csv(r'C:/Users/Gilles FACCIN/PycharmProjects/e-HealthProject/Outputs/dataset_papers2.csv', sep =",")
+validated_app = [i for i in df2["App Name"].unique()]
 
 ## Dashboard
 app = dash.Dash()
@@ -65,11 +67,23 @@ def update_dropdown_3(d1,d2):
 def update_table(d1, d2, d3):
     if(d1 != None and d2 != None and d3 != None):
         df_filtered = df[(df["Learning_category"]==d1) & (df["Age_range"]==d2) & (df["App Name"]==d3)]
-        return [dt.DataTable(
-            id='table',
-            columns=[{"name": i, "id": i} for i in df_filtered.columns],
-            data=df_filtered.to_dict('records'),
-        )]
+        if d3 in validated_app:
+            df2_filtered = df2[(df2["App Name"] == d3)]
+            return [html.Div([html.H3('Associated papers:')],
+                     style={'textAlign': 'center'}),
+                html.Div([len(df2_filtered)],
+                     style={'textAlign': 'center'}),
+                dt.DataTable(
+                id='table',
+                columns=[{"name": i, "id": i} for i in df_filtered.columns],
+                data=df_filtered.to_dict('records'),
+            )]
+        else:
+            return [dt.DataTable(
+                id='table',
+                columns=[{"name": i, "id": i} for i in df_filtered.columns],
+                data=df_filtered.to_dict('records'),
+            )]
     else:
         print("none")
         return []
