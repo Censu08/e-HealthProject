@@ -111,7 +111,7 @@ def update_dropdown_2(d1):
 
 # TAB n°1: Callback to update the final table based on both the input dropdown values
 @app.callback(Output('final_table', 'children'),
-             [Input('dropdown_d1', 'value'),
+              [Input('dropdown_d1', 'value'),
               Input('dropdown_d2', 'value'),])
 
 def update_table(d1, d2):

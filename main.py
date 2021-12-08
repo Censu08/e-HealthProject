@@ -1,5 +1,6 @@
 from Library.Recognizer import *
-from Library.Benchmark.Benchmark_Game_Classification import *
+from Library.Dashboard import *
+from Library.Benchmark_Game_Classification import *
 
 while True:
     option = int(input("Enter option: "))
@@ -9,14 +10,10 @@ while True:
         read_serious_games()
     if option == 2:
         real_validator()
-    """ 
     if option == 3:
         print_dashboard()
-    """
-
     if option == 4:
         run_benchmark_first_part()
-
     else:
         continue
     """
