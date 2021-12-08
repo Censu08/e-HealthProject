@@ -1,9 +1,9 @@
 def run_validator_benchmark():
     # We take the final dataset of serious games found on pubmed and VALIDATED BY ALGORITHM and we extract the column "App name"
-    df_MG = pd.read_csv(r'Outputs/dataset_serious_games.csv', sep=",")
+    df_MG = pd.read_csv(r'Outputs/dataset_Validated_games_by_algorithm.csv', sep=",")
     name_MG = df_MG["App name"]
     # We take the benchmark dataset and we extract Medical Games and Fake Medical Games
-    df_bm = pd.read_csv(r'Sources/benchmark_data.csv', sep=";")
+    df_bm = pd.read_csv(r'Sources/BenchmarkValidator_data.csv', sep=";")
     fake_medical_games = df_bm["FAKE GAMES"]
     medical_games = df_bm["SERIOUS GAMES"]
     # Important values
