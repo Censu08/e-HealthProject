@@ -65,7 +65,12 @@ def update_dropdown_2(d1):
 def update_table(d1, d2):
     if (d1 != None and d2 != None):
         df2_filtered = df2[(df2["App Name"] == d1) & (df2["title"] == d2)]
-        return [dt.DataTable(
+        # abs = df2_filtered[1,3]
+        return [html.Div([html.H5("Abstract"),
+                          html.Br([]),
+                          html.P(df2_filtered['abstract'],
+                                style={"color": "#ffffff"}),]),
+            dt.DataTable(
             id='table',
             columns=[{"name": i, "id": i} for i in df2_filtered.columns],
             data=df2_filtered.to_dict('records'),

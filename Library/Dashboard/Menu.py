@@ -13,7 +13,9 @@ from dash.dependencies import Input, Output, State
 
 ## Importation of our database
 df = pd.read_csv(r'Outputs/dataset_serious_games.csv', sep =",")
-df = df[["App Name","Category","Rating","Rating Count","Developer Id","Reviews","Learning_category","Age_range"]]
+df = df[["App Name","App Id","Category","Rating","Rating Count","Installs","Price","Developer Id","Last Updated",
+         "Description","Reviews","Learning_category","Age_range"]]
+df_general = df[["App Name","Category","Rating","Rating Count","Price","Developer Id","Learning_category","Age_range"]]
 df2 = pd.read_csv(r'Outputs/dataset_papers2.csv', sep =",")
 validated_app = [i for i in df2["App Name"].unique()]
 
@@ -68,8 +70,8 @@ tabs = html.Div([
     dcc.Tabs(id="tabs-styled-with-inline", value='tab-1', children=[
         dcc.Tab(label='Field overview', value='tab-1', style=tab_style, selected_style=tab_selected_style),
         dcc.Tab(label='Details per app', value='tab-2', style=tab_style, selected_style=tab_selected_style),
-        dcc.Tab(label='Details per validated app', value='tab-3', style=tab_style, selected_style=tab_selected_style),
-        dcc.Tab(label='Details per non-validated app', value='tab-4', style=tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Papers per validated app', value='tab-3', style=tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Similar apps per non-validated app', value='tab-4', style=tab_style, selected_style=tab_selected_style),
     ], style=tabs_styles),
     html.Div(id='tabs-content-inline')
 ])
@@ -109,7 +111,9 @@ final_table = html.Div(id="final_table")
 final_table_2 = html.Div(id="final_table_2")
 final_table_3 = html.Div(id="final_table_3")
 
-app.layout = html.Div([tabs])
+app.layout = html.Div([
+                html.H1(children="Google Play Store Serious Games",style= {'font-size':'1.5em','text-align':'center'}),
+                tabs])
 
 @app.callback(Output('tabs-content-inline', 'children'),
               Input('tabs-styled-with-inline', 'value'))
@@ -145,8 +149,10 @@ def update_dropdown_2(d1):
 
 def update_table(d1, d2):
     if(d1 != None and d2 != None):
-        df_filtered = df[(df["Learning_category"]==d1) & (df["Age_range"]==d2)]
-        return [html.Div([html.H3('Results found:')],
+        df_filtered = df_general[(df_general["Learning_category"]==d1) & (df_general["Age_range"]==d2)]
+        return [html.Div([html.H2('General information about the apps in the selected field:')],
+                     style={'textAlign': 'left'}),
+                html.Div([html.H3('Number of apps found:')],
                      style={'textAlign': 'center'}),
                 html.Div([len(df_filtered)],
                      style={'textAlign': 'center'}),
@@ -156,8 +162,10 @@ def update_table(d1, d2):
             data=df_filtered.to_dict('records'),
         )]
     elif (d1 != None and d2 == None):
-        df_filtered = df[(df["Learning_category"] == d1)]
-        return [html.Div([html.H3('Results found:')],
+        df_filtered = df_general[(df_general["Learning_category"] == d1)]
+        return [html.Div([html.H2('General information about the apps in the selected field:')],
+                     style={'textAlign': 'left'}),
+                html.Div([html.H3('Number of apps found:')],
                      style={'textAlign': 'center'}),
                 html.Div([len(df_filtered)],
                          style={'textAlign': 'center'}),
@@ -209,18 +217,34 @@ def update_table_2(d1, d2, d3):
         df_filtered = df[(df["Learning_category"]==d1) & (df["Age_range"]==d2) & (df["App Name"]==d3)]
         if d3 in validated_app:
             df2_filtered = df2[(df2["App Name"] == d3)]
-            return [html.Div([html.H3('Number of associated papers:')]),
-                    html.Div([len(df2_filtered)]),
+            df2_filtered = df2_filtered[["title"]]
+            return [html.Div([html.H2('More specific information about the selected app:')],
+                              style={'textAlign': 'left'}),
                     dt.DataTable(id='table',
                                 columns=[{"name": i, "id": i} for i in df_filtered.columns],
-                                data=df_filtered.to_dict('records'),)]
+                                data=df_filtered.to_dict('records'),),
+                    html.Div([html.H3('Number of associated papers:')]),
+                    html.Div([len(df2_filtered)]),
+                    html.Div([html.H3('These papers are the followings:')]),
+                    dt.DataTable(id='table2',
+                                 columns=[{"name": i, "id": i} for i in df2_filtered.columns],
+                                 data=df2_filtered.to_dict('records'), ),
+                    html.Div([html.H3('For more detailed information on these papers, search them in tab n°3.')])
+                    ]
         else:
-            return [dt.DataTable(id='table2',
+            return [html.Div([html.H2('More specific information about the selected app:')],
+                              style={'textAlign': 'left'}),
+                    dt.DataTable(id='table2',
                                 columns=[{"name": i, "id": i} for i in df_filtered.columns],
-                                data=df_filtered.to_dict('records'),)]
+                                data=df_filtered.to_dict('records'),),
+                    html.Div([html.H3('This app is associated with 0 paper.')]),
+                    html.Div([html.H3('For more detailed information on the similar and potentially validated apps, search this app in tab n°4.')]),
+                    ]
     elif (d1 != None and d2 != None and d3 == None):
         df_filtered = df[(df["Learning_category"] == d1) & (df["Age_range"] == d2)]
-        return [html.Div([html.H3('Results found:')],
+        return [html.Div([html.H2('More specific information about the apps in the selected field:')],
+                          style={'textAlign': 'left'}),
+                html.Div([html.H3('Number of apps found:')],
                      style={'textAlign': 'center'}),
                 html.Div([len(df_filtered)],
                      style={'textAlign': 'center'}),
@@ -231,7 +255,9 @@ def update_table_2(d1, d2, d3):
         )]
     elif (d1 != None and d2 == None and d3 == None):
         df_filtered = df[(df["Learning_category"] == d1)]
-        return [html.Div([html.H3('Results found:')],
+        return [html.Div([html.H2('More specific information about the apps in the selected field:')],
+                          style={'textAlign': 'left'}),
+                html.Div([html.H3('Number of apps found:')],
                      style={'textAlign': 'center'}),
                 html.Div([len(df_filtered)],
                      style={'textAlign': 'center'}),
@@ -263,14 +289,19 @@ def update_dropdown_2_3(d1):
 def update_table_3(d1, d2):
     if (d1 != None and d2 != None):
         df2_filtered = df2[(df2["App Name"] == d1) & (df2["title"] == d2)]
-        return [dt.DataTable(
+        print(df2_filtered["abstract"])
+        return [html.Div([html.H2('More specific information about the selected paper:')],
+                          style={'textAlign': 'left'}),
+            dt.DataTable(
             id='table',
             columns=[{"name": i, "id": i} for i in df2_filtered.columns],
             data=df2_filtered.to_dict('records'),
         )]
     elif (d1 != None and d2 == None):
         df2_filtered = df2[(df2["App Name"] == d1)]
-        return [dt.DataTable(
+        return [html.Div([html.H2('More specific information about the paper(s) of the selected app:')],
+                          style={'textAlign': 'left'}),
+            dt.DataTable(
             id='table',
             columns=[{"name": i, "id": i} for i in df2_filtered.columns],
             data=df2_filtered.to_dict('records'),
