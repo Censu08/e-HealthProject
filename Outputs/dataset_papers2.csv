@@ -1,0 +1,386 @@
+App Name,pubmed_id,title,abstract,keywords,journal,publication_date,authors,methods,conclusions,results,copyrights,doi
+Baby Panda World,"32712376
+32378132
+32480303
+31917142
+32228363
+27407704
+31781527
+29936301
+32361677
+32329045
+29127858
+32364125
+25617692
+29755887
+32270358
+31801829
+11045434
+30562653
+18076644
+25191650
+32388156",Feasibility and effectiveness of teleconsultation in children with epilepsy amidst the ongoing COVID-19 pandemic in a resource-limited country.,"The ongoing COVID-19 pandemic and the lockdown measures employed by the government have forced neurologists across the world to look upon telemedicine as the only feasible and practical option to continue providing health care towards children with epilepsy in home isolation. Children with epilepsy are challenging for teleconsultation as direct information from the patient is missing, regarding seizures and adverse effects, especially behavioral and psychological side effects.
+Clinical and epilepsy-related details of telephonic consultations for children 1 month-18 years, performed between 26th March and 17th May 2020 in a tertiary care teaching hospital in Uttarakhand (a state of India known for hilly terrains with low per capita income) were recorded. Suitable changes in the dose/commercial brand of antiepileptic drug (AED) regimen were performed, along with the addition of new AED and referral to local practitioners for immediate hospitalization, when urgent health care issues were detected. Voice call, text message, picture/video message, and all other possible measures were employed to accumulate maximum clinical information in real-time.
+A total of 153 children(95 males [62 %], 9.45 ± 3.24 years, 140 lower/middle socioeconomic status) were enrolled after screening 237 children with various neurological disorders, whose caregivers contacted for teleconsultation. A total of 278 telephone consultations performed for these 153 children (1-5 telephone calls per patient). Hundred-thirteen children were identified to have a total of 152 significant clinical events (breakthrough seizure/uncontrolled epilepsy (108), AED related (13), and unrelated systemic adverse effects (24), worsening of associated co-morbidities (7). In rest of the patients, the query of the caregiver included unavailability of AED/prescribed commercial brand in the locality, query related to the dose of drugs, proxy for a scheduled routine visit (no active issues), and concern regarding COVID-19 related symptoms and effect of COVID-19 and lockdown in children with epilepsy. Ninety-three (60 %) patients required hiking up of AED dose, whereas 29 (17 %) patients required the addition of a new AED/commercial brand. Five children were advised immediate admission to a nearby hospital. Overall, 147 (96 %) caregivers were satisfied with the quality of medical advice.
+Teleconsultation is one of the few feasible options with good effectiveness for providing medical advice to children with epilepsy during pandemic times.","['Antiepileptic drugs', 'COVID-19', 'Child neurology', 'Epilepsy', 'Teleconsultation']",Seizure,"datetime.date(2020, 7, 28)","[{'lastname': 'Panda', 'firstname': 'Prateek Kumar', 'initials': 'PK', 'affiliation': 'Pediatric Neurology Division, Department of Pediatrics, All India Institute of Medical Sciences, Rishikesh, Uttarakhand, 249203, India.'}, {'lastname': 'Dawman', 'firstname': 'Lesa', 'initials': 'L', 'affiliation': 'Department of Pediatrics, Post Graduate Institute of Medical Education and Research, Chandigarh, 160012, India.'}, {'lastname': 'Panda', 'firstname': 'Pragnya', 'initials': 'P', 'affiliation': 'Department of Medicine, SCB Medical College, Cuttack, Odisha, India.'}, {'lastname': 'Sharawat', 'firstname': 'Indar Kumar', 'initials': 'IK', 'affiliation': 'Pediatric Neurology Division, Department of Pediatrics, All India Institute of Medical Sciences, Rishikesh, Uttarakhand, 249203, India. Electronic address: sherawatdrindar@gmail.com.'}]",,Teleconsultation is one of the few feasible options with good effectiveness for providing medical advice to children with epilepsy during pandemic times.,,Copyright © 2020 British Epilepsy Association. Published by Elsevier Ltd. All rights reserved.,10.1016/j.seizure.2020.07.013
+Baby Panda World,"32611914
+32046819
+32362647
+32362646
+32291542
+32205937
+32271722
+32242875
+32301958","Laboratory surveillance for SARS-CoV-2 in India: Performance of testing & descriptive epidemiology of detected COVID-19, January 22 - April 30, 2020.","India has been reporting the cases of coronavirus disease 2019 (COVID-19) since January 30, 2020. The Indian Council of Medical Research (ICMR) formulated and established laboratory surveillance for COVID-19. In this study, an analysis of the surveillance data was done to describe the testing performance and descriptive epidemiology of COVID-19 cases by time, place and person.
+The data were extracted from January 22 to April 30, 2020. The frequencies of testing performance were described over time and by place. We described cases by time (epidemic curve by date of specimen collection; seven-day moving average), place (area map) and person (attack rate by age, sex and contact status), and trends were represented along with public health measures and events.
+Between January 22 and April 30, 2020, a total of 1,021,518 individuals were tested for severe acute respiratory syndrome-coronavirus-2 (SARS-CoV-2). Testing increased from about 250 individuals per day in the beginning of March to 50,000 specimens per day by the end of April 2020. Overall, 40,184 (3.9%) tests were reported positive. The proportion of positive cases was highest among symptomatic and asymptomatic contacts, 2-3-fold higher than among those with severe acute respiratory infection, or those with an international travel history or healthcare workers. The attack rate (per million) by age was highest among those aged 50-69 yr (63.3) and was lowest among those under 10 yr (6.1). The attack rate was higher among males (41.6) than females (24.3). The secondary attack rate was 6.0 per cent. Overall, 99.0 per cent of 736 districts reported testing and 71.1 per cent reported COVID-19 cases.
+The coverage and frequency of ICMR's laboratory surveillance for SARS-CoV-2 improved over time. COVID-19 was reported from most parts of India, and the attack rate was more among men and the elderly and common among close contacts. Analysis of the data indicates that for further insight, additional surveillance tools and strategies at the national and sub-national levels are needed.",['Attack rate - contact testing - descriptive epidemiology - epidemic curve - positivity - SARS-CoV-2 - testing rate'],The Indian journal of medical research,"datetime.date(2020, 7, 3)","[{'lastname': None, 'firstname': None, 'initials': None, 'affiliation': '1 Human Influenza Group, † ICMR-National Institute of Virology, Pune, Maharashtra, 2 Division of Epidemiology & Communicable Diseases, 3 Informatics, Systems & Research Management Cell, 4 Department of Health Research, Ministry of Health & Family Welfare, Indian Council of Medical Research, 5Independent Public Health Specialist, 6 WHO Country Office for India, 7 Indian Institute of Public Health-Bengaluru, Public Health Foundation of India, New Delhi, 8 ICMR School of Public Health, 9 Division of Online Courses, 10 Division of Epidemiology & Bio-Statistics, †† ICMR-National Institute of Epidemiology, Chennai, Tamil Nadu, 11 Independent Consultant, Lucknow, Uttar Pradesh & 12 Jan Swasthya Sahyog, Bilaspur, Chhattisgarh, India.'}, {'lastname': None, 'firstname': None, 'initials': None, 'affiliation': None}, {'lastname': None, 'firstname': None, 'initials': None, 'affiliation': None}, {'lastname': None, 'firstname': None, 'initials': None, 'affiliation': None}]",,,,,10.4103/ijmr.IJMR_1896_20
+Little Panda Policeman,34428858,SARS-CoV-2 infection and venous thromboembolism after surgery: an international prospective cohort study.,"SARS-CoV-2 has been associated with an increased rate of venous thromboembolism in critically ill patients. Since surgical patients are already at higher risk of venous thromboembolism than general populations, this study aimed to determine if patients with peri-operative or prior SARS-CoV-2 were at further increased risk of venous thromboembolism. We conducted a planned sub-study and analysis from an international, multicentre, prospective cohort study of elective and emergency patients undergoing surgery during October 2020. Patients from all surgical specialties were included. The primary outcome measure was venous thromboembolism (pulmonary embolism or deep vein thrombosis) within 30 days of surgery. SARS-CoV-2 diagnosis was defined as peri-operative (7 days before to 30 days after surgery); recent (1-6 weeks before surgery); previous (≥7 weeks before surgery); or none. Information on prophylaxis regimens or pre-operative anti-coagulation for baseline comorbidities was not available. Postoperative venous thromboembolism rate was 0.5% (666/123,591) in patients without SARS-CoV-2; 2.2% (50/2317) in patients with peri-operative SARS-CoV-2; 1.6% (15/953) in patients with recent SARS-CoV-2; and 1.0% (11/1148) in patients with previous SARS-CoV-2. After adjustment for confounding factors, patients with peri-operative (adjusted odds ratio 1.5 (95%CI 1.1-2.0)) and recent SARS-CoV-2 (1.9 (95%CI 1.2-3.3)) remained at higher risk of venous thromboembolism, with a borderline finding in previous SARS-CoV-2 (1.7 (95%CI 0.9-3.0)). Overall, venous thromboembolism was independently associated with 30-day mortality (5.4 (95%CI 4.3-6.7)). In patients with SARS-CoV-2, mortality without venous thromboembolism was 7.4% (319/4342) and with venous thromboembolism was 40.8% (31/76). Patients undergoing surgery with peri-operative or recent SARS-CoV-2 appear to be at increased risk of postoperative venous thromboembolism compared with patients with no history of SARS-CoV-2 infection. Optimal venous thromboembolism prophylaxis and treatment are unknown in this cohort of patients, and these data should be interpreted accordingly.","['COVID-19', 'SARS-CoV-2', 'deep vein thrombosis', 'pulmonary embolism', 'venous thromboembolism']",Anaesthesia,"datetime.date(2021, 8, 25)","[{'lastname': None, 'firstname': None, 'initials': None, 'affiliation': 'University of Birmingham, Birmingham, UK.'}, {'lastname': None, 'firstname': None, 'initials': None, 'affiliation': None}]",,,,© 2021 The Authors. Anaesthesia published by John Wiley & Sons Ltd on behalf of Association of Anaesthetists.,10.1111/anae.15563
+Little Panda Policeman,34371522,Effects of pre-operative isolation on postoperative pulmonary complications after elective surgery: an international prospective cohort study.,"We aimed to determine the impact of pre-operative isolation on postoperative pulmonary complications after elective surgery during the global SARS-CoV-2 pandemic. We performed an international prospective cohort study including patients undergoing elective surgery in October 2020. Isolation was defined as the period before surgery during which patients did not leave their house or receive visitors from outside their household. The primary outcome was postoperative pulmonary complications, adjusted in multivariable models for measured confounders. Pre-defined sub-group analyses were performed for the primary outcome. A total of 96,454 patients from 114 countries were included and overall, 26,948 (27.9%) patients isolated before surgery. Postoperative pulmonary complications were recorded in 1947 (2.0%) patients of which 227 (11.7%) were associated with SARS-CoV-2 infection. Patients who isolated pre-operatively were older, had more respiratory comorbidities and were more commonly from areas of high SARS-CoV-2 incidence and high-income countries. Although the overall rates of postoperative pulmonary complications were similar in those that isolated and those that did not (2.1% vs 2.0%, respectively), isolation was associated with higher rates of postoperative pulmonary complications after adjustment (adjusted OR 1.20, 95%CI 1.05-1.36, p = 0.005). Sensitivity analyses revealed no further differences when patients were categorised by: pre-operative testing; use of COVID-19-free pathways; or community SARS-CoV-2 prevalence. The rate of postoperative pulmonary complications increased with periods of isolation longer than 3 days, with an OR (95%CI) at 4-7 days or ≥ 8 days of 1.25 (1.04-1.48), p = 0.015 and 1.31 (1.11-1.55), p = 0.001, respectively. Isolation before elective surgery might be associated with a small but clinically important increased risk of postoperative pulmonary complications. Longer periods of isolation showed no reduction in the risk of postoperative pulmonary complications. These findings have significant implications for global provision of elective surgical care.","['COVID-19', 'SARS-Cov-2', 'pathways', 'pre-operative isolation', 'surgery']",Anaesthesia,"datetime.date(2021, 8, 10)","[{'lastname': None, 'firstname': None, 'initials': None, 'affiliation': 'University of Birmingham, Birmingham, UK.'}, {'lastname': None, 'firstname': None, 'initials': None, 'affiliation': None}]",,,,© 2021 Association of Anaesthetists.,10.1111/anae.15560
+MentalUP - Learning Games & Brain Games,34813485,Using a 360° Virtual Reality or 2D Video to Learn History Taking and Physical Examination Skills for Undergraduate Medical Students: Pilot Randomized Controlled Trial.,"Learning through a 360° virtual reality (VR) or 2D video represents an alternative way to learn a complex medical education task. However, there is currently no consensus on how best to assess the effects of different learning materials on cognitive load estimates, heart rate variability (HRV), outcomes, and experience in learning history taking and physical examination (H&P) skills.
+The aim of this study was to investigate how learning materials (ie, VR or 2D video) impact learning outcomes and experience through changes in cognitive load estimates and HRV for learning H&P skills.
+This pilot system-design study included 32 undergraduate medical students at an academic teaching hospital. The students were randomly assigned, with a 1:1 allocation, to a 360° VR video group or a 2D video group, matched by age, sex, and cognitive style. The contents of both videos were different with regard to visual angle and self-determination. Learning outcomes were evaluated using the Milestone reporting form. Subjective and objective cognitive loads were estimated using the Paas Cognitive Load Scale, the National Aeronautics and Space Administration Task Load Index, and secondary-task reaction time. Cardiac autonomic function was assessed using HRV measurements. Learning experience was assessed using the AttrakDiff2 questionnaire and qualitative feedback. Statistical significance was accepted at a two-sided P value of <.01.
+All 32 participants received the intended intervention. The sample consisted of 20 (63%) males and 12 (38%) females, with a median age of 24 (IQR 23-25) years. The 360° VR video group seemed to have a higher Milestone level than the 2D video group (P=.04). The reaction time at the 10th minute in the 360° VR video group was significantly higher than that in the 2D video group (P<.001). Multiple logistic regression models of the overall cohort showed that the 360° VR video module was independently and positively associated with a reaction time at the 10th minute of ≥3.6 seconds (exp B=18.8, 95% CI 3.2-110.8; P=.001) and a Milestone level of ≥3 (exp B=15.0, 95% CI 2.3-99.6; P=.005). However, a reaction time at the 10th minute of ≥3.6 seconds was not related to a Milestone level of ≥3. A low-frequency to high-frequency ratio between the 5th and 10th minute of ≥1.43 seemed to be inversely associated with a hedonic stimulation score of ≥2.0 (exp B=0.14, 95% CI 0.03-0.68; P=.015) after adjusting for video module. The main qualitative feedback indicated that the 360° VR video module was fun but caused mild dizziness, whereas the 2D video module was easy to follow but tedious.
+Our preliminary results showed that 360° VR video learning may be associated with a better Milestone level than 2D video learning, and that this did not seem to be related to cognitive load estimates or HRV indexes in the novice learners. Of note, an increase in sympathovagal balance may have been associated with a lower hedonic stimulation score, which may have met the learners' needs and prompted learning through the different video modules.
+ClinicalTrials.gov NCT03501641; https://clinicaltrials.gov/ct2/show/NCT03501641.","['cognitive load', 'heart rate variability', 'learning outcome', 'secondary-task reaction time', 'video learning', 'virtual reality']",JMIR serious games,"datetime.date(2021, 11, 24)","[{'lastname': 'Chao', 'firstname': 'Yi-Ping', 'initials': 'YP', 'affiliation': 'Department of Computer Science and Information Engineering, Graduate Institute of Biomedical Engineering, Chang Gung University, Taoyuan, Taiwan.\nDepartment of Neurology, Chang Gung Memorial Hospital, Linkou Main Branch, Taoyuan, Taiwan.'}, {'lastname': 'Chuang', 'firstname': 'Hai-Hua', 'initials': 'HH', 'affiliation': 'Department of Family Medicine, Chang Gung Memorial Hospital, Taipei Branch & Linkou Main Branch, Taoyuan, Taiwan.\nCollege of Medicine, Chang Gung University, Taoyuan, Taiwan.'}, {'lastname': 'Hsin', 'firstname': 'Li-Jen', 'initials': 'LJ', 'affiliation': 'College of Medicine, Chang Gung University, Taoyuan, Taiwan.\nDepartment of Otorhinolaryngology-Head and Neck Surgery, Chang Gung Memorial Hospital, Linkou Main Branch, Taoyuan, Taiwan.'}, {'lastname': 'Kang', 'firstname': 'Chung-Jan', 'initials': 'CJ', 'affiliation': 'College of Medicine, Chang Gung University, Taoyuan, Taiwan.\nDepartment of Otorhinolaryngology-Head and Neck Surgery, Chang Gung Memorial Hospital, Linkou Main Branch, Taoyuan, Taiwan.'}, {'lastname': 'Fang', 'firstname': 'Tuan-Jen', 'initials': 'TJ', 'affiliation': 'College of Medicine, Chang Gung University, Taoyuan, Taiwan.\nDepartment of Otorhinolaryngology-Head and Neck Surgery, Chang Gung Memorial Hospital, Linkou Main Branch, Taoyuan, Taiwan.'}, {'lastname': 'Li', 'firstname': 'Hsueh-Yu', 'initials': 'HY', 'affiliation': 'College of Medicine, Chang Gung University, Taoyuan, Taiwan.\nDepartment of Otorhinolaryngology-Head and Neck Surgery, Chang Gung Memorial Hospital, Linkou Main Branch, Taoyuan, Taiwan.'}, {'lastname': 'Huang', 'firstname': 'Chung-Guei', 'initials': 'CG', 'affiliation': 'Department of Laboratory Medicine, Chang Gung Memorial Hospital, Linkou Main Branch, Taoyuan, Taiwan.\nDepartment of Medical Biotechnology and Laboratory Science, Graduate Institute of Biomedical Sciences, Chang Gung University, Taoyuan, Taiwan.'}, {'lastname': 'Kuo', 'firstname': 'Terry B J', 'initials': 'TBJ', 'affiliation': 'Institute of Brain Science, National Yang Ming Chiao Tung University, Taipei, Taiwan.'}, {'lastname': 'Yang', 'firstname': 'Cheryl C H', 'initials': 'CCH', 'affiliation': 'Institute of Brain Science, National Yang Ming Chiao Tung University, Taipei, Taiwan.'}, {'lastname': 'Shyu', 'firstname': 'Hsin-Yih', 'initials': 'HY', 'affiliation': 'College of Medicine, Chang Gung University, Taoyuan, Taiwan.\nDepartment of Educational Technology, Tamkang University, New Taipei, Taiwan.'}, {'lastname': 'Wang', 'firstname': 'Shu-Ling', 'initials': 'SL', 'affiliation': 'College of Medicine, Chang Gung University, Taoyuan, Taiwan.\nCenter of Teacher Education, National Taiwan University of Science and Technology, Taipei, Taiwan.'}, {'lastname': 'Shyu', 'firstname': 'Liang-Yu', 'initials': 'LY', 'affiliation': 'Department of Biomedical Engineering, Chung Yuan Christian University, Taoyuan, Taiwan.'}, {'lastname': 'Lee', 'firstname': 'Li-Ang', 'initials': 'LA', 'affiliation': 'College of Medicine, Chang Gung University, Taoyuan, Taiwan.\nDepartment of Otorhinolaryngology-Head and Neck Surgery, Chang Gung Memorial Hospital, Linkou Main Branch, Taoyuan, Taiwan.\nInstitute of Brain Science, National Yang Ming Chiao Tung University, Taipei, Taiwan.'}]",,,"All 32 participants received the intended intervention. The sample consisted of 20 (63%) males and 12 (38%) females, with a median age of 24 (IQR 23-25) years. The 360° VR video group seemed to have a higher Milestone level than the 2D video group (P=.04). The reaction time at the 10th minute in the 360° VR video group was significantly higher than that in the 2D video group (P<.001). Multiple logistic regression models of the overall cohort showed that the 360° VR video module was independently and positively associated with a reaction time at the 10th minute of ≥3.6 seconds (exp B=18.8, 95% CI 3.2-110.8; P=.001) and a Milestone level of ≥3 (exp B=15.0, 95% CI 2.3-99.6; P=.005). However, a reaction time at the 10th minute of ≥3.6 seconds was not related to a Milestone level of ≥3. A low-frequency to high-frequency ratio between the 5th and 10th minute of ≥1.43 seemed to be inversely associated with a hedonic stimulation score of ≥2.0 (exp B=0.14, 95% CI 0.03-0.68; P=.015) after adjusting for video module. The main qualitative feedback indicated that the 360° VR video module was fun but caused mild dizziness, whereas the 2D video module was easy to follow but tedious.","©Yi-Ping Chao, Hai-Hua Chuang, Li-Jen Hsin, Chung-Jan Kang, Tuan-Jen Fang, Hsueh-Yu Li, Chung-Guei Huang, Terry B J Kuo, Cheryl C H Yang, Hsin-Yih Shyu, Shu-Ling Wang, Liang-Yu Shyu, Li-Ang Lee. Originally published in JMIR Serious Games (https://games.jmir.org), 22.11.2021.",10.2196/13124
+MentalUP - Learning Games & Brain Games,34784486,Early diagnosis of the learning disabilities in kids using a computer game-based solution.,"Learning disabilities or learning disorders are umbrella terms used for wide variety of learning problems like Dyslexia, Dyscalculia, Dysgraphia, and Dyspraxia. These disabilities are due to the neurological disorders which affects brain functions. Early diagnosis of these disabilities in kids from age 3 to 6 will help to start early medical treatments and get them back to the normal condition.
+we developed a software-based Learning Disability Evaluation Kit called YALU with computer Game Modules for kids targeting their learning disabilities. These Computer game-based modules of the YALU consist of different tasks for the different age levels to identify the symptoms of the disabilities mentioned above. The children's interaction results to each task of the game modules with the answers of the questioner about the children given by the parents will be evaluated with the threshold values given by a panel of consultant psychologist and paediatrician of the normal kids to identify the learning disabilities in kids aged 3-6 years. The result will be given to the respective parties and uploaded to the Website under the child's name.
+YALU has been tested using 50 students in age 3-5 in three preschools. The teachers have identified Fourteen students with some learning disability symptoms. Using YALU, twelve out of fourteen students had been clearly identified. Hence, the YALU Evaluation Kit to have an accuracy 85% in diagnosing the right disability. However, the accuracy could be increased with the accurate assessments of the parents about their kids.IMPLICATIONS FOR REHABILITATIONLearning disabilities are neurological disorders that affect the brain's ability to receive, process, store, respond to and communicate information; and there are four types (Dyslexia, Dyspraxia, Dysgraphia and Dyscalculia)In this paper, we present the extracted computational techniques targeting the Dyslexia, Dyspraxia, Dysgraphia and Dyscalculia and developed a software application (YALU Learning Disability Evaluation Kit) which consists of computer game modules for the kids for evaluation their learning disabilities.The developed game modules can screen the learning disabilities and these gamification modules (YALU) consists of tasks which are based on symptoms of the said disabilities. The outcomes of each module is evaluated these learning disabilities in kids age from 3 years to 6 years by analysing children's interactions to the each tasks, the child condition and then compare the result with the threshold values of the normal kids given by consultant psychologist and paediatrician.","['Dyscalculia', 'Dysgraphia', 'Dyslexia', 'Dyspraxia', 'Learning disability evaluation', 'computer-based games']",Disability and rehabilitation. Assistive technology,"datetime.date(2021, 11, 17)","[{'lastname': 'Samarasinghe', 'firstname': 'N R', 'initials': 'NR', 'affiliation': 'Department of ICT, Faculty of Technology, University of Colombo, Colombo, Sri Lanka.'}, {'lastname': 'Abeyasinghe', 'firstname': 'A H M G B', 'initials': 'AHMGB', 'affiliation': 'Teaching Hospital Kuliyapitiya, Colombo, Sri Lanka.'}]",,,,,10.1080/17483107.2021.2003454
+Halloween Makeup Me,28007419,Child and adult exposure and health risk evaluation following the use of metal- and metalloid-containing costume cosmetics sold in the United States.,"Costume cosmetics (lipstick, body paints, eyeshadow) were analyzed for metals using inductively coupled plasma mass spectrometry (ICP-MS). Sb was detected in all samples (range: 0.12-6.3 mg/kg; d.f. 100%), followed by Pb (<0.15-9.3 mg/kg), Ni (<0.20-6.3 mg/kg), Co (<0.5-2.0 mg/kg); with d.f. 80% each, Hg (<0.00015-0.0020 mg/kg; d.f. 50%) and As (0.53 mg/kg, d.f. 10%). Ingestion and dermal exposures were estimated for child- and adult-intermittent and adult-occupational users. Adult-occupational users exceeded the U.S. EPA Reference Dose (RfD) for Sb and the CA Proposition 65 maximum allowable dose level (MADL) for Pb was exceeded for all user scenarios. The Pb dose from body paint was sufficient to raise blood lead levels (BLL) in all user scenarios above baseline BLLs from 0.2 μg/dL to 1.9 μg/dL per the Adult Lead Model (ALM) and child Integrated Exposure Uptake Biokinetic (IEUBK) blood Pb models. Change in BLL was less than 1 μg/dL amongst the child and adult-intermittent users, the benchmark change in BLL developed for health risk assessments for children. Adult-occupational users exceeded the CA Proposition 65 NSRL intake value of 15 μg/day, which corresponds to an increase of 1.2 μg/dL above baseline levels using ALM. Exposure of occupational users of costume cosmetics should be evaluated further to prevent unnecessary metal exposure.","['Arsenic', 'Cadmium', 'Chromium', 'Cosmetic', 'Face paint', 'Halloween', 'Lead', 'Makeup', 'Metalloid', 'Metals']",Regulatory toxicology and pharmacology : RTP,"datetime.date(2016, 12, 23)","[{'lastname': 'Perez', 'firstname': 'Angela L', 'initials': 'AL', 'affiliation': 'Cardno ChemRisk, LLC, 101 2nd Street, Suite 700, San Francisco, CA 94105, United States. Electronic address: Angela.perez@cardno.com.'}, {'lastname': 'Nembhard', 'firstname': 'Melanie', 'initials': 'M', 'affiliation': 'Cardno ChemRisk, LLC, 101 2nd Street, Suite 700, San Francisco, CA 94105, United States.'}, {'lastname': 'Monnot', 'firstname': 'Andrew', 'initials': 'A', 'affiliation': 'Cardno ChemRisk, LLC, 101 2nd Street, Suite 700, San Francisco, CA 94105, United States.'}, {'lastname': 'Bator', 'firstname': 'Daniel', 'initials': 'D', 'affiliation': 'Dept. of Environmental Health Sciences, University of Michigan School of Public Health, 1415 Washington Heights Ann Arbor, MI 48109-2029, United States.'}, {'lastname': 'Madonick', 'firstname': 'Elizabeth', 'initials': 'E', 'affiliation': 'Brooks Applied Labs, 18804 Northcreek Parkway, Bothell, WA 98011, United States.'}, {'lastname': 'Gaffney', 'firstname': 'Shannon H', 'initials': 'SH', 'affiliation': 'Cardno ChemRisk, LLC, 101 2nd Street, Suite 700, San Francisco, CA 94105, United States.'}]",,,,Copyright © 2016 Elsevier Inc. All rights reserved.,10.1016/j.yrtph.2016.12.005
+Coloring & Learn,34855596,CartoonLossGAN: Learning Surface and Coloring of Images for Cartoonization.,"Cartoonization as a special type of artistic style transfer is a difficult image processing task. The current existing artistic style transfer methods cannot generate satisfactory cartoon-style images due to that artistic style images often have delicate strokes and rich hierarchical color changes while cartoon-style images have smooth surfaces without obvious color changes, and sharp edges. To this end, we propose a cartoon loss based generative adversarial network (CartoonLossGAN) for cartoonization. Particularly, we first reuse the encoder part of the discriminator to build a compact generative adversarial network (GAN) based cartoonization architecture. Then we propose a novel cartoon loss function for the architecture. It can imitate the process of sketching to learn the smooth surface of the cartoon image, and imitate the coloring process to learn the coloring of the cartoon image. Furthermore, we also propose an initialization strategy, which is used in the scenario of reusing the discriminator to make our model training easier and more stable. Extensive experimental results demonstrate that our proposed CartoonLossGAN can generate fantastic cartoon-style images, and outperforms four representative methods.",[],IEEE transactions on image processing : a publication of the IEEE Signal Processing Society,"datetime.date(2021, 12, 3)","[{'lastname': 'Dong', 'firstname': 'Yongsheng', 'initials': 'Y', 'affiliation': None}, {'lastname': 'Tan', 'firstname': 'Wei', 'initials': 'W', 'affiliation': None}, {'lastname': 'Tao', 'firstname': 'Dacheng', 'initials': 'D', 'affiliation': None}, {'lastname': 'Zheng', 'firstname': 'Lintao', 'initials': 'L', 'affiliation': None}, {'lastname': 'Li', 'firstname': 'Xuelong', 'initials': 'X', 'affiliation': None}]",,,,,10.1109/TIP.2021.3130539
+Coloring & Learn,34614240,Draw a Star and Make it Perfect: Incremental Processing of Telicity.,"Predicates like ""coloring-the-star"" denote events that have a temporal duration and a culmination point (telos). When combined with perfective aspect (e.g., ""Valeria has colored the star""), a culmination inference arises implying that the action has stopped, and the star is fully colored. While the perfective aspect is known to constrain the conceptualization of the event as telic, many reading studies have demonstrated that readers do not make early commitments as to whether the event is bounded or unbounded. A few visual-world studies tested the processing of telic predicates during online sentence processing, demonstrating an early integration of aspectual and temporal cues. By employing the visual-world paradigm, we tested the incremental processing of the perfective aspect in Italian in two eye-tracking studies in which listeners heard durative predicates in the perfective form in a scenario showing a completed and a non-completed event. Differently from previous studies, we compared telic durative predicates such as ""coloring-the-star"" to punctual predicates such as ""lighting-the-candle."" While for punctual predicates, the inferences of telicity (the event has a telos) and of culmination (the telos is reached) are lexically encoded in the perfective verb, for durative predicates, the degree of event completion (visually encoded) needs to be integrated with perfective aspect (linguistically encoded) for the culmination inference derivation. By modulating the interaction of visual and linguistic stimuli across the two experiments, we show that the verb's perfective aspect triggers the culmination inference incrementally during sentence processing, offering novel evidence for the continuous integration of linguistic processing with real-world visual information.","['Aspect', 'Incremental processing', 'Telicity', 'Visual world paradigm']",Cognitive science,"datetime.date(2021, 10, 7)","[{'lastname': 'Foppolo', 'firstname': 'Francesca', 'initials': 'F', 'affiliation': 'Department of Psychology, University of Milan-Bicocca.'}, {'lastname': 'Bosch', 'firstname': 'Jasmijn E', 'initials': 'JE', 'affiliation': 'Department of Psychology, University of Milan-Bicocca.'}, {'lastname': 'Greco', 'firstname': 'Ciro', 'initials': 'C', 'affiliation': 'Coveo AI Labs, Coveo.'}, {'lastname': 'Carminati', 'firstname': 'Maria N', 'initials': 'MN', 'affiliation': None}, {'lastname': 'Panzeri', 'firstname': 'Francesca', 'initials': 'F', 'affiliation': 'Department of Psychology, University of Milan-Bicocca.'}]",,,,© 2021 Cognitive Science Society LLC.,10.1111/cogs.13052
+Tailor Kids,"34578179
+17459840
+23101668
+29208582
+22900421
+34116730
+26965241
+29197401
+12677687
+11482610
+26336097
+17278722
+26315774
+31900210
+18599860
+3485006
+2503908
+33025842
+21463497
+24709519
+24728491",An Accessible Diagnostic Toolbox to Detect Bacterial Causes of Ovine and Caprine Abortion.,"Results of laboratory investigations of ovine and caprine cases of abortion in the lambing season 2015-2016 were analyzed, using pathology records of submissions to Royal GD (Deventer, the Netherlands) from January until and including April 2016, in comparison with the results of two accessible alternative techniques for sampling aborted lambs and kids, swabbing the fetal oropharynx and puncture of the fetal lung. ","['abortion', 'accessible diagnostic toolbox', 'bacterial agents', 'caprine', 'fetal lung puncture sample', 'fetal oropharyngeal mucus sample', 'goats', 'ovine', 'sheep']","Pathogens (Basel, Switzerland)","datetime.date(2021, 9, 29)","[{'lastname': 'Brom', 'firstname': 'René van den', 'initials': 'RVD', 'affiliation': 'Department of Small Ruminant Health, Royal GD, P.O. Box 9, 7400 AA Deventer, The Netherlands.'}, {'lastname': 'Santman-Berends', 'firstname': 'Inge', 'initials': 'I', 'affiliation': 'Department of Research and Development, Royal GD, P.O. Box 9, 7400 AA Deventer, The Netherlands.'}, {'lastname': 'Dijkman', 'firstname': 'Remco', 'initials': 'R', 'affiliation': 'Department of Research and Development, Royal GD, P.O. Box 9, 7400 AA Deventer, The Netherlands.'}, {'lastname': 'Vellema', 'firstname': 'Piet', 'initials': 'P', 'affiliation': 'Department of Small Ruminant Health, Royal GD, P.O. Box 9, 7400 AA Deventer, The Netherlands.'}, {'lastname': 'Dijkman', 'firstname': 'Reinie', 'initials': 'R', 'affiliation': 'Department of Small Ruminant Health, Royal GD, P.O. Box 9, 7400 AA Deventer, The Netherlands.'}, {'lastname': 'Engelen', 'firstname': 'Erik van', 'initials': 'EV', 'affiliation': 'Department of Research and Development, Royal GD, P.O. Box 9, 7400 AA Deventer, The Netherlands.'}]",,,,,10.3390/pathogens10091147
+Tailor Kids,"34395496
+28159208
+22138535
+27213440
+25527244
+27836423
+20639792
+18547467
+31645057
+32311292
+23445740
+23993139
+28614672
+25642664
+27602704
+26081453
+31195757
+30982856
+31467568
+30568297
+30149573
+25387230
+30347801
+32943531
+31995395
+27773337
+20036378
+27534694
+28159206
+32221473
+27889684
+24282194
+33328245
+8111168
+19196035
+20394371
+22900748
+25807349
+24850388
+22129386
+27212112
+16214761
+22983847
+29495552
+15343178
+23786897
+30105286
+27609061
+33693847
+21214271
+30322051
+26322410
+28945208
+33244710
+24135979
+28381523
+24919691
+22647041
+30921551
+30297668
+26562370",Tailoring Human Milk Oligosaccharides to Prevent Necrotising Enterocolitis Among Preterm Infants.,"Necrotising enterocolitis (NEC) is a devastating disease affecting preterm infants, with little improvement in mortality rates and treatment strategies in the last 30 years. Human milk oligosaccharides (HMOs) are emerging as a potential preventive therapy, with multiple protective functions postulated. Our aim is to summarise the evidence concerning the role of HMOs in NEC development and emerging strategies to tailor the delivery of HMOs to preterm infants. Most research efforts to date have focused on supplementing preterm infants with simple oligosaccharides, which are structurally different to HMOs and derived mainly from plants. Clinical trials demonstrate limited benefits for NEC prevention arising from the use of these supplements. Alternative strategies under investigation include optimising HMOs for infants receiving donor human milk, concentrating oligosaccharides from donor human milk and from animal milks, as well as more sophisticated synthetic oligosaccharide production strategies. Critically, high quality evidence to support implementation of any of these approaches in the neonatal unit is lacking. Whether it is a specific HMO alone or a combination of HMOs that exert protective effects remains to be elucidated. Further challenges include how best to manufacture and administer oligosaccharides whilst retaining bioactivity and safety, including evaluation of the long-term effects of altering the balance of HMOs and gut microbiota in preterm infants. While several human clinical trials are underway, further research is needed to understand whether a tailored approach to oligosaccharide supplementation is beneficial for preterm infants.","['breast milk', 'necrotising enterocolitis', 'neonatal nutrition', 'oligosaccharides', 'preterm (birth)', 'very low birth weight infants']",Frontiers in nutrition,"datetime.date(2021, 8, 17)","[{'lastname': 'Abbas', 'firstname': 'Safiyyah', 'initials': 'S', 'affiliation': ""Women's and Children's Health Network, Adelaide, SA, Australia.""}, {'lastname': 'Keir', 'firstname': 'Amy K', 'initials': 'AK', 'affiliation': ""Women's and Children's Health Network, Adelaide, SA, Australia.\nSAHMRI Women and Kids, South Australian Health and Medical Research Institute, Adelaide, SA, Australia.\nAdelaide Medical School, The University of Adelaide, Adelaide, SA, Australia.\nRobinson Research Institute, The University of Adelaide, Adelaide, SA, Australia.""}, {'lastname': 'Makrides', 'firstname': 'Maria', 'initials': 'M', 'affiliation': 'SAHMRI Women and Kids, South Australian Health and Medical Research Institute, Adelaide, SA, Australia.\nRobinson Research Institute, The University of Adelaide, Adelaide, SA, Australia.'}, {'lastname': 'Klein', 'firstname': 'Laura D', 'initials': 'LD', 'affiliation': 'Business Growth and Innovation, Australian Red Cross Lifeblood, Sydney, NSW, Australia.'}, {'lastname': 'Grzeskowiak', 'firstname': 'Luke E', 'initials': 'LE', 'affiliation': 'SAHMRI Women and Kids, South Australian Health and Medical Research Institute, Adelaide, SA, Australia.\nCollege of Medicine and Public Health, Flinders University, Adelaide, SA, Australia.'}, {'lastname': 'McPhee', 'firstname': 'Andrew J', 'initials': 'AJ', 'affiliation': 'SAHMRI Women and Kids, South Australian Health and Medical Research Institute, Adelaide, SA, Australia.'}, {'lastname': 'Rumbold', 'firstname': 'Alice R', 'initials': 'AR', 'affiliation': 'SAHMRI Women and Kids, South Australian Health and Medical Research Institute, Adelaide, SA, Australia.\nAdelaide Medical School, The University of Adelaide, Adelaide, SA, Australia.\nRobinson Research Institute, The University of Adelaide, Adelaide, SA, Australia.'}]",,,,"Copyright © 2021 Abbas, Keir, Makrides, Klein, Grzeskowiak, McPhee and Rumbold.",10.3389/fnut.2021.702888
+Animal Jam,34820970,Immunomodulatory and ameliorative effects of probiotic in combination with diclazuril on broilers under coccidia infection.,"This study aimed to determine the potential prophylactic efficacy of probiotic individually and/or in combination with anti-coccidial drug on the performance and immunity of broilers under an induced coccidial infection over a 28-day of experimental trial.
+One hundred and eighty 1-day-old Cobb broiler chicks were randomly divided into 5 groups, included control group (CG), control positive group (CPG), probiotic-treated group (Prob), diclazuril-treated group (Dic), and probiotic + diclazuril-treated group (Prob + Dic). On day 21 of age, all birds, except group CG, were orally inoculated with 1 mL of tap water containing 25000 E. tenella sporulated oocysts.
+Our results showed that the probiotic treatment did not influence on pre-challenge body weight, feed intake and feed conversion ratio (FCR). During the post challenge period, chickens in groups probiotic and diclazuril individually and in combination exhibited higher body weight and lower (better) FCR, reduced oocyst shedding (throughout the day four, five, six and seven post-infection), cecal lesions and mortality compared with control positive chickens. Moreover, Compared to CPG group, Prob + Dic group showed increased (P < 0.05) serum levels of interleukin-10 (IL-10) and immunoglobulin M (IgM) and decreased the concentrations of interferon gamma (IFN-γ). On the other hand, individual treatment with probiotic exhibited highest serum levels of IL-10 and IgM, while diclazuril alone increased the blood concentrations of IL-10 and decreased the levels of IFN-γ compared to control positive group; however, there was no significant effect of Prob on IFN-γ, Dic on IgM and all groups on interleukin-17.
+In conclusion, supplementation of probiotic, with and/or without anti-coccidial drug, enhances the immunity and inhibits the negative effects of Eimeria infection.
+This study reveals the anti-coccidial mechanisms of probiotic in the presence and absence of anti-coccidial drug in preventing the coccidia infection.","['\nE. tenella\n', 'Probiotic', 'broiler', 'diclazuril', 'immunity', 'performance']",Journal of applied microbiology,"datetime.date(2021, 11, 26)","[{'lastname': 'Memon', 'firstname': 'Fareed Uddin', 'initials': 'FU', 'affiliation': 'Department of Clinical Veterinary Medicine, College of Animal Sciences and Technology, Guangxi University, Nanning, China.\nDepartment of Poultry Husbandry, Faculty of Animal Husbandry and Veterinary Sciences, Sindh Agriculture University Tando jam, Sindh, Pakistan.'}, {'lastname': 'Leghari', 'firstname': 'Imdad Hussain', 'initials': 'IH', 'affiliation': 'Department of Poultry Husbandry, Faculty of Animal Husbandry and Veterinary Sciences, Sindh Agriculture University Tando jam, Sindh, Pakistan.'}, {'lastname': 'Rajput', 'firstname': 'Nasir', 'initials': 'N', 'affiliation': 'Department of Poultry Husbandry, Faculty of Animal Husbandry and Veterinary Sciences, Sindh Agriculture University Tando jam, Sindh, Pakistan.'}, {'lastname': 'Gadahi', 'firstname': 'Javaid Ali', 'initials': 'JA', 'affiliation': 'Department of Veterinary Parasitology, Faculty of Animal Husbandry and Veterinary Sciences, Sindh Agriculture University Tando jam, Sindh, Pakistan.'}, {'lastname': 'Ahmed', 'firstname': 'Jam Zaheer', 'initials': 'JZ', 'affiliation': 'Department of Veterinary Surgery and Obstetrics, Sindh Agriculture University Tando jam, Sindh, Pakistan.'}, {'lastname': 'Yang', 'firstname': 'Yunqiao', 'initials': 'Y', 'affiliation': 'Department of Clinical Veterinary Medicine, College of Animal Sciences and Technology, Guangxi University, Nanning, China.'}, {'lastname': 'Baig', 'firstname': 'Mirza Baber', 'initials': 'MB', 'affiliation': 'School of Computer and Electronics Engineering, Guangxi University, Nanning, China.'}, {'lastname': 'Laghari', 'firstname': 'Farooque', 'initials': 'F', 'affiliation': 'Department of Poultry Husbandry, Faculty of Animal Husbandry and Veterinary Sciences, Sindh Agriculture University Tando jam, Sindh, Pakistan.'}, {'lastname': 'Memon', 'firstname': 'Hamid Ali', 'initials': 'HA', 'affiliation': 'Department of Veterinary Surgery and Obstetrics, Sindh Agriculture University Tando jam, Sindh, Pakistan.'}, {'lastname': 'Si', 'firstname': 'Hongbin', 'initials': 'H', 'affiliation': 'Department of Clinical Veterinary Medicine, College of Animal Sciences and Technology, Guangxi University, Nanning, China.'}]",,"In conclusion, supplementation of probiotic, with and/or without anti-coccidial drug, enhances the immunity and inhibits the negative effects of Eimeria infection.",,This article is protected by copyright. All rights reserved.,10.1111/jam.15380
+Animal Jam,"34795785
+25222662
+31351880
+9458817
+26359485
+28730748
+28506572
+27492648
+26940641
+25734736
+28507021
+33499840
+29372991
+24705634
+32097396
+26229403
+23297858
+31775739
+29132527
+31306972
+18160540
+28092305
+17719181
+32982718
+16771951
+19174795
+28650209
+28791364
+22346361
+30996042
+29371960
+31110553
+18723164
+22583600
+26192807
+18671775",Mechanism of QingHuaZhiXie Prescription Regulating TLR4-IECs Pathway in the Intervention of Diarrhea Predominant Irritable Bowel Syndrome.,"To investigate the effect and mechanism of QingHuaZhiXie prescription on diarrhea predominant irritable bowel syndrome (D-IBS), animal models of rats were used in this study. 48 rats were randomly divided into 6 groups, containing one control group, one animal model group (D-IBS group), and four drug intervention groups (low, medium, and high dosage of QingHuaZhiXie prescription and trimebutine maleate intervention group). Abdominal withdrawal reflex (AWR) and Bristol stool form scale were recorded; the expression levels of inflammatory factors (TNF-",[],Evidence-based complementary and alternative medicine : eCAM,"datetime.date(2021, 11, 20)","[{'lastname': 'Huang', 'firstname': 'Hua', 'initials': 'H', 'affiliation': 'Department of Anorectal, Changshu Hospital Affiliated to Nanjing University of Chinese Medicine, Changshu 215500, China.'}, {'lastname': 'Zhao', 'firstname': 'Ping', 'initials': 'P', 'affiliation': 'Department of Anorectal, Changshu Hospital Affiliated to Nanjing University of Chinese Medicine, Changshu 215500, China.'}, {'lastname': 'Xi', 'firstname': 'Meijuan', 'initials': 'M', 'affiliation': 'Digestive System Department, Affiliated Hospital of Nanjing University of Chinese Medicine, Nanjing 210000, China.'}, {'lastname': 'Li', 'firstname': 'Fang', 'initials': 'F', 'affiliation': 'Digestive System Department, Affiliated Hospital of Nanjing University of Chinese Medicine, Nanjing 210000, China.'}, {'lastname': 'Ji', 'firstname': 'Lijiang', 'initials': 'L', 'affiliation': 'Department of Anorectal, Changshu Hospital Affiliated to Nanjing University of Chinese Medicine, Changshu 215500, China.'}]",,,,Copyright © 2021 Hua Huang et al.,10.1155/2021/5792130
+Baby Panda Care,"34653203
+21125018
+17356903
+29925619
+26702035
+28854200
+19883400
+31453804
+31492123
+25791313
+21743766
+23582721
+1820644
+32574232
+30953501
+27760703
+9404380
+23582727
+21225900
+14573579
+9892025
+23839100
+19969383
+32518814
+23582723
+32569281
+30319697
+21111894
+17212837
+31555719
+25077077
+10256648
+31097276
+27760702
+15233188
+27542836
+24567318
+25617193
+29928056
+17326709",What are the determinants of childhood infections in India's peri-urban slums? A case study of eight cities.,"Respiratory Tract Infections (RTIs) and Gastro-Intestinal (GI) infections are the leading causes of child mortality and morbidity. This study investigates the associations between the individual, household and slum-level determinants of children's health and vulnerability to RTIs and GI infections in peri-urban slums in India; an area of research interest at the Childhood Infections and Pollution Consortium.
+The 2015-16 Indian National Family Health Survey was used for data analysis on children aged 0-5 years. NFHS-4 includes data on slums in eight Indian cities, including Delhi, Meerut, Kolkata, Indore, Mumbai, Nagpur, Hyderabad, Chennai. The outcome variables, having fever and cough (FeCo) and diarrhoea in the last two weeks, were used to define the phenotype of infections; for this analysis fever and cough were measures of RTIs and diarrhoea was used to measure GI infections. Exposures considered in this study include variables at the individual, household and slum level and were all informed by existing literature. Multilevel models were used to estimate the association between exposures and outcomes variables; a prior of Cauchy distribution with a scale of 2.5 was selected when building the multilevel logistic models.
+The total sample size of the number of children included in the analysis was n = 1,424. Data was imputed to account for missingness, and the original and imputed sample showing similar distributions. Results showed that diarrhoea and FeCo were both found to be more present in younger children than older children by a few months. In fixed effects, the odds of developing FeCo were higher if the mother perceives the child was born smaller than average (AOR 4.41, 1.13-17.17, P<0.05) at individual level. On the other hand, the odds of the diarrhoea outcome were lower if the child was older (AOR 0.97, 0.96-0.98, P<0.05) at individual level, and household's water source was public tap or standpipe (AOR 0.54, 0.31-0.96, P<0.05) at household level.
+The determinants of health, both social and related to health care, at all levels demonstrated linkages to child morbidity in RTIs and GI infections. The empirical evidence highlights the need for contextualised ideas at each level, including one health approach when designing interventions to improve child health.",[],PloS one,"datetime.date(2021, 10, 16)","[{'lastname': 'Boo', 'firstname': 'Yebeen Ysabelle', 'initials': 'YY', 'affiliation': 'Nuffield Department of Population Health, University of Oxford, Oxford, United Kingdom.\nAceso Global Health Consultants PTE Ltd., Singapore, Singapore.\nPopulation, Policy and Practice, UCL Great Ormond Street Institute of Child Health, London, United Kingdom.'}, {'lastname': 'Rai', 'firstname': 'Kritika', 'initials': 'K', 'affiliation': 'Nuffield Department of Population Health, University of Oxford, Oxford, United Kingdom.\nAceso Global Health Consultants PTE Ltd., Singapore, Singapore.'}, {'lastname': 'Cupp', 'firstname': 'Meghan A', 'initials': 'MA', 'affiliation': 'Aceso Global Health Consultants PTE Ltd., Singapore, Singapore.\nBrown University School of Public Health, Providence, Rhode Island, United States of America.'}, {'lastname': 'Lakhanpaul', 'firstname': 'Monica', 'initials': 'M', 'affiliation': 'Population, Policy and Practice, UCL Great Ormond Street Institute of Child Health, London, United Kingdom.\nWhittington Health NHS Trust, London, United Kingdom.'}, {'lastname': 'Factor-Litvak', 'firstname': 'Pam', 'initials': 'P', 'affiliation': 'Columbia University Mailman School of Public Health, New York, New York, United States of America.'}, {'lastname': 'Parikh', 'firstname': 'Priti', 'initials': 'P', 'affiliation': 'Engineering for International Development Centre, Bartlett School of Construction and Project Management, Faculty of Built Environment, University College London, London, United Kingdom.'}, {'lastname': 'Panda', 'firstname': 'Rajmohan', 'initials': 'R', 'affiliation': 'The Public Health Foundation of India, Delhi, India.'}, {'lastname': 'Manikam', 'firstname': 'Logan', 'initials': 'L', 'affiliation': 'Aceso Global Health Consultants PTE Ltd., Singapore, Singapore.\nDepartment of Epidemiology and Public Health, University College London Institute of Epidemiology and Health Care, London, United Kingdom.'}, {'lastname': None, 'firstname': None, 'initials': None, 'affiliation': None}]",,"The determinants of health, both social and related to health care, at all levels demonstrated linkages to child morbidity in RTIs and GI infections. The empirical evidence highlights the need for contextualised ideas at each level, including one health approach when designing interventions to improve child health.","The total sample size of the number of children included in the analysis was n = 1,424. Data was imputed to account for missingness, and the original and imputed sample showing similar distributions. Results showed that diarrhoea and FeCo were both found to be more present in younger children than older children by a few months. In fixed effects, the odds of developing FeCo were higher if the mother perceives the child was born smaller than average (AOR 4.41, 1.13-17.17, P<0.05) at individual level. On the other hand, the odds of the diarrhoea outcome were lower if the child was older (AOR 0.97, 0.96-0.98, P<0.05) at individual level, and household's water source was public tap or standpipe (AOR 0.54, 0.31-0.96, P<0.05) at household level.",,10.1371/journal.pone.0257797
+Kids Educational Game 5,"32024100
+14998096
+28232770
+17654230
+27299705
+24149881
+24770788
+30326773
+11991775
+29643277
+25031691
+24379720",Pedagogical Function of Referees in Youth Sport: Assessment of the Quality of Referee-Player Interactions in Youth Soccer.,"We assume that all institutions and individuals involved in the organization of sport for children and young people should utilize the educational potential of sport. We assessed the quality of referee interactions with children during sports competitions in soccer. Based on the developmental theory and research suggesting that interactions between kids and adults are the primary mechanism of their development and learning, we focused on the quality of the referee-player interactions in terms of (1) emotional support, (2) game organization, and (3) instructional support. Twenty-five soccer referees who refereed matches for children aged 9-12 years were recruited. The Referee Educational Function Assessment Scoring System (REFASS) was used to assess the quality of the referee-player interactions. This tool was developed based on Classroom Assessment Scoring System-Upper Elementary. Regarding the REFASS dimensions, the mean scores for positive climate, Sensitivity, behavior management, content understanding and quality of feedback were in the medium range, while productivity and negative climate in the high range. In the case of the positive climate variable, the lowest mean ratings were recorded compared to other assessed dimensions. The assessments of the quality of referee-player interactions obtained for particular dimensions translated into the ratings for the specified domains. The highest ratings were given to game organization (6.0 ± 0.8; Me = 6.0), whereas the emotional support and instructional support were in the medium range (4.6 ± 1.5; Me = 4.5, and 5.2 ± 1.8; Me = 6.0, respectively). Referees are usually not aware of their pedagogical function and the complexity of their respective responsibilities. They are commonly considered to be ordinary technicians and evaluators of performance in competition. Based on the results, a postulate was formulated that referees should consciously perform a pedagogical function in the youth sport. Therefore, it is necessary to train them in educational methods and techniques appropriate to the age and needs of the child. The referees will then be prepared to take actions to prevent negative behavior of players on the field and to encourage prosocial behavior.","[None, 'assessment', 'educational practice', 'observational instruments', 'pedagogical function', 'referee', 'referee–player interactions', 'soccer']",International journal of environmental research and public health,"datetime.date(2020, 2, 7)","[{'lastname': 'Firek', 'firstname': 'Wiesław', 'initials': 'W', 'affiliation': 'Faculty of Physical Education, Józef Piłsudski University of Physical Education in Warsaw, 00-968 Warsaw, Poland.'}, {'lastname': 'Płoszaj', 'firstname': 'Katarzyna', 'initials': 'K', 'affiliation': 'Faculty of Physical Education, Józef Piłsudski University of Physical Education in Warsaw, 00-968 Warsaw, Poland.'}, {'lastname': 'Czechowski', 'firstname': 'Marcin', 'initials': 'M', 'affiliation': 'Faculty of Physical Education, Józef Piłsudski University of Physical Education in Warsaw, 00-968 Warsaw, Poland.'}]",,,,,10.3390/ijerph17030905
+Kids Educational Game 5,"29394102
+18996874
+22290584
+26909882
+26633046
+22698924
+18331423
+14998794
+25704784
+10709795
+16861584
+25896115
+22929007
+8115344
+19349559
+26305391
+23006452
+20975725
+21525418
+19349560
+21802571
+8558405
+19413705
+22516551
+19846682
+2810024
+26453367",Virtual Sprouts: A Virtual Gardening Pilot Intervention Increases Self-Efficacy to Cook and Eat Fruits and Vegetables in Minority Youth.,"To examine the effect of the Virtual Sprouts intervention, an interactive multiplatform mobile gardening game, on dietary intake and psychosocial determinants of dietary behavior in minority youth.
+In this quasi-experimental pilot intervention, 180 third-, fourth-, and fifth-grade students in Los Angeles Unified School District participated in a 3-week program that included three Virtual Sprouts gaming sessions, three in-school lessons, and three in-home activities, using a nutrition- and gardening-focused curriculum. Pre- and postintervention questionnaires were used to assess psychosocial determinants of dietary behavior, including knowledge about and self-efficacy to eat fruits and vegetables (FV). Data were collected on FV, whole grains, fiber, total sugar, added sugar, and energy from sugary beverages through the Block Kids Food Screener (""last week"" version) for Ages 2-17. Repeated measures analysis of covariance models was used for continuous outcomes, controlling for age, sex, ethnicity, school, and free school lunch.
+After the intervention, the intervention group (n = 116) compared with the control group (n = 64) had a significantly improved self-efficacy to eat FV score (+1.6% vs. -10.3%, P = 0.01), and an improved self-efficacy to cook FV score (+2.9% vs. -5.0%, P = 0.05). There were no significant differences in dietary intake or self-efficacy to garden scores between intervention and control groups.
+The results from this 3-week pilot study suggest that an interactive mobile game with a nutrition- and gardening-focused curriculum can improve psychosocial determinants of dietary behavior in minority youth.","['Augmented reality', 'Human computer interaction', 'Mobile gardening game', 'Nutrition', 'Pedagogical agent', 'Self-efficacy']",Games for health journal,"datetime.date(2018, 2, 3)","[{'lastname': 'Bell', 'firstname': 'Brooke M', 'initials': 'BM', 'affiliation': '1 Department of Preventive Medicine, Keck School of Medicine, University of Southern California , Los Angeles, California.'}, {'lastname': 'Martinez', 'firstname': 'Lauren', 'initials': 'L', 'affiliation': '1 Department of Preventive Medicine, Keck School of Medicine, University of Southern California , Los Angeles, California.'}, {'lastname': 'Gotsis', 'firstname': 'Marientina', 'initials': 'M', 'affiliation': '2 Interactive Media & Games Division, School of Cinematic Arts, University of Southern California , Los Angeles, California.'}, {'lastname': 'Lane', 'firstname': 'H Chad', 'initials': 'HC', 'affiliation': '3 Department of Educational Psychology, University of Illinois at Urbana-Champaign , Champaign, Illinois.'}, {'lastname': 'Davis', 'firstname': 'Jaimie N', 'initials': 'JN', 'affiliation': '4 Department of Nutritional Sciences, University of Texas at Austin , Austin, Texas.'}, {'lastname': 'Antunez-Castillo', 'firstname': 'Luz', 'initials': 'L', 'affiliation': '5 Center for Economic and Social Research, University of Southern California , Los Angeles, California.'}, {'lastname': 'Ragusa', 'firstname': 'Gisele', 'initials': 'G', 'affiliation': '6 Division of Engineering Education, Viterbi School of Engineering, University of Southern California , Los Angeles, California.'}, {'lastname': 'Spruijt-Metz', 'firstname': 'Donna', 'initials': 'D', 'affiliation': '5 Center for Economic and Social Research, University of Southern California , Los Angeles, California.'}]",,The results from this 3-week pilot study suggest that an interactive mobile game with a nutrition- and gardening-focused curriculum can improve psychosocial determinants of dietary behavior in minority youth.,"After the intervention, the intervention group (n = 116) compared with the control group (n = 64) had a significantly improved self-efficacy to eat FV score (+1.6% vs. -10.3%, P = 0.01), and an improved self-efficacy to cook FV score (+2.9% vs. -5.0%, P = 0.05). There were no significant differences in dietary intake or self-efficacy to garden scores between intervention and control groups.",,10.1089/g4h.2017.0102
+Bubbu School - My Cute Pets | Animal School Game,"34827957
+19621072
+32214652
+31830510
+27840464
+30390453
+26491395
+16177242
+19811623
+30218624
+25937686
+17382966
+31060242
+29282545
+29644612
+26781634
+21715408
+31598321
+26868053
+28199765
+20676387
+20553567
+31762100
+23279382
+27709603
+12737544
+8272833
+24375131
+31938533
+28261449
+30846892
+32224903
+16701084
+27796660
+15750778
+17913134
+24793193
+30538345
+20090033",Corvids in Urban Environments: A Systematic Global Literature Review.,"Urbanization is one of the most prevalent drivers of biodiversity loss, yet few taxonomic groups are remarkably successful at adapting to urban environments. We systematically surveyed the global literature on the effects of urbanization on species of family Corvidae (crows, choughs, jackdaws, jays, magpies, nutcrackers, ravens, rooks, treepies) to assess the occurrence of corvids in urban environments and the factors affecting their success. We found a total of 424 primary research articles, and the number of articles has increased exponentially since the 1970s. Most studies were carried out in cities of Europe and North America (45.5% and 31.4%, respectively) and were directed on a single species (75.2). We found that 30 corvid species (23% of 133 total) regularly occur in urban environments. The majority (72%) of the studies reported positive effects of urbanization on corvids, with 85% of studies detecting population increases and 64% of studies detecting higher breeding success with urbanization. Of the factors proposed to explain corvids' success (availability of nesting sites and food sources, low predation and persecution), food availability coupled with diet shifts emerged as the most important factors promoting Corvidae to live in urban settings. The breeding of corvids in urban environments was further associated with earlier nesting, similar or larger clutches, lower hatching but higher fledging success, reduced home range size and limited territoriality, increased tolerance towards humans and increasing frequency of conflicts with humans. Despite geographic and taxonomic biases in our literature sample, our review indicates that corvids show both flexibility in resource use and behavioral plasticity that enable them to exploit novel resources for nesting and feeding. Corvids can thus be urban exploiters of the large-scale modifications of ecosystems caused by urbanization.","['Corvidae', 'adaptation', 'anthropogenic', 'habitat selection', 'life history trait', 'urbanization gradient']",Animals : an open access journal from MDPI,"datetime.date(2021, 11, 28)","[{'lastname': 'Benmazouz', 'firstname': 'Isma', 'initials': 'I', 'affiliation': 'Animal Husbandry Doctoral School, University of Debrecen, 4032 Debrecen, Hungary.'}, {'lastname': 'Jokimäki', 'firstname': 'Jukka', 'initials': 'J', 'affiliation': 'Arctic Centre, University of Lapland, 96300 Rovaniemi, Finland.'}, {'lastname': 'Lengyel', 'firstname': 'Szabolcs', 'initials': 'S', 'affiliation': 'Department of Tisza Research, Institute of Aquatic Ecology, Centre for Ecological Research, Eötvös Loránd Research Network, 4026 Debrecen, Hungary.'}, {'lastname': 'Juhász', 'firstname': 'Lajos', 'initials': 'L', 'affiliation': 'Department of Nature Conservation Zoology and Game Management, University of Debrecen, 4032 Debrecen, Hungary.'}, {'lastname': 'Kaisanlahti-Jokimäki', 'firstname': 'Marja-Liisa', 'initials': 'ML', 'affiliation': 'Arctic Centre, University of Lapland, 96300 Rovaniemi, Finland.'}, {'lastname': 'Kardos', 'firstname': 'Gábor', 'initials': 'G', 'affiliation': 'Institute of Metagenomics, University of Debrecen, 4032 Debrecen, Hungary.'}, {'lastname': 'Paládi', 'firstname': 'Petra', 'initials': 'P', 'affiliation': 'Animal Husbandry Doctoral School, University of Debrecen, 4032 Debrecen, Hungary.'}, {'lastname': 'Kövér', 'firstname': 'László', 'initials': 'L', 'affiliation': 'Department of Nature Conservation Zoology and Game Management, University of Debrecen, 4032 Debrecen, Hungary.'}]",,,,,10.3390/ani11113226
+Bubbu School - My Cute Pets | Animal School Game,"34799611
+28004742
+16768826
+32917621
+29942712
+25529670
+25529718
+26972928",Isotopic investigation of skeletal remains at the Imdang tombs reveals high consumption of game birds and social stratification in ancient Korea.,"Understanding the development of early states on the Korean Peninsula is an important topic in Korean archaeology. However, it is not clear how social structure was organized by these early states and what natural resources were utilized from their surrounding environments. To investigate dietary adaptation and social status in ancient Korea, stable isotope ratios and radiocarbon dates were measured from humans and animals from the Imdang cemetery, Gyeongsan city, South Korea. The results indicate that the Imdang diet was mainly based on C",[],Scientific reports,"datetime.date(2021, 11, 21)","[{'lastname': 'Choy', 'firstname': 'Kyungcheol', 'initials': 'K', 'affiliation': 'Department of Cultural Anthropology, Hanyang University ERICA, Ansan, 15588, South Korea. kchoy@hanyang.ac.kr.'}, {'lastname': 'Yun', 'firstname': 'Hee Young', 'initials': 'HY', 'affiliation': 'Department of Marine Sciences and Convergence Engineering, Hanyang University ERICA, Ansan, 15588, South Korea.'}, {'lastname': 'Kim', 'firstname': 'Seung Hee', 'initials': 'SH', 'affiliation': 'Department of Marine Sciences and Convergence Engineering, Hanyang University ERICA, Ansan, 15588, South Korea.'}, {'lastname': 'Jung', 'firstname': 'Sangsoo', 'initials': 'S', 'affiliation': 'Daon Institute of Cultural Heritage, Daegu, 42265, South Korea.'}, {'lastname': 'Fuller', 'firstname': 'Benjamin T', 'initials': 'BT', 'affiliation': 'Department of Archaeology and Heritage Studies, School of Culture and Society, Aarhus University, 8270, Højbjerg, Denmark.'}, {'lastname': 'Kim', 'firstname': 'Dae Wook', 'initials': 'DW', 'affiliation': 'Yeungnam University Museum, Yeungnam University, Daegu, 04763, South Korea.'}]",,,,© 2021. The Author(s).,10.1038/s41598-021-01798-y
+Animals Farm For Kids,"34827870
+11515405
+20188478
+19700671
+26088025
+21377385
+18271817
+11352481
+18308594
+21347723
+30388997
+28865860
+11445151
+33612208
+25327149
+9364713
+14672175
+31426493
+31739587
+31683827
+22444175
+22266020
+25336109
+21262609
+17320122
+26162790
+31581658
+10812322
+24479844
+18774149
+25603304
+29306346
+31325019
+33996976
+32734097
+30029507
+25242423
+26479477
+29477516",Animal-Based Indicators for On-Farm Welfare Assessment in Goats.,"This review describes the current state of knowledge relating to scientific literature on welfare indicators for goats. Our aim was to provide an overview of animal-based indicators for on-farm welfare assessments. We performed a literature search and extracted 96 relevant articles by title, abstract, and full-text screening. Out of these articles, similar indicators were aggregated to result in a total of 32 welfare indicators, some of which were covered in multiple articles, others in only a single one. We discuss a set of three established assessment protocols containing these indicators, as well as all individual indicators which were covered in more than one article. As single indicators, we identified lameness, body condition score (BCS), qualitative behaviour assessment (QBA), and human-animal relationship (HAR) tests with substantial evidence for sufficient validity to assess welfare in goats. A multitude of indicators (e.g., hair coat condition) was studied less intensively but was successfully used for welfare assessments. For some indicators (e.g., oblivion, lying behaviour), we highlight the need for future research to further validate them or to optimise their use in on-farm welfare assessments. Moreover, further investigations need to include kids, bucks, and meat and fibre goats, as well as extensively kept goats as the literature predominantly focuses on dairy goats in intensive production systems.","['animal-based', 'goat', 'on-farm', 'small ruminant', 'welfare assessment', 'welfare indicators']",Animals : an open access journal from MDPI,"datetime.date(2021, 11, 28)","[{'lastname': 'Minnig', 'firstname': 'Adrian', 'initials': 'A', 'affiliation': 'Clinic for Ruminants, Vetsuisse-Faculty, University of Bern, 3012 Bern, Switzerland.'}, {'lastname': 'Zufferey', 'firstname': 'Romane', 'initials': 'R', 'affiliation': 'Clinic for Ruminants, Vetsuisse-Faculty, University of Bern, 3012 Bern, Switzerland.'}, {'lastname': 'Thomann', 'firstname': 'Beat', 'initials': 'B', 'affiliation': 'Veterinary Public Health Institute, Vetsuisse-Faculty, University of Bern, 3012 Bern, Switzerland.'}, {'lastname': 'Zwygart', 'firstname': 'Sibylle', 'initials': 'S', 'affiliation': 'Centre for Proper Housing of Ruminants and Pigs, Federal Food Safety and Veterinary Office, Agroscope, 8356 Tänikon, Switzerland.'}, {'lastname': 'Keil', 'firstname': 'Nina', 'initials': 'N', 'affiliation': 'Centre for Proper Housing of Ruminants and Pigs, Federal Food Safety and Veterinary Office, Agroscope, 8356 Tänikon, Switzerland.'}, {'lastname': 'Schüpbach-Regula', 'firstname': 'Gertraud', 'initials': 'G', 'affiliation': 'Veterinary Public Health Institute, Vetsuisse-Faculty, University of Bern, 3012 Bern, Switzerland.'}, {'lastname': 'Miserez', 'firstname': 'Raymond', 'initials': 'R', 'affiliation': 'Consulting and Health Service for Small Ruminants, 3362 Niederönz, Switzerland.'}, {'lastname': 'Stucki', 'firstname': 'Dimitri', 'initials': 'D', 'affiliation': 'Clinic for Ruminants, Vetsuisse-Faculty, University of Bern, 3012 Bern, Switzerland.'}, {'lastname': 'Zanolari', 'firstname': 'Patrik', 'initials': 'P', 'affiliation': 'Clinic for Ruminants, Vetsuisse-Faculty, University of Bern, 3012 Bern, Switzerland.'}]",,,,,10.3390/ani11113138
+Animals Farm For Kids,"34722689
+15956462
+30106999
+31357266
+34359135
+17227594
+15271458
+4702426
+23701168
+25188313
+32604945
+22333390
+29631644
+9350705
+3779412
+26723133
+20378884
+23932133
+31357269
+29614826
+31805698
+24142095
+21703888
+33659286
+33443157
+26874425
+26511664
+16230695
+33987217
+9306311
+22445408
+31221918
+17033008
+31200517
+25349367
+10867324
+16460942
+15129923
+33937373
+33937380
+15315744",Perspectives for Buck Kids in Dairy Goat Farming.,"To start milk production, dairy goats need to give birth at least once. While most female kids are reared to become the next generation of dairy goats, only a small proportion of male kids (buck kids) are reared with reproduction aims. The market for buck kid meat, especially within Northern European countries, is currently relatively small compared to the number of bucks born. Therefore, the purposes for buck kids are limited and a substantial proportion of buck kid meat is used for pet food. Due to the limited economic value of buck kids, farmers are faced with a dilemma. Although raising bucks costs more money than it yields, the birth of kids is a prerequisite for production of milk and should be seen as an investment for business-wise healthy dairy goat farming. In that perspective, dairy goat farmers have an ethical responsibility toward buck kids, as well. In this paper, we compare various scenarios of dealing with the issue of surplus male animals. We provide recommendations for the rearing of buck kids based on the sector's experience and current practice in the Netherlands. Reducing the number of surplus (male) offspring, e.g., by an optimized prolonged lactation management and/or by artificial insemination with sex-sorted semen, could alleviate the issue of low value buck kids. Killing surplus animals before or directly after birth, on the other hand, is met with increasing societal scrutiny. Initiatives to propagate a market for buck kid meat for human consumption are important to enable a suitable and sustainable production system. To maintain the health and welfare of goat kids, amongst other factors, sufficient and good quality colostrum, milk, and an appropriate diet as they grow older, needs to be provided. One option to assure the safeguarding of health and welfare of all goat kids are quality assurance schemes for milk production. These schemes make dairy farmers accountable for the health and welfare of all kids in the rearing period, including the provision of colostrum and adequate care for newborn buck kids. We conclude that the combination of reducing the number of surplus kids, increasing the demand for goat products, and quality assurance schemes that may help to safeguard the welfare of buck kids.","['buck kids', 'dairy goats', 'farm animal ethics', 'farm animal welfare', 'surplus offspring']",Frontiers in veterinary science,"datetime.date(2021, 11, 2)","[{'lastname': 'Meijer', 'firstname': 'Ellen', 'initials': 'E', 'affiliation': 'Department of Population Health Sciences, Faculty of Veterinary Medicine, Utrecht University, Utrecht, Netherlands.'}, {'lastname': 'Goerlich', 'firstname': 'Vivian C', 'initials': 'VC', 'affiliation': 'Department of Population Health Sciences, Faculty of Veterinary Medicine, Utrecht University, Utrecht, Netherlands.'}, {'lastname': 'van den Brom', 'firstname': 'René', 'initials': 'R', 'affiliation': 'Royal GD, Department of Small Ruminant Health, Deventer, Netherlands.'}, {'lastname': 'Giersberg', 'firstname': 'Mona F', 'initials': 'MF', 'affiliation': 'Department of Population Health Sciences, Faculty of Veterinary Medicine, Utrecht University, Utrecht, Netherlands.'}, {'lastname': 'Arndt', 'firstname': 'Saskia S', 'initials': 'SS', 'affiliation': 'Department of Population Health Sciences, Faculty of Veterinary Medicine, Utrecht University, Utrecht, Netherlands.'}, {'lastname': 'Rodenburg', 'firstname': 'T Bas', 'initials': 'TB', 'affiliation': 'Department of Population Health Sciences, Faculty of Veterinary Medicine, Utrecht University, Utrecht, Netherlands.'}]",,,,"Copyright © 2021 Meijer, Goerlich, Brom, Giersberg, Arndt and Rodenburg.",10.3389/fvets.2021.662102
