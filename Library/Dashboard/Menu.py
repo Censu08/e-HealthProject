@@ -15,7 +15,6 @@ from dash.dependencies import Input, Output, State
 df = pd.read_csv(r'Outputs/dataset_serious_games.csv', sep =",")
 df = df[["App Name","Category","Rating","Rating Count","Developer Id","Reviews","Learning_category","Age_range"]]
 df2 = pd.read_csv(r'Outputs/dataset_papers2.csv', sep =",")
-# df2 = pd.read_csv(r'C:/Users/Gilles FACCIN/PycharmProjects/e-HealthProject/Outputs/dataset_papers2.csv', sep =",")
 
 app = dash.Dash(__name__, suppress_callback_exceptions=True)
 application = app.server
