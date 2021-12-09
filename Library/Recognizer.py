@@ -3,6 +3,9 @@ import pandas as pd
 from google_play_scraper import app
 # from tinydb import Query
 from pymed import PubMed
+import os
+
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Filter this dataset with all the educational and family-related categories + specific features
@@ -130,49 +133,49 @@ def find_age_range(df):
 
 def search_keyword(mega_string):
     points = 0
-    with open('Sources/Studies/CaseControl.txt') as f:
+    with open(ROOT_DIR + '/Sources/Studies/CaseControl.txt') as f:
         for line in f:
             stripped_line = line.strip()
             if stripped_line in mega_string:
                 points = points + 4
                 break
-    with open('Sources/Studies/CaseSeries.txt') as f:
+    with open(ROOT_DIR + '/Sources/Studies/CaseSeries.txt') as f:
         for line in f:
             stripped_line = line.strip()
             if stripped_line in mega_string:
                 points = points + 2
                 break
-    with open('Sources/Studies/CohortStudy.txt') as f:
+    with open(ROOT_DIR + '/Sources/Studies/CohortStudy.txt') as f:
         for line in f:
             stripped_line = line.strip()
             if stripped_line in mega_string:
                 points = points + 5
                 break
-    with open('Sources/Studies/MetaAnalysis.txt') as f:
+    with open(ROOT_DIR + '/Sources/Studies/MetaAnalysis.txt') as f:
         for line in f:
             stripped_line = line.strip()
             if stripped_line in mega_string:
                 points = points + 7
                 break
-    with open('Sources/Studies/ObservationalStudy.txt') as f:
+    with open(ROOT_DIR + '/Sources/Studies/ObservationalStudy.txt') as f:
         for line in f:
             stripped_line = line.strip()
             if stripped_line in mega_string:
                 points = points + 3
                 break
-    with open('Sources/Studies/Other.txt') as f:
+    with open(ROOT_DIR + '/Sources/Studies/Other.txt') as f:
         for line in f:
             stripped_line = line.strip()
             if stripped_line in mega_string:
                 points = points + 1
                 break
-    with open('Sources/Studies/RCT.txt') as f:
+    with open(ROOT_DIR + '/Sources/Studies/RCT.txt') as f:
         for line in f:
             stripped_line = line.strip()
             if stripped_line in mega_string:
                 points = points + 6
                 break
-    with open('Sources/Studies/SystematicReview.txt') as f:
+    with open(ROOT_DIR + '/Sources/Studies/SystematicReview.txt') as f:
         for line in f:
             stripped_line = line.strip()
             if stripped_line in mega_string:
@@ -234,7 +237,7 @@ def build_database(df_edu_g):
 
 
 def real_validator():
-    df = pd.read_csv(r'Outputs/dataset_serious_games.csv')
+    df = pd.read_csv(r"" + ROOT_DIR + '/Outputs/dataset_serious_games.csv')
     app_documented = build_database(df) #NEW ONE
     non_validated_apps = []
     validated_app = []
