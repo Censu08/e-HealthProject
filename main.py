@@ -1,6 +1,4 @@
 from Library.Recognizer import *
-from Library.Dashboard import *
-from Library.Benchmark_Game_Classification import *
 
 while True:
     option = int(input("Enter option: "))
