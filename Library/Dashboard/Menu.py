@@ -2,6 +2,7 @@
 import dash
 import dash_html_components as html
 import dash_core_components as dcc
+import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output
 import pandas as pd
 import dash
@@ -36,7 +37,7 @@ tab_style = {
 tab_selected_style = {
     'borderTop': '1px solid #d6d6d6',
     'borderBottom': '1px solid #d6d6d6',
-    'backgroundColor': '#119DFF',
+    'backgroundColor': '#1B0384',
     'color': 'white',
     'padding': '6px'
 }
@@ -78,43 +79,40 @@ tabs = html.Div([
     html.Div(id='tabs-content-inline')
 ])
 
-# Dash table
-columns_i = [
-    dict(id='learning_category', name='Learning category'),
-    dict(id='counts', name='Number of App', type='numeric'),
-]
-data_i = [
-    dict(learning_category='counting', counts=20,),
-    dict(learning_category='science', counts=14),
-    dict(learning_category='food', counts=7),
-    dict(learning_category='sport', counts=5),
-    dict(learning_category='shape', counts=3),
-    dict(learning_category='music', counts=2),
-    dict(learning_category='language', counts=3),
-]
-columns_i_3 = [
-    dict(id='app_name', name='App Name'),
-    dict(id='counts', name='Number of Papers', type='numeric'),
-]
-data_i_3 = [
-    dict(app_name='Baby Panda World', counts=2, ),
-    dict(app_name='Little Panda Policeman', counts=2, ),
-    dict(app_name='MentalUP - Learning Games & Brain Games', counts=2, ),
-    dict(app_name='Halloween Makeup Me', counts=1, ),
-    dict(app_name='Coloring & Learn', counts=2, ),
-    dict(app_name='Tailor Kids', counts=2, ),
-    dict(app_name='Animal Jam', counts=2, ),
-    dict(app_name='Kids Educational Game 5', counts=2, ),
-    dict(app_name='Bubbu School - My Cute Pets | Animal School Game', counts=2, ),
-    dict(app_name='Animals Farm For Kids', counts=2, ),
-    dict(app_name='Baby Panda World', counts=2, )
-]
+# Dash tables
 final_table = html.Div(id="final_table")
 final_table_2 = html.Div(id="final_table_2")
 final_table_3 = html.Div(id="final_table_3")
 
+# Layouts
+layout1 = html.Div([html.H1("Overview per learning category"),
+                    dcc.Graph(id="graph1",
+                              figure={'data': [{'x': ['counting','science','food','sport','shape','music','language'],
+                                                'y': [20,14,7,5,3,2,3],
+                                                'type': 'bar',
+                                                'name': 'Ships'}],
+                                                'layout': {'title': 'Number of applications per learning category'}})])
+layout2 = html.Div([html.H1("Overview per age range"),
+                    dcc.Graph(id="graph2",
+                              figure={'data': [{'x': ['babies', 'children', 'adults'],
+                                                'y': [16, 59, 2],
+                                                'type': 'bar',
+                                                'name': 'Ships'}],
+                                                'layout': {'title': 'Number of applications per age range'}})])
+layout3 = html.Div([html.H1("Overview of the number of papers per validated application"),
+                    dcc.Graph(id="graph3",
+                              figure={'data': [{'values': [2,2,2,1,2,2,2,2,2,2,2],
+                                      'labels': ['Baby Panda World','Little Panda Policeman', 'MentalUP - Learning Games & Brain Games',
+                                                 'Halloween Makeup Me','Coloring & Learn','Tailor Kids','Animal Jam',
+                                                 'Kids Educational Game 5','Bubbu School - My Cute Pets | Animal School Game',
+                                                 'Animals Farm For Kids','Baby Panda World'],
+                                      'type': 'pie',
+                                      'name': 'Ships'}]})])
+
 app.layout = html.Div([
-                html.H1(children="Google Play Store Serious Games",style= {'font-size':'1.5em','text-align':'center'}),
+                html.H1(children="Google PlayStore Serious Games",
+                        style= {'color': 'white', 'backgroundColor': '#1B0384',
+                                'font-size':'2.5em','text-align':'center'}),
                 tabs])
 
 @app.callback(Output('tabs-content-inline', 'children'),
@@ -154,33 +152,38 @@ def update_table(d1, d2):
         df_filtered = df_general[(df_general["Learning_category"]==d1) & (df_general["Age_range"]==d2)]
         return [html.Div([html.H2('General information about the apps in the selected field:')],
                      style={'textAlign': 'left'}),
-                html.Div([html.H3('Number of apps found:')],
-                     style={'textAlign': 'center'}),
-                html.Div([len(df_filtered)],
-                     style={'textAlign': 'center'}),
+                dbc.Button(["Number of apps found: ",
+                            dbc.Badge(len(df_filtered), color="white", text_color="blue", className="ms-1"), ],
+                           color="white"),
             dt.DataTable(
             id='table',
             columns=[{"name": i, "id": i} for i in df_filtered.columns],
             data=df_filtered.to_dict('records'),
+            style_header={'color': 'white',
+                          'backgroundColor': 'orange',
+                          'fontWeight': 'bold'},
+            style_data={'color': 'black',
+                        'backgroundColor': 'white'},
+            style_cell={'textAlign': 'left'}
         )]
     elif (d1 != None and d2 == None):
         df_filtered = df_general[(df_general["Learning_category"] == d1)]
         return [html.Div([html.H2('General information about the apps in the selected field:')],
                      style={'textAlign': 'left'}),
-                html.Div([html.H3('Number of apps found:')],
-                     style={'textAlign': 'center'}),
-                html.Div([len(df_filtered)],
-                         style={'textAlign': 'center'}),
+                dbc.Button(["Number of apps found: ",
+                            dbc.Badge(len(df_filtered), color="white", text_color="blue", className="ms-1"),],
+                            color="white"),
                 dt.DataTable(
             id='table',
             columns=[{"name": i, "id": i} for i in df_filtered.columns],
-            data=df_filtered.to_dict('records'),)
+            data=df_filtered.to_dict('records'),
+            style_cell={'textAlign': 'left'})
         ]
     else:
-        return [dt.DataTable(
-            columns=columns_i,
-            data=data_i
-        )]
+        return [html.Div([dbc.Col([
+                          dbc.Row([dbc.Col(layout1, width=True),
+                                   dbc.Col(layout2, width=True)])])])]
+
 
 # TAB n°2: Callback to update second dropdown based on first dropdown
 @app.callback(Output('dropdown_d2_2', 'options'),
@@ -225,12 +228,14 @@ def update_table_2(d1, d2, d3):
                     dt.DataTable(id='table',
                                 columns=[{"name": i, "id": i} for i in df_filtered.columns],
                                 data=df_filtered.to_dict('records'),),
-                    html.Div([html.H3('Number of associated papers:')]),
-                    html.Div([len(df2_filtered)]),
+                    dbc.Button(["Number of associated paper(s): ",
+                                dbc.Badge(len(df2_filtered), color="white", text_color="blue", className="ms-1"), ],
+                               color="white"),
                     html.Div([html.H3('These papers are the followings:')]),
                     dt.DataTable(id='table2',
                                  columns=[{"name": i, "id": i} for i in df2_filtered.columns],
-                                 data=df2_filtered.to_dict('records'), ),
+                                 data=df2_filtered.to_dict('records'),
+                                 style_cell={'textAlign': 'left'}),
                     html.Div([html.H3('For more detailed information on these papers, search them in tab n°3.')])
                     ]
         else:
@@ -238,7 +243,8 @@ def update_table_2(d1, d2, d3):
                               style={'textAlign': 'left'}),
                     dt.DataTable(id='table2',
                                 columns=[{"name": i, "id": i} for i in df_filtered.columns],
-                                data=df_filtered.to_dict('records'),),
+                                data=df_filtered.to_dict('records'),
+                                style_cell={'textAlign': 'left'}),
                     html.Div([html.H3('This app is associated with 0 paper.')]),
                     html.Div([html.H3('For more detailed information on the similar and potentially validated apps, search this app in tab n°4.')]),
                     ]
@@ -246,27 +252,27 @@ def update_table_2(d1, d2, d3):
         df_filtered = df[(df["Learning_category"] == d1) & (df["Age_range"] == d2)]
         return [html.Div([html.H2('More specific information about the apps in the selected field:')],
                           style={'textAlign': 'left'}),
-                html.Div([html.H3('Number of apps found:')],
-                     style={'textAlign': 'center'}),
-                html.Div([len(df_filtered)],
-                     style={'textAlign': 'center'}),
+                dbc.Button(["Number of apps found: ",
+                            dbc.Badge(len(df_filtered), color="white", text_color="blue", className="ms-1"), ],
+                           color="white"),
             dt.DataTable(
             id='table2',
             columns=[{"name": i, "id": i} for i in df_filtered.columns],
             data=df_filtered.to_dict('records'),
+            style_cell={'textAlign': 'left'}
         )]
     elif (d1 != None and d2 == None and d3 == None):
         df_filtered = df[(df["Learning_category"] == d1)]
         return [html.Div([html.H2('More specific information about the apps in the selected field:')],
                           style={'textAlign': 'left'}),
-                html.Div([html.H3('Number of apps found:')],
-                     style={'textAlign': 'center'}),
-                html.Div([len(df_filtered)],
-                     style={'textAlign': 'center'}),
+                dbc.Button(["Number of apps found: ",
+                            dbc.Badge(len(df_filtered), color="white", text_color="blue", className="ms-1"), ],
+                           color="white"),
             dt.DataTable(
             id='table2',
             columns=[{"name": i, "id": i} for i in df_filtered.columns],
             data=df_filtered.to_dict('records'),
+            style_cell={'textAlign': 'left'}
         )]
     else:
         return []
@@ -298,21 +304,23 @@ def update_table_3(d1, d2):
             id='table',
             columns=[{"name": i, "id": i} for i in df2_filtered.columns],
             data=df2_filtered.to_dict('records'),
+            style_cell={'textAlign': 'left'}
         )]
     elif (d1 != None and d2 == None):
         df2_filtered = df2[(df2["App Name"] == d1)]
         return [html.Div([html.H2('More specific information about the paper(s) of the selected app:')],
                           style={'textAlign': 'left'}),
+                dbc.Button(["Number of papers found: ",
+                            dbc.Badge(len(df2_filtered), color="white", text_color="blue", className="ms-1"), ],
+                           color="white"),
             dt.DataTable(
             id='table',
             columns=[{"name": i, "id": i} for i in df2_filtered.columns],
             data=df2_filtered.to_dict('records'),
+            style_cell={'textAlign': 'left'}
         )]
     else:
-        return [dt.DataTable(
-            columns=columns_i_3,
-            data=data_i_3
-        )]
+        return [html.Div([dbc.Col([dbc.Row([dbc.Col(layout3, width=True)])])])]
 
 if __name__ == '__main__':
     app.run_server(debug=True)
