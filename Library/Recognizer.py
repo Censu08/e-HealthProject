@@ -3,6 +3,8 @@ import pandas as pd
 from google_play_scraper import app
 import os
 
+from Library.Validator import single_app_validation_level
+
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -147,6 +149,11 @@ def import_df():
     df_edu_g = df_edu_g.set_index([pd.Index([i for i in range(len(df_edu_g))])])
     df_edu_g.to_csv(ROOT_DIR + "/Outputs/df_edu_g.csv", index=False)
 
+def insert_validation(df):
+    validation_levels = []
+    for i in range(len(df)):
+        validation_levels.append(single_app_validation_level(df.iloc[i]["App Name"]))
+    df["Validation Level"] = validation_levels
 
 def read_serious_games():
     df_edu_g = pd.read_csv(r"" + ROOT_DIR + '/Outputs/df_edu_g.csv')
@@ -157,5 +164,6 @@ def read_serious_games():
     df_edu_g = find_lc(df_edu_g)
     df_edu_g = find_age_range(df_edu_g)
     df_edu_g = filter_non_reachable(df_edu_g)
+    df_edu_g = insert_validation(df_edu_g)
     print(df_edu_g)
     df_edu_g.to_csv(r"" + ROOT_DIR + '/Outputs/dataset_serious_games.csv', index=False)

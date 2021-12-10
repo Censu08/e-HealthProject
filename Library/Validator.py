@@ -1,8 +1,9 @@
 import pandas as pd
 from pymed import PubMed
 from random import *
+import os
 
-from Library.Recognizer import ROOT_DIR
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 def search_keyword(mega_string):
@@ -128,6 +129,7 @@ def similarity_function_list(non_validated_apps, validated_app):
 
 def similarity_function(non_validated_application, validated_app):
     learning_category = non_validated_application[1]
+    app_name = non_validated_application[0]
     shuffle(validated_app)
     suggested_apps = []
     for x in validated_app:
@@ -136,6 +138,9 @@ def similarity_function(non_validated_application, validated_app):
         if x[1] == learning_category:
             suggested_apps.append(x[0])
     print(suggested_apps)
+    lst = list(zip(app_name, suggested_apps))
+    sug = pd.DataFrame(lst, columns=['App Name', 'Suggested 1'])
+    sug.to_csv(ROOT_DIR + "/Outputs/dataset_suggested.csv", index=False)
 
 
 def single_app_validation_level(app_name):
@@ -145,6 +150,7 @@ def single_app_validation_level(app_name):
 def real_validator():
     df = pd.read_csv(r"" + ROOT_DIR + '/Outputs/dataset_serious_games.csv')
     app_documented = build_database(df)
+    # 2 df_2 = add_validation_column(app_documented)
     non_validated_apps = []
     validated_app = []
     for x in app_documented:
@@ -158,3 +164,63 @@ def real_validator():
     similarity_function_list(non_validated_apps, validated_app)
     app_doc = pd.DataFrame(app_documented)
     app_doc.to_csv(ROOT_DIR + "/Outputs/dataset_papers.csv", index=False)
+    # df_2.to_csv(ROOT_DIR + "/Outputs/dataset_serious_final.csv", index=False)
+
+
+# def trasfrom_dataframe(df):
+#     app_documented = []
+#     for i in range(len(df)):
+#         app_documented.append(
+#             [df.iloc[i]["App Name"]])
+#     return app_documented
+#
+# def add_validation_column(app_documented):
+#     Validated = []
+#     df = pd.read_csv(r"" + ROOT_DIR + '/Outputs/dataset_serious_games.csv')
+#     serious_game = trasfrom_dataframe(df)
+#     for app in serious_game:
+#         if app in app_documented[0]["App Name"]:
+#             Validated.append("True")
+#         else:
+#             Validated.append("False")
+#
+#     df["Validated"] = Validated
+
+
+def paper_search(app_name):
+    pubmed = PubMed(tool='name_of_the_database', email='simonecensuales1998@gmail.com')
+    results = pubmed.query(app_name, max_results=500)
+    articleList = []
+    articleInfo = []
+
+    for article in results:
+        # Print the type of object we've found (can be either PubMedBookArticle or PubMedArticle).
+        # We need to convert it to dictionary with available function
+        articleDict = article.toDict()
+        articleList.append(articleDict)
+
+    # Generate list of dict records which will hold all article details that could be fetch from PUBMED API
+    for article in articleList:
+        # Sometimes article['pubmed_id'] contains list separated with comma - take first pubmedId in that list - thats article pubmedId
+        pubmedId = article['pubmed_id'].partition('\n')[0]
+        # Append article info to dictionary
+        articleInfo.append({u'app_name': app_name,
+                            u'pubmed_id': pubmedId,
+                            u'title': article['title'],
+                            u'keywords': article['keywords'],
+                            u'journal': article['journal'],
+                            u'abstract': article['abstract'],
+                            u'conclusions': article['conclusions'],
+                            u'methods': article['methods'],
+                            u'results': article['results'],
+                            u'copyrights': article['copyrights'],
+                            u'doi': article['doi'],
+                            u'publication_date': article['publication_date'],
+                            u'authors': article['authors'],
+                            u'validation_level': single_app_validation_level(app_name)})
+    # Generate Pandas DataFrame from list of dictionaries
+    articlesPD = pd.DataFrame.from_dict(articleInfo)
+    export_csv = articlesPD.to_csv(r"" + ROOT_DIR + 'export_dataframe.csv', index=None, header=True)
+    # Print first 10 rows of dataframe
+    print(articlesPD.head(10))
+
