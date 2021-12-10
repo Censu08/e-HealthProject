@@ -220,7 +220,9 @@ def paper_search(app_name):
                             u'validation_level': single_app_validation_level(app_name)})
     # Generate Pandas DataFrame from list of dictionaries
     articlesPD = pd.DataFrame.from_dict(articleInfo)
-    export_csv = articlesPD.to_csv(r"" + ROOT_DIR + 'export_dataframe.csv', index=None, header=True)
+    export_csv = articlesPD.to_csv(r"" + ROOT_DIR + '/Outputs/app_name_papers.csv', index=None, header=True)
     # Print first 10 rows of dataframe
     print(articlesPD.head(10))
 
+
+#paper_search("Baby Panda World")
