@@ -12,11 +12,13 @@ from dash import dash_table
 from dash.dependencies import Input, Output, State
 
 ## Importation of our databases
-df = pd.read_csv(r'Outputs/dataset_serious_games.csv', sep =",")
+from Library.Recognizer import ROOT_DIR
+
+df = pd.read_csv(r"" + ROOT_DIR + '/Outputs/dataset_serious_games.csv', sep =",")
 df = df[["App Name","App Id","Category","Rating","Rating Count","Installs","Price","Developer Id","Last Updated",
          "Description","Reviews","Learning_category","Age_range"]]
 df_general = df[["App Name","Category","Rating","Rating Count","Price","Developer Id","Learning_category","Age_range"]]
-df2 = pd.read_csv(r'Outputs/dataset_papers2.csv', sep =",")
+df2 = pd.read_csv(r"" + ROOT_DIR + '/Outputs/dataset_papers2.csv', sep =",")
 validated_app = [i for i in df2["App Name"].unique()]
 
 app = dash.Dash(__name__, suppress_callback_exceptions=True)
