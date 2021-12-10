@@ -14,9 +14,7 @@ def run_validator_benchmark():
     FP = 0
     FN = 0
 
-    #validated_games = list(filter(lambda x: (x != nan), validated_games))
-
-
+    # validated_games = list(filter(lambda app_name: (app_name != nan), validated_games))
 
     for validated_game in validated_games:
         validated_game_papers = (validated_game, pubmed_search(validated_game))
@@ -36,8 +34,14 @@ def run_validator_benchmark():
             FP = FP + 1
         else:
             TN = TN + 1
-    print("uee")
-
+    # Formulas to evaluate the performance
+    accuracy = (TP + TN) / (TP + TN + FP + FN)
+    sensitivity = TP / (TP + FN)
+    specificity = TN / (TN + FP)
+    # Results
+    print("Accuracy: ", round(accuracy * 100, 1), "%")
+    print("Sensitivity: ", round(sensitivity * 100, 1), "%")
+    print("Specificity: ", round(specificity * 100, 1), "%")
 
 
 run_validator_benchmark()

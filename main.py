@@ -1,3 +1,5 @@
+from Library.Benchmark.Benchmark_Game_Classification import run_benchmark_game_classification
+from Library.Benchmark.Benchmark_Validator import run_validator_benchmark
 from Library.Recognizer import *
 
 while True:
@@ -9,9 +11,9 @@ while True:
     if option == 2:
         real_validator()
     if option == 3:
-        print_dashboard()
+        run_benchmark_game_classification()
     if option == 4:
-        run_benchmark_first_part()
+        run_validator_benchmark()
     else:
         continue
     """
