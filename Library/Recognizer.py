@@ -14,8 +14,8 @@ def game_filter(df):
              | (df["Category"] == "Learn")
              | (df["Category"] == "4 year old kids")
              | (df["Category"] == "4 year olds"))
-            & (df["Rating"] >= 4.5)  # lower it
-            & (df["Rating Count"] >= 50000)]  # lower it
+            & (df["Rating"] >= 4)  # lower it
+            & (df["Rating Count"] >= 20000)]  # lower it
     # & (df["Rating Count"] >= 50000)]  # lower it
     return df  # goal size = 1000 < app_name < 2000
 
@@ -134,21 +134,22 @@ def find_age_range(df):
     df["Age_range"] = finder(df, keywords, age_range)
     return df
 
-def read_serious_games():
-    print("Reading the input")
-    print("")
-    # df = pd.read_csv(r"" + ROOT_DIR + '/Sources/Google-Playstore.csv')
+
+def import_df():
+    df = pd.read_csv(r"" + ROOT_DIR + '/Sources/Google-Playstore.csv')
     # Filtering the dataset with educational apps respecting specific features
-    # df_edu = game_filter(df)
+    df_edu = game_filter(df)
     # The dataset now only contains specific lines and has an index composed of the remaining rows' numbers
     # Reinitialisation of the index to be [0,1,...,n]
-    # df_edu = df_edu.set_index([pd.Index([i for i in range(len(df_edu))])])
+    df_edu = df_edu.set_index([pd.Index([i for i in range(len(df_edu))])])
     # Selecting the educational games
-    # df_edu_g = select_games(df_edu)
-    # df_edu_g = df_edu_g.set_index([pd.Index([i for i in range(len(df_edu_g))])])
-    # df_edu_g.to_csv(ROOT_DIR + "/Outputs/df_edu_g.csv", index=False)
-    df_edu_g = pd.read_csv(r"" + ROOT_DIR + '/Outputs/df_edu_g.csv')
+    df_edu_g = select_games(df_edu)
+    df_edu_g = df_edu_g.set_index([pd.Index([i for i in range(len(df_edu_g))])])
+    df_edu_g.to_csv(ROOT_DIR + "/Outputs/df_edu_g.csv", index=False)
 
+
+def read_serious_games():
+    df_edu_g = pd.read_csv(r"" + ROOT_DIR + '/Outputs/df_edu_g.csv')
     # Improving the dataset
     # Add descriptions, number of reviews
     df_edu_g = enrich_dataframe(df_edu_g)

@@ -2,6 +2,7 @@ import pandas as pd
 import os
 
 from Library.Recognizer import *
+from Library.Validator import pubmed_search, meta_paper_creator, search_keyword, validate
 
 
 def run_validator_benchmark():
@@ -43,5 +44,3 @@ def run_validator_benchmark():
     print("Sensitivity: ", round(sensitivity * 100, 1), "%")
     print("Specificity: ", round(specificity * 100, 1), "%")
 
-
-run_validator_benchmark()

@@ -158,7 +158,3 @@ def real_validator():
     similarity_function_list(non_validated_apps, validated_app)
     app_doc = pd.DataFrame(app_documented)
     app_doc.to_csv(ROOT_DIR + "/Outputs/dataset_papers.csv", index=False)
-
-
-#real_validator()
-print(single_app_validation_level("Animals Farm For Kids"))
