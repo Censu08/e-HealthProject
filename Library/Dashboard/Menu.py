@@ -26,27 +26,35 @@ app = dash.Dash(__name__, suppress_callback_exceptions=True)
 application = app.server
 
 tabs_styles = {
-    'height': '44px'
+    'height': '5em'
 }
 tab_style = {
     'borderBottom': '1px solid #d6d6d6',
     'padding': '6px',
-    'fontWeight': 'bold'
+    'color': 'rgb(0, 179, 134)',
+    'fontWeight': 'bold',
+    'fontSize': '1.5em',
+    'vertical-align': 'center'
 }
 
 tab_selected_style = {
     'borderTop': '1px solid #d6d6d6',
     'borderBottom': '1px solid #d6d6d6',
-    'backgroundColor': '#1B0384',
+    'backgroundColor': 'rgb(0, 179, 134)',
     'color': 'white',
-    'padding': '6px'
+    'padding': '6px',
+    'fontSize': '1.5em',
+    'vertical-align': 'center',
+    'fontWeight': 'bold'
 }
 
 # TAB n°1: Dropdown menus (for learning categories and age ranges)
 dropdown = html.Div([
-    html.Label('Learning categories'),
+    html.Br(),
+    html.Label('Learning categories', style={'fontSize': '1.5em'}),
     dcc.Dropdown(id='dropdown_d1', options=[{'label': i, 'value': i} for i in df["Learning_category"].unique()], value=None),
-    html.Label('Age range'),
+    html.Br(),
+    html.Label('Age range', style={'fontSize': '1.5em'}),
     dcc.Dropdown(id='dropdown_d2', options=[{'label': i, 'value': i} for i in df["Age_range"].unique()], value=None)
 ])
 
@@ -111,8 +119,8 @@ layout3 = html.Div([html.H1("Overview of the number of papers per validated appl
 
 app.layout = html.Div([
                 html.H1(children="Google PlayStore Serious Games",
-                        style= {'color': 'white', 'backgroundColor': '#1B0384',
-                                'font-size':'2.5em','text-align':'center'}),
+                        style= {'color': 'rgb(0, 179, 134)', 'backgroundColor': 'white',
+                                'font-size':'5em','text-align':'center'}),
                 tabs])
 
 @app.callback(Output('tabs-content-inline', 'children'),
@@ -154,13 +162,14 @@ def update_table(d1, d2):
                      style={'textAlign': 'left'}),
                 dbc.Button(["Number of apps found: ",
                             dbc.Badge(len(df_filtered), color="white", text_color="blue", className="ms-1"), ],
+            style={'color': 'white', 'backgroundColor': 'rgb(0, 179, 134)'},
                            color="white"),
             dt.DataTable(
             id='table',
             columns=[{"name": i, "id": i} for i in df_filtered.columns],
             data=df_filtered.to_dict('records'),
             style_header={'color': 'white',
-                          'backgroundColor': 'orange',
+                          'backgroundColor': 'rgb(45, 89, 134)',
                           'fontWeight': 'bold'},
             style_data={'color': 'black',
                         'backgroundColor': 'white'},
@@ -172,11 +181,15 @@ def update_table(d1, d2):
                      style={'textAlign': 'left'}),
                 dbc.Button(["Number of apps found: ",
                             dbc.Badge(len(df_filtered), color="white", text_color="blue", className="ms-1"),],
+                           style={'color': 'white', 'backgroundColor': 'rgb(0, 179, 134)'},
                             color="white"),
                 dt.DataTable(
             id='table',
             columns=[{"name": i, "id": i} for i in df_filtered.columns],
             data=df_filtered.to_dict('records'),
+            style_header={'color': 'white',
+                          'backgroundColor': 'rgb(45, 89, 134)',
+                          'fontWeight': 'bold'},
             style_cell={'textAlign': 'left'})
         ]
     else:
@@ -230,11 +243,15 @@ def update_table_2(d1, d2, d3):
                                 data=df_filtered.to_dict('records'),),
                     dbc.Button(["Number of associated paper(s): ",
                                 dbc.Badge(len(df2_filtered), color="white", text_color="blue", className="ms-1"), ],
+                               style={'color': 'white', 'backgroundColor': 'rgb(0, 179, 134)'},
                                color="white"),
                     html.Div([html.H3('These papers are the followings:')]),
                     dt.DataTable(id='table2',
                                  columns=[{"name": i, "id": i} for i in df2_filtered.columns],
                                  data=df2_filtered.to_dict('records'),
+                                 style_header={'color': 'white',
+                                               'backgroundColor': 'rgb(45, 89, 134)',
+                                               'fontWeight': 'bold'},
                                  style_cell={'textAlign': 'left'}),
                     html.Div([html.H3('For more detailed information on these papers, search them in tab n°3.')])
                     ]
@@ -244,6 +261,9 @@ def update_table_2(d1, d2, d3):
                     dt.DataTable(id='table2',
                                 columns=[{"name": i, "id": i} for i in df_filtered.columns],
                                 data=df_filtered.to_dict('records'),
+                                style_header={'color': 'white',
+                                              'backgroundColor': 'rgb(45, 89, 134)',
+                                              'fontWeight': 'bold'},
                                 style_cell={'textAlign': 'left'}),
                     html.Div([html.H3('This app is associated with 0 paper.')]),
                     html.Div([html.H3('For more detailed information on the similar and potentially validated apps, search this app in tab n°4.')]),
@@ -254,11 +274,15 @@ def update_table_2(d1, d2, d3):
                           style={'textAlign': 'left'}),
                 dbc.Button(["Number of apps found: ",
                             dbc.Badge(len(df_filtered), color="white", text_color="blue", className="ms-1"), ],
+                           style={'color': 'white', 'backgroundColor': 'rgb(0, 179, 134)'},
                            color="white"),
             dt.DataTable(
             id='table2',
             columns=[{"name": i, "id": i} for i in df_filtered.columns],
             data=df_filtered.to_dict('records'),
+            style_header={'color': 'white',
+                          'backgroundColor': 'rgb(45, 89, 134)',
+                          'fontWeight': 'bold'},
             style_cell={'textAlign': 'left'}
         )]
     elif (d1 != None and d2 == None and d3 == None):
@@ -267,11 +291,15 @@ def update_table_2(d1, d2, d3):
                           style={'textAlign': 'left'}),
                 dbc.Button(["Number of apps found: ",
                             dbc.Badge(len(df_filtered), color="white", text_color="blue", className="ms-1"), ],
+                           style={'color': 'white', 'backgroundColor': 'rgb(0, 179, 134)'},
                            color="white"),
             dt.DataTable(
             id='table2',
             columns=[{"name": i, "id": i} for i in df_filtered.columns],
             data=df_filtered.to_dict('records'),
+            style_header={'color': 'white',
+                          'backgroundColor': 'rgb(45, 89, 134)',
+                          'fontWeight': 'bold'},
             style_cell={'textAlign': 'left'}
         )]
     else:
@@ -304,6 +332,9 @@ def update_table_3(d1, d2):
             id='table',
             columns=[{"name": i, "id": i} for i in df2_filtered.columns],
             data=df2_filtered.to_dict('records'),
+            style_header={'color': 'white',
+                          'backgroundColor': 'rgb(45, 89, 134)',
+                          'fontWeight': 'bold'},
             style_cell={'textAlign': 'left'}
         )]
     elif (d1 != None and d2 == None):
@@ -312,11 +343,14 @@ def update_table_3(d1, d2):
                           style={'textAlign': 'left'}),
                 dbc.Button(["Number of papers found: ",
                             dbc.Badge(len(df2_filtered), color="white", text_color="blue", className="ms-1"), ],
-                           color="white"),
+                           style={'color': 'white', 'backgroundColor': 'rgb(0, 179, 134)'}),
             dt.DataTable(
             id='table',
             columns=[{"name": i, "id": i} for i in df2_filtered.columns],
             data=df2_filtered.to_dict('records'),
+            style_header={'color': 'white',
+                          'backgroundColor': 'rgb(45, 89, 134)',
+                          'fontWeight': 'bold'},
             style_cell={'textAlign': 'left'}
         )]
     else:
