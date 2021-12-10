@@ -67,5 +67,3 @@ def run_benchmark_game_classification():
     print("Relative Accuracy: ", round(effective_accuracy * 100, 1), "%")
     print("Sensitivity: ", round(sensitivity * 100, 1), "%")
     print("Specificity: ", round(specificity * 100, 1), "%")
-
-run_benchmark_game_classification()

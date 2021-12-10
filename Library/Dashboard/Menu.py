@@ -95,14 +95,14 @@ final_table_3 = html.Div(id="final_table_3")
 # Layouts
 layout1 = html.Div([html.H1("Overview per learning category"),
                     dcc.Graph(id="graph1",
-                              figure={'data': [{'x': ['counting','science','food','sport','shape','music','language'],
+                              figure={'data': [{'app_documented': ['counting','science','food','sport','shape','music','language'],
                                                 'y': [20,14,7,5,3,2,3],
                                                 'type': 'bar',
                                                 'name': 'Ships'}],
                                                 'layout': {'title': 'Number of applications per learning category'}})])
 layout2 = html.Div([html.H1("Overview per age range"),
                     dcc.Graph(id="graph2",
-                              figure={'data': [{'x': ['babies', 'children', 'adults'],
+                              figure={'data': [{'app_documented': ['babies', 'children', 'adults'],
                                                 'y': [16, 59, 2],
                                                 'type': 'bar',
                                                 'name': 'Ships'}],

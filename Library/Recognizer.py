@@ -1,8 +1,6 @@
 import json
 import pandas as pd
 from google_play_scraper import app
-# from tinydb import Query
-from pymed import PubMed
 import os
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -16,9 +14,10 @@ def game_filter(df):
              | (df["Category"] == "Learn")
              | (df["Category"] == "4 year old kids")
              | (df["Category"] == "4 year olds"))
-            & (df["Rating"] >= 4.5)  # lower it
-            & (df["Rating Count"] >= 50000)]  # lower it
-    return df  # goal size = 1000 < x < 2000
+            & (df["Rating"] >= 4)  # lower it
+            & (df["Rating Count"] >= 20000)]  # lower it
+    # & (df["Rating Count"] >= 50000)]  # lower it
+    return df  # goal size = 1000 < app_name < 2000
 
 
 # select only the apps from the dataset that are games
@@ -30,8 +29,13 @@ def select_games(df):
             app_edu = app(df.iloc[i]["App Id"])
             json_app_edu = json.dumps(app_edu)
             json_app_edu = json.loads(json_app_edu)
-            cat_app = json_app_edu["genreId"]
-            if cat_app[:4] != "GAME":
+            genre = json_app_edu["genreId"]
+            title = json_app_edu["title"]
+            description = json_app_edu["description"]
+            if "Game" not in json_app_edu["title"] and \
+                    "Game" not in json_app_edu["description"] and \
+                    "game" not in json_app_edu["description"] and \
+                    json_app_edu["genreId"][:4] != "GAME":
                 not_games.append(i)
         except (Exception,):
             problematic_apps.append(i)
@@ -58,6 +62,7 @@ def enrich_dataframe(df):
         json_app_edu = json.loads(json_app_edu)
         desc = json_app_edu["description"]
         rev = json_app_edu["reviews"]
+        # validation_level = validation_level_calculator(([df.iloc[i]["App Name"], [], pubmed_search(df.iloc[i]["App Name"])]))
         desc_app.append(desc)
         rev_app.append(rev)
     df["Description"] = desc_app
@@ -66,7 +71,6 @@ def enrich_dataframe(df):
 
 
 # Use of NLP to enrich the dataset with more detailed features
-
 def finder(df, keywords, learning_cat):
     lc = []
     for i in range(len(df)):
@@ -131,134 +135,8 @@ def find_age_range(df):
     return df
 
 
-def search_keyword(mega_string):
-    points = 0
-    with open(ROOT_DIR + '/Sources/Studies/CaseControl.txt') as f:
-        for line in f:
-            stripped_line = line.strip()
-            if stripped_line in mega_string:
-                points = points + 4
-                break
-    with open(ROOT_DIR + '/Sources/Studies/CaseSeries.txt') as f:
-        for line in f:
-            stripped_line = line.strip()
-            if stripped_line in mega_string:
-                points = points + 2
-                break
-    with open(ROOT_DIR + '/Sources/Studies/CohortStudy.txt') as f:
-        for line in f:
-            stripped_line = line.strip()
-            if stripped_line in mega_string:
-                points = points + 5
-                break
-    with open(ROOT_DIR + '/Sources/Studies/MetaAnalysis.txt') as f:
-        for line in f:
-            stripped_line = line.strip()
-            if stripped_line in mega_string:
-                points = points + 7
-                break
-    with open(ROOT_DIR + '/Sources/Studies/ObservationalStudy.txt') as f:
-        for line in f:
-            stripped_line = line.strip()
-            if stripped_line in mega_string:
-                points = points + 3
-                break
-    with open(ROOT_DIR + '/Sources/Studies/Other.txt') as f:
-        for line in f:
-            stripped_line = line.strip()
-            if stripped_line in mega_string:
-                points = points + 1
-                break
-    with open(ROOT_DIR + '/Sources/Studies/RCT.txt') as f:
-        for line in f:
-            stripped_line = line.strip()
-            if stripped_line in mega_string:
-                points = points + 6
-                break
-    with open(ROOT_DIR + '/Sources/Studies/SystematicReview.txt') as f:
-        for line in f:
-            stripped_line = line.strip()
-            if stripped_line in mega_string:
-                points = points + 7
-                break
-    return points
-
-
-# some papers dont have conclusions or results
-def meta_paper_creator(app_documented):
-    result = ""
-    for paper in app_documented[1]:
-        str1 = paper['title']
-        if str1 is None:
-            str1 = ""
-        str2 = paper['abstract']
-        if str2 is None:
-            str2 = ""
-        str3 = ""
-        for keyword in paper['keywords']:
-            if keyword is not None:
-                str3 = str3 + keyword + " "
-        str4 = paper['journal']
-        if str4 is None:
-            str4 = ""
-        str5 = paper['conclusions']
-        if str5 is None:
-            str5 = ""
-        str6 = paper['results']
-        if str6 is None:
-            str6 = ""
-        result = result + str1 + str2 + str3 + str4 + str5 + str6
-    return result
-
-
-def validate(level):
-    if level >= 3:
-        return True
-    else:
-        return False
-
-
-def pubmed_search(query_keyword):
-    pubmed = PubMed(tool='name_of_the_database', email='simonecensuales1998@gmail.com')
-    results = pubmed.query(query_keyword, max_results=2)  # query_keyword in AND con game
-    papers = []
-    for res in results:
-        papers.append(res.toDict())
-    return papers
-
-
-def build_database(df_edu_g):
-    # df_edu_g.to_json(r'Outputs/dataset_serious_games.json')
-    # db = TinyDB('dataset_serious_games.json')
-    app_documented = []
-    for x in df_edu_g:
-        app_documented.append([x['App Name'], x['Category'], pubmed_search(x['App Name'])])
-    return app_documented
-
-
-def real_validator():
-    df = pd.read_csv(r"" + ROOT_DIR + '/Outputs/dataset_serious_games.csv')
-    app_documented = build_database(df) #NEW ONE
-    non_validated_apps = []
-    validated_app = []
-    for x in app_documented:
-        mega_string = meta_paper_creator(x)
-        app_validation_level = search_keyword(mega_string)
-        validation = validate(app_validation_level)
-        if validation:
-            validated_app.append(x)
-        else:
-            non_validated_apps.append(x)
-        print(validation)
-    similarity_function_list(validated_app, non_validated_apps)
-    app_doc = pd.Dataframe(app_documented)
-    app_doc.to_csv("/Outputs/dataset_papers.csv", index=False)
-
-
-def read_serious_games():
-    print("Reading the input")
-    print("")
-    df = pd.read_csv(r'Sources/Google-Playstore.csv')
+def import_df():
+    df = pd.read_csv(r"" + ROOT_DIR + '/Sources/Google-Playstore.csv')
     # Filtering the dataset with educational apps respecting specific features
     df_edu = game_filter(df)
     # The dataset now only contains specific lines and has an index composed of the remaining rows' numbers
@@ -267,6 +145,11 @@ def read_serious_games():
     # Selecting the educational games
     df_edu_g = select_games(df_edu)
     df_edu_g = df_edu_g.set_index([pd.Index([i for i in range(len(df_edu_g))])])
+    df_edu_g.to_csv(ROOT_DIR + "/Outputs/df_edu_g.csv", index=False)
+
+
+def read_serious_games():
+    df_edu_g = pd.read_csv(r"" + ROOT_DIR + '/Outputs/df_edu_g.csv')
     # Improving the dataset
     # Add descriptions, number of reviews
     df_edu_g = enrich_dataframe(df_edu_g)
@@ -275,27 +158,4 @@ def read_serious_games():
     df_edu_g = find_age_range(df_edu_g)
     df_edu_g = filter_non_reachable(df_edu_g)
     print(df_edu_g)
-    df_edu_g.to_csv(r'/Outputs/dataset_serious_games.csv', index=False)
-
-
-def similarity_function_list(non_validated_apps, validated_app):
-    for applicazione in non_validated_apps:
-        similarity_function(applicazione, validated_app)
-
-
-def similarity_function(non_validated_application, validated_app):
-    category = non_validated_application[1]
-    print("Finding apps similar to " + non_validated_application)
-    suggested_apps = []
-    for x in validated_app:
-        if len(suggested_apps) == 3:
-            break
-        if x["Category"] == category:
-            suggested_apps.append(x)
-    if len(suggested_apps) == 0:
-        print("There are no similar applicazione to the one analysed")
-    if len(suggested_apps) != 0:
-        print("Similar apps founded: " + str(len(suggested_apps)))
-        for x in range(len(suggested_apps)):
-            print(suggested_apps)
-
+    df_edu_g.to_csv(r"" + ROOT_DIR + '/Outputs/dataset_serious_games.csv', index=False)
