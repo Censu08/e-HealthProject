@@ -124,23 +124,29 @@ def app_to_documented_app(app_name):
 
 def similarity_function_list(non_validated_apps, validated_app):
     similar_apps_df = pd.DataFrame()
+    data = [['app_name', 'first suggested app', 'second suggested app', 'third suggested app']]
     for applicazione in non_validated_apps:
         suggested_apps = similarity_function(applicazione, validated_app)
-        data_tuples = list(zip(applicazione[0], suggested_apps))
+        """
+        data_tuples = list((applicazione[0], suggested_apps))
         df = pd.DataFrame(data_tuples, columns=['app_name', 'suggested_apps'])
-        similar_apps_df = pd.concat([similar_apps_df, df])
+        """
+        data.append(suggested_apps)
+    similar_apps_df = pd.DataFrame(data[1:], columns=data[0])
     similar_apps_df.to_csv(r"" + ROOT_DIR + '/Outputs/similar_apps.csv', index=False, header=True)
 
 
 def similarity_function(non_validated_application, validated_app):
     learning_category = non_validated_application[1]
     shuffle(validated_app)
-    suggested_apps = []
+    suggested_apps = [non_validated_application[0]]
     for x in validated_app:
-        if len(suggested_apps) == 3:
+        if len(suggested_apps) == 4:
             break
         if x[1] == learning_category:
             suggested_apps.append(x[0])
+    while len(suggested_apps) != 4:
+        suggested_apps.append("")
     return suggested_apps
 
 
