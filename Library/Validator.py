@@ -166,58 +166,62 @@ def real_validator():
     app_doc.to_csv(ROOT_DIR + "/Outputs/dataset_papers.csv", index=False)
     # df_2.to_csv(ROOT_DIR + "/Outputs/dataset_serious_final.csv", index=False)
 
+
 def paper_search(app_name):
     pubmed = PubMed(tool='name_of_the_database', email='simonecensuales1998@gmail.com')
     results = pubmed.query(app_name, max_results=5)
-    articleList = []
-    articleInfo = []
+    article_list = []
+    article_info = []
 
     for article in results:
         # Print the type of object we've found (can be either PubMedBookArticle or PubMedArticle).
         # We need to convert it to dictionary with available function
-        articleDict = article.toDict()
-        articleList.append(articleDict)
+        article_dict = article.toDict()
+        article_list.append(article_dict)
 
-    if len(articleList) != 0:
+    if len(article_list) != 0:
         # Generate list of dict records which will hold all article details that could be fetch from PUBMED API
-        for article in articleList:
-            # Sometimes article['pubmed_id'] contains list separated with comma - take first pubmedId in that list - thats article pubmedId
-            pubmedId = article['pubmed_id'].partition('\n')[0]
+        for article in article_list:
+            # Sometimes article['pubmed_id'] contains list separated with comma - take first pubmedId in that list -
+            # thats article pubmedId
+            pubmed_id = article['pubmed_id'].partition('\n')[0]
             # Append article info to dictionary
             try:
-                articleInfo.append({u'app_name': app_name,
-                                    u'pubmed_id': pubmedId,
-                                    u'title': article['title'],
-                                    u'keywords': article['keywords'],
-                                    u'journal': article['journal'],
-                                    u'abstract': article['abstract'],
-                                    u'conclusions': article['conclusions'],
-                                    u'methods': article['methods'],
-                                    u'results': article['results'],
-                                    u'copyrights': article['copyrights'],
-                                    u'doi': article['doi'],
-                                    u'publication_date': article['publication_date'],
-                                    u'authors': article['authors'],
-                                    u'validation_level': single_app_validation_level(app_name)})
+                article_info.append({u'app_name': app_name,
+                                     u'pubmed_id': pubmed_id,
+                                     u'title': article['title'],
+                                     u'keywords': article['keywords'],
+                                     u'journal': article['journal'],
+                                     u'abstract': article['abstract'],
+                                     u'conclusions': article['conclusions'],
+                                     u'methods': article['methods'],
+                                     u'results': article['results'],
+                                     u'copyrights': article['copyrights'],
+                                     u'doi': article['doi'],
+                                     u'publication_date': article['publication_date'],
+                                     u'authors': article['authors'],
+                                     u'validation_level': single_app_validation_level(app_name)})
             except (Exception,):
                 continue
     else:
         # Append article info to dictionary
-        articleInfo.append({u'app_name': "",
-                            u'pubmed_id': "",
-                            u'title': "",
-                            u'keywords': "",
-                            u'journal': "",
-                            u'abstract': "",
-                            u'conclusions': "",
-                            u'methods': "",
-                            u'results': "",
-                            u'copyrights': "",
-                            u'doi': "",
-                            u'publication_date': "",
-                            u'authors': "",
-                            u'validation_level': "0"})
-    return articleInfo
+        article_info.append({u'app_name': "",
+                             u'pubmed_id': "",
+                             u'title': "",
+                             u'keywords': "",
+                             u'journal': "",
+                             u'abstract': "",
+                             u'conclusions': "",
+                             u'methods': "",
+                             u'results': "",
+                             u'copyrights': "",
+                             u'doi': "",
+                             u'publication_date': "",
+                             u'authors': "",
+                             u'validation_level': "0"})
+    df = pd.DataFrame(article_info)
+    return df
+
 
 # paper_search("English Listening and Speaking")
 
@@ -243,21 +247,16 @@ def build_database_onlyname(df):
             [df.iloc[i]["App Name"]])
     return app_documented
 
+
 def search_all_paper():
     df = pd.read_csv(r"" + ROOT_DIR + '/Outputs/dataset_serious_games.csv')
     serious_game_names = build_database_onlyname(df)
-    articlesPD = pd.DataFrame.from_dict(serious_game_names)
-
+    articles_pd = pd.DataFrame()
     for name in serious_game_names:
-
-        articleInfo = paper_search(name)
-        articlePD = pd.DataFrame.from_dict(articleInfo)
-        articlesPD = pd.concat([articlesPD, articlePD])
-
-    export_csv = articlesPD.to_csv(r"" + ROOT_DIR + '/Outputs/app_name_papers_final.csv', index=None, header=True)
+        article_df = paper_search(name)
+        if article_df.iloc[0]["app_name"] != "":
+            articles_pd = pd.concat([articles_pd, article_df])
+    articles_pd.to_csv(r"" + ROOT_DIR + '/Outputs/app_name_papers_final.csv', index=False, header=True)
 
 
 search_all_paper()
-
-
-
