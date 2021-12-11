@@ -166,30 +166,9 @@ def real_validator():
     app_doc.to_csv(ROOT_DIR + "/Outputs/dataset_papers.csv", index=False)
     # df_2.to_csv(ROOT_DIR + "/Outputs/dataset_serious_final.csv", index=False)
 
-
-# def trasfrom_dataframe(df):
-#     app_documented = []
-#     for i in range(len(df)):
-#         app_documented.append(
-#             [df.iloc[i]["App Name"]])
-#     return app_documented
-#
-# def add_validation_column(app_documented):
-#     Validated = []
-#     df = pd.read_csv(r"" + ROOT_DIR + '/Outputs/dataset_serious_games.csv')
-#     serious_game = trasfrom_dataframe(df)
-#     for app in serious_game:
-#         if app in app_documented[0]["App Name"]:
-#             Validated.append("True")
-#         else:
-#             Validated.append("False")
-#
-#     df["Validated"] = Validated
-
-
 def paper_search(app_name):
     pubmed = PubMed(tool='name_of_the_database', email='simonecensuales1998@gmail.com')
-    results = pubmed.query(app_name, max_results=500)
+    results = pubmed.query(app_name, max_results=5)
     articleList = []
     articleInfo = []
 
@@ -205,20 +184,23 @@ def paper_search(app_name):
             # Sometimes article['pubmed_id'] contains list separated with comma - take first pubmedId in that list - thats article pubmedId
             pubmedId = article['pubmed_id'].partition('\n')[0]
             # Append article info to dictionary
-            articleInfo.append({u'app_name': app_name,
-                                u'pubmed_id': pubmedId,
-                                u'title': article['title'],
-                                u'keywords': article['keywords'],
-                                u'journal': article['journal'],
-                                u'abstract': article['abstract'],
-                                u'conclusions': article['conclusions'],
-                                u'methods': article['methods'],
-                                u'results': article['results'],
-                                u'copyrights': article['copyrights'],
-                                u'doi': article['doi'],
-                                u'publication_date': article['publication_date'],
-                                u'authors': article['authors'],
-                                u'validation_level': single_app_validation_level(app_name)})
+            try:
+                articleInfo.append({u'app_name': app_name,
+                                    u'pubmed_id': pubmedId,
+                                    u'title': article['title'],
+                                    u'keywords': article['keywords'],
+                                    u'journal': article['journal'],
+                                    u'abstract': article['abstract'],
+                                    u'conclusions': article['conclusions'],
+                                    u'methods': article['methods'],
+                                    u'results': article['results'],
+                                    u'copyrights': article['copyrights'],
+                                    u'doi': article['doi'],
+                                    u'publication_date': article['publication_date'],
+                                    u'authors': article['authors'],
+                                    u'validation_level': single_app_validation_level(app_name)})
+            except (Exception,):
+                continue
     else:
         # Append article info to dictionary
         articleInfo.append({u'app_name': "",
@@ -239,19 +221,43 @@ def paper_search(app_name):
 
 # paper_search("English Listening and Speaking")
 
-def all_paper_search():
+# def all_paper_search():
+#     df = pd.read_csv(r"" + ROOT_DIR + '/Outputs/dataset_serious_games.csv')
+#     articleInfo = paper_search(df.iloc[0]["App Name"])
+#     # Generate Pandas DataFrame from list of dictionaries
+#     articlesPD = pd.DataFrame.from_dict(articleInfo)
+#     for i in range(1,len(df)):
+#         print(i)
+#         articleInfo = paper_search(df.iloc[i]["App Name"])
+#         # Generate Pandas DataFrame from list of dictionaries
+#         articlePD = pd.DataFrame.from_dict(articleInfo)
+#         articlesPD = pd.concat([articlesPD, articlePD])
+#     export_csv = articlesPD.to_csv(r"" + ROOT_DIR + '/Outputs/app_name_papers_final.csv', index=None, header=True)
+#
+# all_paper_search()
+
+def build_database_onlyname(df):
+    app_documented = []
+    for i in range(len(df)):
+        app_documented.append(
+            [df.iloc[i]["App Name"]])
+    return app_documented
+
+def search_all_paper():
     df = pd.read_csv(r"" + ROOT_DIR + '/Outputs/dataset_serious_games.csv')
-    articleInfo = paper_search(df.iloc[0]["App Name"])
-    # Generate Pandas DataFrame from list of dictionaries
-    articlesPD = pd.DataFrame.from_dict(articleInfo)
-    for i in range(1,len(df)):
-        print(i)
-        articleInfo = paper_search(df.iloc[i]["App Name"])
-        # Generate Pandas DataFrame from list of dictionaries
+    serious_game_names = build_database_onlyname(df)
+    articlesPD = pd.DataFrame.from_dict(serious_game_names)
+
+    for name in serious_game_names:
+
+        articleInfo = paper_search(name)
         articlePD = pd.DataFrame.from_dict(articleInfo)
         articlesPD = pd.concat([articlesPD, articlePD])
+
     export_csv = articlesPD.to_csv(r"" + ROOT_DIR + '/Outputs/app_name_papers_final.csv', index=None, header=True)
 
-# all_paper_search()
+
+search_all_paper()
+
 
 
