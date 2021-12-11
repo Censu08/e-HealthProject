@@ -129,7 +129,6 @@ def similarity_function_list(non_validated_apps, validated_app):
 
 def similarity_function(non_validated_application, validated_app):
     learning_category = non_validated_application[1]
-    app_name = non_validated_application[0]
     shuffle(validated_app)
     suggested_apps = []
     for x in validated_app:
@@ -138,9 +137,6 @@ def similarity_function(non_validated_application, validated_app):
         if x[1] == learning_category:
             suggested_apps.append(x[0])
     print(suggested_apps)
-    lst = list(zip(app_name, suggested_apps))
-    sug = pd.DataFrame(lst, columns=['App Name', 'Suggested'])
-    sug.to_csv(ROOT_DIR + "/Outputs/dataset_suggested.csv", index=False)
 
 
 def single_app_validation_level(app_name):
@@ -223,23 +219,6 @@ def paper_search(app_name):
     return df
 
 
-# paper_search("English Listening and Speaking")
-
-# def all_paper_search():
-#     df = pd.read_csv(r"" + ROOT_DIR + '/Outputs/dataset_serious_games.csv')
-#     articleInfo = paper_search(df.iloc[0]["App Name"])
-#     # Generate Pandas DataFrame from list of dictionaries
-#     articlesPD = pd.DataFrame.from_dict(articleInfo)
-#     for i in range(1,len(df)):
-#         print(i)
-#         articleInfo = paper_search(df.iloc[i]["App Name"])
-#         # Generate Pandas DataFrame from list of dictionaries
-#         articlePD = pd.DataFrame.from_dict(articleInfo)
-#         articlesPD = pd.concat([articlesPD, articlePD])
-#     export_csv = articlesPD.to_csv(r"" + ROOT_DIR + '/Outputs/app_name_papers_final.csv', index=None, header=True)
-#
-# all_paper_search()
-
 def build_database_onlyname(df):
     app_documented = []
     for i in range(len(df)):
@@ -259,4 +238,4 @@ def search_all_paper():
     articles_pd.to_csv(r"" + ROOT_DIR + '/Outputs/app_name_papers_final.csv', index=False, header=True)
 
 
-search_all_paper()
+real_validator()
