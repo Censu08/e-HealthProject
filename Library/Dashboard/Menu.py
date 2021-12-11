@@ -7,6 +7,7 @@ from dash.dependencies import Input, Output
 import pandas as pd
 import dash
 import dash_table as dt
+# from dash import dash_table as dt
 from dash import dcc
 from dash import html
 from dash import dash_table
@@ -19,8 +20,9 @@ df = pd.read_csv(r"" + ROOT_DIR + '/Outputs/dataset_serious_games.csv', sep =","
 df = df[["App Name","App Id","Category","Rating","Rating Count","Installs","Price","Developer Id","Last Updated",
          "Description","Reviews","Learning_category","Age_range"]]
 df_general = df[["App Name","Category","Rating","Rating Count","Price","Developer Id","Learning_category","Age_range"]]
-df2 = pd.read_csv(r"" + ROOT_DIR + '/Outputs/dataset_papers2.csv', sep =",")
-validated_app = [i for i in df2["App Name"].unique()]
+# df2 = pd.read_csv(r"" + ROOT_DIR + '/Outputs/dataset_papers2.csv', sep =",")
+df2 = pd.read_csv(r"" + ROOT_DIR + '/Outputs/app_name_papers.csv', sep =",")
+validated_app = [i for i in df2["app_name"].unique()]
 
 app = dash.Dash(__name__, suppress_callback_exceptions=True)
 application = app.server
@@ -71,7 +73,7 @@ dropdown2 = html.Div([
 # TAB n°3: Dropdown menus (for app names and titles of papers)
 dropdown3 = html.Div([
     html.Label('App names'),
-    dcc.Dropdown(id='dropdown_d1_3', options=[{'label': i, 'value': i} for i in df2["App Name"].unique()], value=None),
+    dcc.Dropdown(id='dropdown_d1_3', options=[{'label': i, 'value': i} for i in df2["app_name"].unique()], value=None),
     html.Label('Associated paper(s)'),
     dcc.Dropdown(id='dropdown_d2_3', options=[{'label': i, 'value': i} for i in df2["title"].unique()], value=None)
 ])
@@ -234,7 +236,7 @@ def update_table_2(d1, d2, d3):
     if(d1 != None and d2 != None and d3 != None):
         df_filtered = df[(df["Learning_category"]==d1) & (df["Age_range"]==d2) & (df["App Name"]==d3)]
         if d3 in validated_app:
-            df2_filtered = df2[(df2["App Name"] == d3)]
+            df2_filtered = df2[(df2["app_name"] == d3)]
             df2_filtered = df2_filtered[["title"]]
             return [html.Div([html.H2('More specific information about the selected app:')],
                               style={'textAlign': 'left'}),
@@ -312,7 +314,7 @@ def update_table_2(d1, d2, d3):
 def update_dropdown_2_3(d1):
     print(d1)
     if (d1 != None):
-        df2_filtered = df2[(df2["App Name"] == d1)]
+        df2_filtered = df2[(df2["app_name"] == d1)]
         return [{'label': i, 'value': i} for i in df2_filtered["title"].unique()]
     else:
         return []
@@ -324,7 +326,7 @@ def update_dropdown_2_3(d1):
                Input('dropdown_d2_3', 'value'), ])
 def update_table_3(d1, d2):
     if (d1 != None and d2 != None):
-        df2_filtered = df2[(df2["App Name"] == d1) & (df2["title"] == d2)]
+        df2_filtered = df2[(df2["app_name"] == d1) & (df2["title"] == d2)]
         print(df2_filtered["abstract"])
         return [html.Div([html.H2('More specific information about the selected paper:')],
                           style={'textAlign': 'left'}),
@@ -338,7 +340,7 @@ def update_table_3(d1, d2):
             style_cell={'textAlign': 'left'}
         )]
     elif (d1 != None and d2 == None):
-        df2_filtered = df2[(df2["App Name"] == d1)]
+        df2_filtered = df2[(df2["app_name"] == d1)]
         return [html.Div([html.H2('More specific information about the paper(s) of the selected app:')],
                           style={'textAlign': 'left'}),
                 dbc.Button(["Number of papers found: ",
