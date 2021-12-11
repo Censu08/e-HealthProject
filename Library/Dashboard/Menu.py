@@ -7,6 +7,7 @@ from dash.dependencies import Input, Output
 import pandas as pd
 import dash
 import dash_table as dt
+# from dash import dash_table as dt
 from dash import dcc
 from dash import html
 from dash import dash_table
@@ -15,13 +16,45 @@ from dash.dependencies import Input, Output, State
 ## Importation of our databases
 from Library.Recognizer import ROOT_DIR
 
+# Datasets
 df = pd.read_csv(r"" + ROOT_DIR + '/Outputs/dataset_serious_games.csv', sep =",")
 df = df[["App Name","App Id","Category","Rating","Rating Count","Installs","Price","Developer Id","Last Updated",
          "Description","Reviews","Learning_category","Age_range"]]
 df_general = df[["App Name","Category","Rating","Rating Count","Price","Developer Id","Learning_category","Age_range"]]
-df2 = pd.read_csv(r"" + ROOT_DIR + '/Outputs/dataset_papers2.csv', sep =",")
-validated_app = [i for i in df2["App Name"].unique()]
+# df2 = pd.read_csv(r"" + ROOT_DIR + '/Outputs/dataset_papers2.csv', sep =",")
+df2 = pd.read_csv(r"" + ROOT_DIR + '/Outputs/app_name_papers.csv', sep =",")
 
+# List of the names of all apps
+all_apps = [i for i in df["App Name"].unique()]
+
+# List of the levels of validation of all apps
+lv_val = []
+for j in all_apps:
+    dff = df2[(df2["app_name"]==j)]
+    lv_val.append(dff['validation_level'].iloc[0])
+
+# New df with 1 more column: Validation_level
+df["Validation_level"] = lv_val
+
+# List of the names of validated apps
+validated_app = []
+validated = []
+for i in range(len(df)):
+    if df.iloc[i]["Validation_level"] >= 3:
+        validated_app.append(df.iloc[i]["App Name"])
+        validated.append("True")
+    else:
+        validated.append("False")
+
+# New df with 1 more column: Validated
+df["Validated"] = validated
+
+# List of the number of papers per validated app
+nb_papers_per_app = []
+for i in validated_app:
+    nb_papers_per_app.append(len(df2[(df2["app_name"]==i)]))
+
+## Dashboard
 app = dash.Dash(__name__, suppress_callback_exceptions=True)
 application = app.server
 
@@ -71,7 +104,7 @@ dropdown2 = html.Div([
 # TAB n°3: Dropdown menus (for app names and titles of papers)
 dropdown3 = html.Div([
     html.Label('App names'),
-    dcc.Dropdown(id='dropdown_d1_3', options=[{'label': i, 'value': i} for i in df2["App Name"].unique()], value=None),
+    dcc.Dropdown(id='dropdown_d1_3', options=[{'label': i, 'value': i} for i in df2["app_name"].unique()], value=None),
     html.Label('Associated paper(s)'),
     dcc.Dropdown(id='dropdown_d2_3', options=[{'label': i, 'value': i} for i in df2["title"].unique()], value=None)
 ])
@@ -95,25 +128,22 @@ final_table_3 = html.Div(id="final_table_3")
 # Layouts
 layout1 = html.Div([html.H1("Overview per learning category"),
                     dcc.Graph(id="graph1",
-                              figure={'data': [{'app_documented': ['counting','science','food','sport','shape','music','language'],
-                                                'y': [20,14,7,5,3,2,3],
+                              figure={'data': [{'x': ['counting','science','food','sport','shape','music','language'],
+                                                'y': [len(df[(df["Learning_category"]=="counting")]),len(df[(df["Learning_category"]=="science")]),len(df[(df["Learning_category"]=="food")]),len(df[(df["Learning_category"]=="sport")]),len(df[(df["Learning_category"]=="shape")]),len(df[(df["Learning_category"]=="music")]),len(df[(df["Learning_category"]=="language")])],
                                                 'type': 'bar',
                                                 'name': 'Ships'}],
                                                 'layout': {'title': 'Number of applications per learning category'}})])
 layout2 = html.Div([html.H1("Overview per age range"),
                     dcc.Graph(id="graph2",
-                              figure={'data': [{'app_documented': ['babies', 'children', 'adults'],
-                                                'y': [16, 59, 2],
+                              figure={'data': [{'x': ['babies', 'children', 'adults'],
+                                                'y': [len(df[(df["Age_range"]=="babies")]), len(df[(df["Age_range"]=="children")]), len(df[(df["Age_range"]=="adults")])],
                                                 'type': 'bar',
                                                 'name': 'Ships'}],
                                                 'layout': {'title': 'Number of applications per age range'}})])
 layout3 = html.Div([html.H1("Overview of the number of papers per validated application"),
                     dcc.Graph(id="graph3",
-                              figure={'data': [{'values': [2,2,2,1,2,2,2,2,2,2,2],
-                                      'labels': ['Baby Panda World','Little Panda Policeman', 'MentalUP - Learning Games & Brain Games',
-                                                 'Halloween Makeup Me','Coloring & Learn','Tailor Kids','Animal Jam',
-                                                 'Kids Educational Game 5','Bubbu School - My Cute Pets | Animal School Game',
-                                                 'Animals Farm For Kids','Baby Panda World'],
+                              figure={'data': [{'values': nb_papers_per_app,
+                                      'labels': validated_app,
                                       'type': 'pie',
                                       'name': 'Ships'}]})])
 
@@ -234,7 +264,7 @@ def update_table_2(d1, d2, d3):
     if(d1 != None and d2 != None and d3 != None):
         df_filtered = df[(df["Learning_category"]==d1) & (df["Age_range"]==d2) & (df["App Name"]==d3)]
         if d3 in validated_app:
-            df2_filtered = df2[(df2["App Name"] == d3)]
+            df2_filtered = df2[(df2["app_name"] == d3)]
             df2_filtered = df2_filtered[["title"]]
             return [html.Div([html.H2('More specific information about the selected app:')],
                               style={'textAlign': 'left'}),
@@ -312,7 +342,7 @@ def update_table_2(d1, d2, d3):
 def update_dropdown_2_3(d1):
     print(d1)
     if (d1 != None):
-        df2_filtered = df2[(df2["App Name"] == d1)]
+        df2_filtered = df2[(df2["app_name"] == d1)]
         return [{'label': i, 'value': i} for i in df2_filtered["title"].unique()]
     else:
         return []
@@ -324,7 +354,7 @@ def update_dropdown_2_3(d1):
                Input('dropdown_d2_3', 'value'), ])
 def update_table_3(d1, d2):
     if (d1 != None and d2 != None):
-        df2_filtered = df2[(df2["App Name"] == d1) & (df2["title"] == d2)]
+        df2_filtered = df2[(df2["app_name"] == d1) & (df2["title"] == d2)]
         print(df2_filtered["abstract"])
         return [html.Div([html.H2('More specific information about the selected paper:')],
                           style={'textAlign': 'left'}),
@@ -338,7 +368,7 @@ def update_table_3(d1, d2):
             style_cell={'textAlign': 'left'}
         )]
     elif (d1 != None and d2 == None):
-        df2_filtered = df2[(df2["App Name"] == d1)]
+        df2_filtered = df2[(df2["app_name"] == d1)]
         return [html.Div([html.H2('More specific information about the paper(s) of the selected app:')],
                           style={'textAlign': 'left'}),
                 dbc.Button(["Number of papers found: ",
