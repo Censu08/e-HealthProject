@@ -123,32 +123,19 @@ def app_to_documented_app(app_name):
 
 
 def similarity_function_list(non_validated_apps, validated_app):
-    similar_apps_df = pd.DataFrame()
-    data = [['app_name', 'first suggested app', 'second suggested app', 'third suggested app']]
     for applicazione in non_validated_apps:
-        suggested_apps = similarity_function(applicazione, validated_app)
-        """
-        data_tuples = list((applicazione[0], suggested_apps))
-        df = pd.DataFrame(data_tuples, columns=['app_name', 'suggested_apps'])
-        """
-        data.append(suggested_apps)
-    similar_apps_df = pd.DataFrame(data[1:], columns=data[0])
-    similar_apps_df.to_csv(r"" + ROOT_DIR + '/Outputs/similar_apps.csv', index=False, header=True)
+        similarity_function(applicazione, validated_app)
 
 
 def similarity_function(non_validated_application, validated_app):
     learning_category = non_validated_application[1]
     shuffle(validated_app)
-    suggested_apps = [non_validated_application[0]]
+    suggested_apps = []
     for x in validated_app:
-        if len(suggested_apps) == 4:
+        if len(suggested_apps) == 3:
             break
         if x[1] == learning_category:
             suggested_apps.append(x[0])
-    while len(suggested_apps) != 4:
-        suggested_apps.append("")
-    return suggested_apps
-
 
 def single_app_validation_level(app_name):
     return validation_level_calculator(app_to_documented_app(app_name))
@@ -157,6 +144,7 @@ def single_app_validation_level(app_name):
 def real_validator():
     df = pd.read_csv(r"" + ROOT_DIR + '/Outputs/dataset_serious_games.csv')
     app_documented = build_database(df)
+    # 2 df_2 = add_validation_column(app_documented)
     non_validated_apps = []
     validated_app = []
     for x in app_documented:
@@ -166,10 +154,10 @@ def real_validator():
             validated_app.append(x)
         else:
             non_validated_apps.append(x)
-        print(validation)
     similarity_function_list(non_validated_apps, validated_app)
     app_doc = pd.DataFrame(app_documented)
     app_doc.to_csv(ROOT_DIR + "/Outputs/dataset_papers.csv", index=False)
+    # df_2.to_csv(ROOT_DIR + "/Outputs/dataset_serious_final.csv", index=False)
 
 
 def paper_search(app_name):
@@ -245,5 +233,6 @@ def search_all_paper():
         if article_df.iloc[0]["app_name"] != "":
             articles_pd = pd.concat([articles_pd, article_df])
     articles_pd.to_csv(r"" + ROOT_DIR + '/Outputs/app_name_papers_final.csv', index=False, header=True)
+
 
 real_validator()

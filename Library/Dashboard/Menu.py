@@ -196,12 +196,22 @@ def update_table(d1, d2):
             style_header={'color': 'white',
                           'backgroundColor': 'rgb(45, 89, 134)',
                           'fontWeight': 'bold'},
-            style_data={'color': 'black',
-                        'backgroundColor': 'white',
-                        'whiteSpace': 'normal',
-                        'height': 'auto',
-                        },
-            style_cell={'textAlign': 'left'}
+            # style_data={'color': 'black',
+            #             'backgroundColor': 'white',
+            #             'whiteSpace': 'normal',
+            #             'height': 'auto',
+            #             },
+            style_cell={'textAlign': 'left',
+                            'maxWidth': '0',
+                            'overflow': 'hidden',
+                            'textOverflow': 'ellipsis',
+                            },
+            tooltip_data=[
+                    {
+                        column: {'value': str(value), 'type': 'markdown'}
+                        for column, value in row.items()
+                    } for row in df_filtered.to_dict('records')
+                ],
         )]
     elif (d1 != None and d2 == None):
         df_filtered = df_general[(df_general["Learning_category"] == d1)]
@@ -214,16 +224,26 @@ def update_table(d1, d2):
                 dt.DataTable(
             id='table',
             columns=[{"name": i, "id": i} for i in df_filtered.columns],
-            style_data={
-                        'whiteSpace': 'normal',
-                        'height': 'auto',
-                    },
+            # style_data={
+            #             'whiteSpace': 'normal',
+            #             'height': 'auto',
+            #         },
             data=df_filtered.to_dict('records'),
             style_header={'color': 'white',
                           'backgroundColor': 'rgb(45, 89, 134)',
                           'fontWeight': 'bold'},
-            style_cell={'textAlign': 'left'})
-        ]
+            style_cell={'textAlign': 'left',
+                                'maxWidth': '0',
+                                'overflow': 'hidden',
+                                'textOverflow': 'ellipsis',
+                                },
+            tooltip_data=[
+                        {
+                            column: {'value': str(value), 'type': 'markdown'}
+                            for column, value in row.items()
+                        } for row in df_filtered.to_dict('records')]
+
+                )]
     else:
         return [html.Div([dbc.Col([
                           dbc.Row([dbc.Col(layout1, width=True),
@@ -269,15 +289,25 @@ def update_table_2(d1):
                               style={'textAlign': 'left'}),
                     dt.DataTable(id='table2',
                                 columns=[{"name": i, "id": i} for i in df2_filtered.columns],
-                                style_data={
-                                     'whiteSpace': 'normal',
-                                     'height': 'auto',
-                                 },
+                                # style_data={
+                                #      'whiteSpace': 'normal',
+                                #      'height': 'auto',
+                                #  },
                                 data=df2_filtered.to_dict('records'),
                                 style_header={'color': 'white',
                                                'backgroundColor': 'rgb(45, 89, 134)',
                                                'fontWeight': 'bold'},
-                                style_cell={'textAlign': 'left'}
+                                 style_cell={'textAlign': 'left',
+                                             'maxWidth': '0',
+                                             'overflow': 'hidden',
+                                             'textOverflow': 'ellipsis',
+                                             },
+                                 tooltip_data=[
+                                     {
+                                         column: {'value': str(value), 'type': 'markdown'}
+                                         for column, value in row.items()
+                                     } for row in df2_filtered.to_dict('records')
+                                 ],
                                 ),
                     html.Br(),
                     html.Ul([
@@ -298,15 +328,25 @@ def update_table_2(d1):
                               style={'textAlign': 'left'}),
                     dt.DataTable(id='table2',
                                 columns=[{"name": i, "id": i} for i in df2_filtered.columns],
-                                style_data={
-                                     'whiteSpace': 'normal',
-                                     'height': 'auto',
-                                 },
+                                # style_data={
+                                #      'whiteSpace': 'normal',
+                                #      'height': 'auto',
+                                #  },
                                 data=df2_filtered.to_dict('records'),
                                 style_header={'color': 'white',
                                               'backgroundColor': 'rgb(45, 89, 134)',
                                               'fontWeight': 'bold'},
-                                style_cell={'textAlign': 'left'}),
+                                 style_cell={'textAlign': 'left',
+                                             'maxWidth': '0',
+                                             'overflow': 'hidden',
+                                             'textOverflow': 'ellipsis',
+                                             },
+                                 tooltip_data=[
+                                     {
+                                         column: {'value': str(value), 'type': 'markdown'}
+                                         for column, value in row.items()
+                                     } for row in df2_filtered.to_dict('records')]
+                                 ),
                     html.Br(),
                     html.Ul([
                         html.Li([
@@ -333,15 +373,26 @@ def update_table_2(d1):
             dt.DataTable(
             id='table2',
             columns=[{"name": i, "id": i} for i in df.columns],
-            style_data={
-                    'whiteSpace': 'normal',
-                    'height': 'auto',
-                },
+            # style_data={
+            #         'whiteSpace': 'normal',
+            #         'height': 'auto',
+            #     },
             data=df.to_dict('records'),
             style_header={'color': 'white',
                           'backgroundColor': 'rgb(45, 89, 134)',
                           'fontWeight': 'bold'},
-            style_cell={'textAlign': 'left'}
+            style_cell={'textAlign': 'left',
+                        'maxWidth': '0',
+                        'overflow': 'hidden',
+                        'textOverflow': 'ellipsis',
+                        },
+            tooltip_data=[
+                    {
+                        column: {'value': str(value), 'type': 'markdown'}
+                        for column, value in row.items()
+                    } for row in df.to_dict('records')
+                ],
+                tooltip_duration=None
         )]
 
 
