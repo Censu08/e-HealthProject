@@ -22,32 +22,26 @@ df = df[["App Name","App Id","Category","Rating","Rating Count","Installs","Pric
          "Description","Reviews","Learning_category","Age_range"]]
 df_general = df[["App Name","Category","Rating","Rating Count","Price","Developer Id","Learning_category","Age_range"]]
 # df2 = pd.read_csv(r"" + ROOT_DIR + '/Outputs/dataset_papers2.csv', sep =",")
-df2 = pd.read_csv(r"" + ROOT_DIR + '/Outputs/app_name_papers.csv', sep =",")
+df2 = pd.read_csv(r"" + ROOT_DIR + '/Outputs/app_name_papers_final.csv', sep =",")
+df3 = pd.read_csv(r"" + ROOT_DIR + '/Outputs/similar_apps.csv', sep =",")
 
-# List of the names of all apps
-all_apps = [i for i in df["App Name"].unique()]
+# # List of the names of all apps
+# all_apps = [i for i in df["App Name"].unique()]
 
-# List of the levels of validation of all apps
-lv_val = []
-for j in all_apps:
-    dff = df2[(df2["app_name"]==j)]
-    lv_val.append(dff['validation_level'].iloc[0])
-
-# New df with 1 more column: Validation_level
-df["Validation_level"] = lv_val
+# # List of the levels of validation of all apps
+# lv_val = []
+# for j in all_apps:
+#     dff = df2[(df2["app_name"]==j)]
+#     lv_val.append(dff['validation_level'].iloc[0])
+#
+# # New df with 1 more column: Validation_level
+# df["Validation_level"] = lv_val
 
 # List of the names of validated apps
 validated_app = []
-validated = []
-for i in range(len(df)):
-    if df.iloc[i]["Validation_level"] >= 3:
-        validated_app.append(df.iloc[i]["App Name"])
-        validated.append("True")
-    else:
-        validated.append("False")
-
-# New df with 1 more column: Validated
-df["Validated"] = validated
+for i in range(len(df2)):
+    if df2.iloc[i]["validation_level"] >= 3:
+        validated_app.append(df2.iloc[i]["app_name"])
 
 # List of the number of papers per validated app
 nb_papers_per_app = []
@@ -93,12 +87,8 @@ dropdown = html.Div([
 
 # TAB n°2: Dropdown menus (for learning categories, age ranges and app names)
 dropdown2 = html.Div([
-    html.Label('Learning categories'),
-    dcc.Dropdown(id='dropdown_d1_2', options=[{'label': i, 'value': i} for i in df["Learning_category"].unique()], value=None),
-    html.Label('Age range'),
-    dcc.Dropdown(id='dropdown_d2_2', options=[{'label': i, 'value': i} for i in df["Age_range"].unique()], value=None),
     html.Label('App names'),
-    dcc.Dropdown(id='dropdown_d3_2', options=[{'label': i, 'value': i} for i in df["App Name"].unique()], value=None)
+    dcc.Dropdown(id='dropdown_d1_2', options=[{'label': i, 'value': i} for i in df2["app_name"].unique()], value=None)
 ])
 
 # TAB n°3: Dropdown menus (for app names and titles of papers)
@@ -107,6 +97,12 @@ dropdown3 = html.Div([
     dcc.Dropdown(id='dropdown_d1_3', options=[{'label': i, 'value': i} for i in df2["app_name"].unique()], value=None),
     html.Label('Associated paper(s)'),
     dcc.Dropdown(id='dropdown_d2_3', options=[{'label': i, 'value': i} for i in df2["title"].unique()], value=None)
+])
+
+# TAB n°4: Dropdown menus (for app names)
+dropdown4 = html.Div([
+    html.Label('App names'),
+    dcc.Dropdown(id='dropdown_d1_4', options=[{'label': i, 'value': i} for i in df3["app_name"].unique()], value=None),
 ])
 
 # Tabs
@@ -124,6 +120,7 @@ tabs = html.Div([
 final_table = html.Div(id="final_table")
 final_table_2 = html.Div(id="final_table_2")
 final_table_3 = html.Div(id="final_table_3")
+final_table_4 = html.Div(id="final_table_4")
 
 # Layouts
 layout1 = html.Div([html.H1("Overview per learning category"),
@@ -164,16 +161,14 @@ def render_content(tab):
     elif tab == 'tab-3':
         return html.Div([dropdown3, final_table_3])
     elif tab == 'tab-4':
-        return html.Div([
-            html.H3('Tab content 4')
-        ])
+        return html.Div([dropdown4, final_table_4])
+
 
 # TAB n°1: Callback to update second dropdown based on first dropdown
 @app.callback(Output('dropdown_d2', 'options'),
              [Input('dropdown_d1', 'value'),])
 
 def update_dropdown_2(d1):
-    print(d1)
     if(d1 != None):
         df_filtered = df[(df["Learning_category"]==d1)]
         return [{'label': i, 'value': i} for i in df_filtered["Age_range"].unique()]
@@ -229,118 +224,97 @@ def update_table(d1, d2):
 
 
 # TAB n°2: Callback to update second dropdown based on first dropdown
-@app.callback(Output('dropdown_d2_2', 'options'),
-             [Input('dropdown_d1_2', 'value'),])
-
-def update_dropdown_2_2(d1):
-    print(d1)
-    if(d1 != None):
-        df_filtered = df[(df["Learning_category"]==d1)]
-        return [{'label': i, 'value': i} for i in df_filtered["Age_range"].unique()]
-    else:
-        return []
+# @app.callback(Output('dropdown_d2_2', 'options'),
+#              [Input('dropdown_d1_2', 'value'),])
+#
+# def update_dropdown_2_2(d1):
+#     print(d1)
+#     if(d1 != None):
+#         df_filtered = df[(df["Learning_category"]==d1)]
+#         return [{'label': i, 'value': i} for i in df_filtered["Age_range"].unique()]
+#     else:
+#         return []
 
 # TAB n°2: Callback to update third dropdown based on second dropdown
-@app.callback(Output('dropdown_d3_2', 'options'),
-             [Input('dropdown_d1_2', 'value'),
-              Input('dropdown_d2_2', 'value'),])
+# @app.callback(Output('dropdown_d3_2', 'options'),
+#              [Input('dropdown_d1_2', 'value'),
+#               Input('dropdown_d2_2', 'value'),])
+#
+# def update_dropdown_3_2(d1,d2):
+#     print(d1)
+#     print(d2)
+#     if(d1 != None and d2 != None):
+#         df_filtered = df[(df["Learning_category"]==d1) & (df["Age_range"]==d2)]
+#         return [{'label': i, 'value': i} for i in df_filtered["App Name"].unique()]
+#     else:
+#         return []
 
-def update_dropdown_3_2(d1,d2):
-    print(d1)
-    print(d2)
-    if(d1 != None and d2 != None):
-        df_filtered = df[(df["Learning_category"]==d1) & (df["Age_range"]==d2)]
-        return [{'label': i, 'value': i} for i in df_filtered["App Name"].unique()]
-    else:
-        return []
-
-# TAB n°2: Callback to update the final table based on both the input dropdown values
+# TAB n°2: Callback to update the final table based on both the input dropdown value
 @app.callback(Output('final_table_2', 'children'),
-             [Input('dropdown_d1_2', 'value'),
-              Input('dropdown_d2_2', 'value'),
-              Input('dropdown_d3_2', 'value'),])
+             [Input('dropdown_d1_2', 'value')])
 
-def update_table_2(d1, d2, d3):
-    if(d1 != None and d2 != None and d3 != None):
-        df_filtered = df[(df["Learning_category"]==d1) & (df["Age_range"]==d2) & (df["App Name"]==d3)]
-        if d3 in validated_app:
-            df2_filtered = df2[(df2["app_name"] == d3)]
-            df2_filtered = df2_filtered[["title"]]
+def update_table_2(d1):
+    if d1 != None:
+        df2_filtered = df2[(df2["app_name"]==d1)]
+        if d1 in validated_app:
+            df2_filtered2 = df2_filtered["validation_level"]
             return [html.Div([html.H2('More specific information about the selected app:')],
                               style={'textAlign': 'left'}),
-                    dt.DataTable(id='table',
-                                columns=[{"name": i, "id": i} for i in df_filtered.columns],
-                                data=df_filtered.to_dict('records'),),
+                    dt.DataTable(id='table2',
+                                columns=[{"name": i, "id": i} for i in df2_filtered.columns],
+                                data=df2_filtered.to_dict('records'),),
+                    dbc.Button(["Level of validation: ",
+                                dbc.Badge(df2_filtered2.iloc[0], color="white", text_color="blue", className="ms-1"), ],
+                               style={'color': 'white', 'backgroundColor': 'rgb(0, 179, 134)'},
+                               color="white"),
                     dbc.Button(["Number of associated paper(s): ",
                                 dbc.Badge(len(df2_filtered), color="white", text_color="blue", className="ms-1"), ],
                                style={'color': 'white', 'backgroundColor': 'rgb(0, 179, 134)'},
                                color="white"),
-                    html.Div([html.H3('These papers are the followings:')]),
-                    dt.DataTable(id='table2',
-                                 columns=[{"name": i, "id": i} for i in df2_filtered.columns],
-                                 data=df2_filtered.to_dict('records'),
-                                 style_header={'color': 'white',
-                                               'backgroundColor': 'rgb(45, 89, 134)',
-                                               'fontWeight': 'bold'},
-                                 style_cell={'textAlign': 'left'}),
-                    html.Div([html.H3('For more detailed information on these papers, search them in tab n°3.')])
+                    html.Div([html.H3('For more detailed information on these papers, search them in tab n°3.')]),
                     ]
         else:
             return [html.Div([html.H2('More specific information about the selected app:')],
                               style={'textAlign': 'left'}),
                     dt.DataTable(id='table2',
-                                columns=[{"name": i, "id": i} for i in df_filtered.columns],
-                                data=df_filtered.to_dict('records'),
+                                columns=[{"name": i, "id": i} for i in df2_filtered.columns],
+                                data=df2_filtered.to_dict('records'),
                                 style_header={'color': 'white',
                                               'backgroundColor': 'rgb(45, 89, 134)',
                                               'fontWeight': 'bold'},
                                 style_cell={'textAlign': 'left'}),
-                    html.Div([html.H3('This app is associated with 0 paper.')]),
-                    html.Div([html.H3('For more detailed information on the similar and potentially validated apps, search this app in tab n°4.')]),
+                    dbc.Button(["Level of validation: ",
+                                dbc.Badge(0, color="white", text_color="blue", className="ms-1"), ],
+                               style={'color': 'white', 'backgroundColor': 'red'},
+                               color="white"),
+                    dbc.Button(["Number of associated paper(s): ",
+                                dbc.Badge(len(df2_filtered), color="white", text_color="blue", className="ms-1"), ],
+                               style={'color': 'white', 'backgroundColor': 'rgb(0, 179, 134)'},
+                               color="white"),
+                    html.Div([html.H3('For more detailed information on the potential papers, search them in tab n°3. Otherwise, check similar validated apps in tab n°4.')]),
                     ]
-    elif (d1 != None and d2 != None and d3 == None):
-        df_filtered = df[(df["Learning_category"] == d1) & (df["Age_range"] == d2)]
-        return [html.Div([html.H2('More specific information about the apps in the selected field:')],
-                          style={'textAlign': 'left'}),
-                dbc.Button(["Number of apps found: ",
-                            dbc.Badge(len(df_filtered), color="white", text_color="blue", className="ms-1"), ],
-                           style={'color': 'white', 'backgroundColor': 'rgb(0, 179, 134)'},
-                           color="white"),
-            dt.DataTable(
-            id='table2',
-            columns=[{"name": i, "id": i} for i in df_filtered.columns],
-            data=df_filtered.to_dict('records'),
-            style_header={'color': 'white',
-                          'backgroundColor': 'rgb(45, 89, 134)',
-                          'fontWeight': 'bold'},
-            style_cell={'textAlign': 'left'}
-        )]
-    elif (d1 != None and d2 == None and d3 == None):
-        df_filtered = df[(df["Learning_category"] == d1)]
-        return [html.Div([html.H2('More specific information about the apps in the selected field:')],
-                          style={'textAlign': 'left'}),
-                dbc.Button(["Number of apps found: ",
-                            dbc.Badge(len(df_filtered), color="white", text_color="blue", className="ms-1"), ],
-                           style={'color': 'white', 'backgroundColor': 'rgb(0, 179, 134)'},
-                           color="white"),
-            dt.DataTable(
-            id='table2',
-            columns=[{"name": i, "id": i} for i in df_filtered.columns],
-            data=df_filtered.to_dict('records'),
-            style_header={'color': 'white',
-                          'backgroundColor': 'rgb(45, 89, 134)',
-                          'fontWeight': 'bold'},
-            style_cell={'textAlign': 'left'}
-        )]
     else:
-        return []
+        return [html.Div([html.H2('General details:')],
+                          style={'textAlign': 'left'}),
+                dbc.Button(["Number of apps found: ",
+                            dbc.Badge(len(df), color="white", text_color="blue", className="ms-1"), ],
+                           style={'color': 'white', 'backgroundColor': 'rgb(0, 179, 134)'},
+                           color="white"),
+            dt.DataTable(
+            id='table2',
+            columns=[{"name": i, "id": i} for i in df.columns],
+            data=df.to_dict('records'),
+            style_header={'color': 'white',
+                          'backgroundColor': 'rgb(45, 89, 134)',
+                          'fontWeight': 'bold'},
+            style_cell={'textAlign': 'left'}
+        )]
 
 
 # TAB n°3: Callback to update second dropdown based on first dropdown
 @app.callback(Output('dropdown_d2_3', 'options'),
               [Input('dropdown_d1_3', 'value'), ])
 def update_dropdown_2_3(d1):
-    print(d1)
     if (d1 != None):
         df2_filtered = df2[(df2["app_name"] == d1)]
         return [{'label': i, 'value': i} for i in df2_filtered["title"].unique()]
@@ -355,11 +329,10 @@ def update_dropdown_2_3(d1):
 def update_table_3(d1, d2):
     if (d1 != None and d2 != None):
         df2_filtered = df2[(df2["app_name"] == d1) & (df2["title"] == d2)]
-        print(df2_filtered["abstract"])
         return [html.Div([html.H2('More specific information about the selected paper:')],
                           style={'textAlign': 'left'}),
             dt.DataTable(
-            id='table',
+            id='table3',
             columns=[{"name": i, "id": i} for i in df2_filtered.columns],
             data=df2_filtered.to_dict('records'),
             style_header={'color': 'white',
@@ -375,7 +348,7 @@ def update_table_3(d1, d2):
                             dbc.Badge(len(df2_filtered), color="white", text_color="blue", className="ms-1"), ],
                            style={'color': 'white', 'backgroundColor': 'rgb(0, 179, 134)'}),
             dt.DataTable(
-            id='table',
+            id='table3',
             columns=[{"name": i, "id": i} for i in df2_filtered.columns],
             data=df2_filtered.to_dict('records'),
             style_header={'color': 'white',
@@ -385,6 +358,36 @@ def update_table_3(d1, d2):
         )]
     else:
         return [html.Div([dbc.Col([dbc.Row([dbc.Col(layout3, width=True)])])])]
+
+# TAB n°4: Callback to update the final table based on both the input dropdown values
+@app.callback(Output('final_table_4', 'children'),
+              [Input('dropdown_d1_4', 'value'),])
+def update_table_4(d1):
+    if d1 != None:
+        df3_filtered = df3[(df3["app_name"] == d1)]
+        return [html.Div([html.H2('Related similar apps:')],
+                          style={'textAlign': 'left'}),
+            dt.DataTable(
+            id='table4',
+            columns=[{"name": i, "id": i} for i in df3_filtered.columns],
+            data=df3_filtered.to_dict('records'),
+            style_header={'color': 'white',
+                          'backgroundColor': 'rgb(45, 89, 134)',
+                          'fontWeight': 'bold'},
+            style_cell={'textAlign': 'left'}
+        )]
+    else:
+        return [html.Div([html.H2('Similar applications per non-validated app:')],
+                          style={'textAlign': 'left'}),
+            dt.DataTable(
+            id='table4',
+            columns=[{"name": i, "id": i} for i in df3.columns],
+            data=df3.to_dict('records'),
+            style_header={'color': 'white',
+                          'backgroundColor': 'rgb(45, 89, 134)',
+                          'fontWeight': 'bold'},
+            style_cell={'textAlign': 'left'}
+        )]
 
 if __name__ == '__main__':
     app.run_server(debug=True)
