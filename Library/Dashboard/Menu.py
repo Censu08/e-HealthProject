@@ -87,21 +87,21 @@ dropdown = html.Div([
 
 # TAB n°2: Dropdown menus (for learning categories, age ranges and app names)
 dropdown2 = html.Div([
-    html.Label('App names'),
+    html.Label('App names', style={'fontSize': '1.5em'}),
     dcc.Dropdown(id='dropdown_d1_2', options=[{'label': i, 'value': i} for i in df2["app_name"].unique()], value=None)
 ])
 
 # TAB n°3: Dropdown menus (for app names and titles of papers)
 dropdown3 = html.Div([
-    html.Label('App names'),
+    html.Label('App names', style={'fontSize': '1.5em'}),
     dcc.Dropdown(id='dropdown_d1_3', options=[{'label': i, 'value': i} for i in df2["app_name"].unique()], value=None),
-    html.Label('Associated paper(s)'),
+    html.Label('Associated paper(s)', style={'fontSize': '1.5em'}),
     dcc.Dropdown(id='dropdown_d2_3', options=[{'label': i, 'value': i} for i in df2["title"].unique()], value=None)
 ])
 
 # TAB n°4: Dropdown menus (for app names)
 dropdown4 = html.Div([
-    html.Label('App names'),
+    html.Label('App names', style={'fontSize': '1.5em'}),
     dcc.Dropdown(id='dropdown_d1_4', options=[{'label': i, 'value': i} for i in df3["app_name"].unique()], value=None),
 ])
 
@@ -129,14 +129,14 @@ layout1 = html.Div([html.H1("Overview per learning category"),
                                                 'y': [len(df[(df["Learning_category"]=="counting")]),len(df[(df["Learning_category"]=="science")]),len(df[(df["Learning_category"]=="food")]),len(df[(df["Learning_category"]=="sport")]),len(df[(df["Learning_category"]=="shape")]),len(df[(df["Learning_category"]=="music")]),len(df[(df["Learning_category"]=="language")])],
                                                 'type': 'bar',
                                                 'name': 'Ships'}],
-                                                'layout': {'title': 'Number of applications per learning category'}})])
+                                        'layout': {'title': 'Number of applications per learning category'}})])
 layout2 = html.Div([html.H1("Overview per age range"),
                     dcc.Graph(id="graph2",
-                              figure={'data': [{'x': ['babies', 'children', 'adults'],
-                                                'y': [len(df[(df["Age_range"]=="babies")]), len(df[(df["Age_range"]=="children")]), len(df[(df["Age_range"]=="adults")])],
+                              figure={'data': [{'x': ['babies', 'children', 'adolescents','adults'],
+                                                'y': [len(df[(df["Age_range"]=="babies")]), len(df[(df["Age_range"]=="children")]), len(df[(df["Age_range"]=="adolescents")]), len(df[(df["Age_range"]=="adults")])],
                                                 'type': 'bar',
                                                 'name': 'Ships'}],
-                                                'layout': {'title': 'Number of applications per age range'}})])
+                                        'layout': {'title': 'Number of applications per age range'}})])
 layout3 = html.Div([html.H1("Overview of the number of papers per validated application"),
                     dcc.Graph(id="graph3",
                               figure={'data': [{'values': nb_papers_per_app,
@@ -197,7 +197,10 @@ def update_table(d1, d2):
                           'backgroundColor': 'rgb(45, 89, 134)',
                           'fontWeight': 'bold'},
             style_data={'color': 'black',
-                        'backgroundColor': 'white'},
+                        'backgroundColor': 'white',
+                        'whiteSpace': 'normal',
+                        'height': 'auto',
+                        },
             style_cell={'textAlign': 'left'}
         )]
     elif (d1 != None and d2 == None):
@@ -211,6 +214,10 @@ def update_table(d1, d2):
                 dt.DataTable(
             id='table',
             columns=[{"name": i, "id": i} for i in df_filtered.columns],
+            style_data={
+                        'whiteSpace': 'normal',
+                        'height': 'auto',
+                    },
             data=df_filtered.to_dict('records'),
             style_header={'color': 'white',
                           'backgroundColor': 'rgb(45, 89, 134)',
@@ -262,15 +269,28 @@ def update_table_2(d1):
                               style={'textAlign': 'left'}),
                     dt.DataTable(id='table2',
                                 columns=[{"name": i, "id": i} for i in df2_filtered.columns],
-                                data=df2_filtered.to_dict('records'),),
-                    dbc.Button(["Level of validation: ",
-                                dbc.Badge(df2_filtered2.iloc[0], color="white", text_color="blue", className="ms-1"), ],
-                               style={'color': 'white', 'backgroundColor': 'rgb(0, 179, 134)'},
-                               color="white"),
-                    dbc.Button(["Number of associated paper(s): ",
-                                dbc.Badge(len(df2_filtered), color="white", text_color="blue", className="ms-1"), ],
-                               style={'color': 'white', 'backgroundColor': 'rgb(0, 179, 134)'},
-                               color="white"),
+                                style_data={
+                                     'whiteSpace': 'normal',
+                                     'height': 'auto',
+                                 },
+                                data=df2_filtered.to_dict('records'),
+                                style_header={'color': 'white',
+                                               'backgroundColor': 'rgb(45, 89, 134)',
+                                               'fontWeight': 'bold'},
+                                style_cell={'textAlign': 'left'}
+                                ),
+                    html.Br(),
+                    html.Ul([
+                    html.Li([
+                        dbc.Button(["Level of validation: ",
+                                    dbc.Badge(df2_filtered2.iloc[0], color="white", text_color="blue", className="ms-1"), ],
+                                   style={'color': 'white', 'backgroundColor': 'green'},
+                                   color="white")]),
+                    html.Li([
+                        dbc.Button(["Number of associated paper(s): ",
+                                    dbc.Badge(len(df2_filtered), color="white", text_color="blue", className="ms-1"), ],
+                                   style={'color': 'white', 'backgroundColor': 'rgb(0, 179, 134)'},
+                                   color="white")])]),
                     html.Div([html.H3('For more detailed information on these papers, search them in tab n°3.')]),
                     ]
         else:
@@ -278,19 +298,29 @@ def update_table_2(d1):
                               style={'textAlign': 'left'}),
                     dt.DataTable(id='table2',
                                 columns=[{"name": i, "id": i} for i in df2_filtered.columns],
+                                style_data={
+                                     'whiteSpace': 'normal',
+                                     'height': 'auto',
+                                 },
                                 data=df2_filtered.to_dict('records'),
                                 style_header={'color': 'white',
                                               'backgroundColor': 'rgb(45, 89, 134)',
                                               'fontWeight': 'bold'},
                                 style_cell={'textAlign': 'left'}),
-                    dbc.Button(["Level of validation: ",
-                                dbc.Badge(0, color="white", text_color="blue", className="ms-1"), ],
-                               style={'color': 'white', 'backgroundColor': 'red'},
-                               color="white"),
-                    dbc.Button(["Number of associated paper(s): ",
-                                dbc.Badge(len(df2_filtered), color="white", text_color="blue", className="ms-1"), ],
-                               style={'color': 'white', 'backgroundColor': 'rgb(0, 179, 134)'},
-                               color="white"),
+                    html.Br(),
+                    html.Ul([
+                        html.Li([
+                            dbc.Button(["Level of validation: ",
+                                        dbc.Badge(0, color="white", text_color="blue",
+                                                  className="ms-1"), ],
+                                       style={'color': 'white', 'backgroundColor': 'red'},
+                                       color="white")]),
+                        html.Li([
+                            dbc.Button(["Number of associated paper(s): ",
+                                        dbc.Badge(len(df2_filtered), color="white", text_color="blue",
+                                                  className="ms-1"), ],
+                                       style={'color': 'white', 'backgroundColor': 'rgb(0, 179, 134)'},
+                                       color="white")])]),
                     html.Div([html.H3('For more detailed information on the potential papers, search them in tab n°3. Otherwise, check similar validated apps in tab n°4.')]),
                     ]
     else:
@@ -303,6 +333,10 @@ def update_table_2(d1):
             dt.DataTable(
             id='table2',
             columns=[{"name": i, "id": i} for i in df.columns],
+            style_data={
+                    'whiteSpace': 'normal',
+                    'height': 'auto',
+                },
             data=df.to_dict('records'),
             style_header={'color': 'white',
                           'backgroundColor': 'rgb(45, 89, 134)',
@@ -334,6 +368,10 @@ def update_table_3(d1, d2):
             dt.DataTable(
             id='table3',
             columns=[{"name": i, "id": i} for i in df2_filtered.columns],
+            style_data={
+                    'whiteSpace': 'normal',
+                    'height': 'auto',
+                },
             data=df2_filtered.to_dict('records'),
             style_header={'color': 'white',
                           'backgroundColor': 'rgb(45, 89, 134)',
@@ -350,6 +388,10 @@ def update_table_3(d1, d2):
             dt.DataTable(
             id='table3',
             columns=[{"name": i, "id": i} for i in df2_filtered.columns],
+            style_data={
+                    'whiteSpace': 'normal',
+                    'height': 'auto',
+                },
             data=df2_filtered.to_dict('records'),
             style_header={'color': 'white',
                           'backgroundColor': 'rgb(45, 89, 134)',
@@ -370,6 +412,10 @@ def update_table_4(d1):
             dt.DataTable(
             id='table4',
             columns=[{"name": i, "id": i} for i in df3_filtered.columns],
+            style_data={
+                    'whiteSpace': 'normal',
+                    'height': 'auto',
+                },
             data=df3_filtered.to_dict('records'),
             style_header={'color': 'white',
                           'backgroundColor': 'rgb(45, 89, 134)',
@@ -382,6 +428,10 @@ def update_table_4(d1):
             dt.DataTable(
             id='table4',
             columns=[{"name": i, "id": i} for i in df3.columns],
+            style_data={
+                    'whiteSpace': 'normal',
+                    'height': 'auto',
+                },
             data=df3.to_dict('records'),
             style_header={'color': 'white',
                           'backgroundColor': 'rgb(45, 89, 134)',
