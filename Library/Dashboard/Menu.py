@@ -336,12 +336,12 @@ def update_table_2(d1):
                                 style_header={'color': 'white',
                                               'backgroundColor': 'rgb(45, 89, 134)',
                                               'fontWeight': 'bold'},
-                                 style_cell={'textAlign': 'left',
+                                style_cell={'textAlign': 'left',
                                              'maxWidth': '0',
                                              'overflow': 'hidden',
                                              'textOverflow': 'ellipsis',
                                              },
-                                 tooltip_data=[
+                                tooltip_data=[
                                      {
                                          column: {'value': str(value), 'type': 'markdown'}
                                          for column, value in row.items()
@@ -419,15 +419,24 @@ def update_table_3(d1, d2):
             dt.DataTable(
             id='table3',
             columns=[{"name": i, "id": i} for i in df2_filtered.columns],
-            style_data={
-                    'whiteSpace': 'normal',
-                    'height': 'auto',
-                },
+            # style_data={
+            #         'whiteSpace': 'normal',
+            #         'height': 'auto',
+            #     },
             data=df2_filtered.to_dict('records'),
             style_header={'color': 'white',
                           'backgroundColor': 'rgb(45, 89, 134)',
                           'fontWeight': 'bold'},
-            style_cell={'textAlign': 'left'}
+            style_cell={'textAlign': 'left',
+                            'maxWidth': '0',
+                            'overflow': 'hidden',
+                            'textOverflow': 'ellipsis',
+                            },
+            tooltip_data=[
+                    {
+                        column: {'value': str(value), 'type': 'markdown'}
+                        for column, value in row.items()
+                    } for row in df2_filtered.to_dict('records')]
         )]
     elif (d1 != None and d2 == None):
         df2_filtered = df2[(df2["app_name"] == d1)]
@@ -439,15 +448,24 @@ def update_table_3(d1, d2):
             dt.DataTable(
             id='table3',
             columns=[{"name": i, "id": i} for i in df2_filtered.columns],
-            style_data={
-                    'whiteSpace': 'normal',
-                    'height': 'auto',
-                },
+            # style_data={
+            #         'whiteSpace': 'normal',
+            #         'height': 'auto',
+            #     },
             data=df2_filtered.to_dict('records'),
             style_header={'color': 'white',
                           'backgroundColor': 'rgb(45, 89, 134)',
                           'fontWeight': 'bold'},
-            style_cell={'textAlign': 'left'}
+            style_cell={'textAlign': 'left',
+                            'maxWidth': '0',
+                            'overflow': 'hidden',
+                            'textOverflow': 'ellipsis',
+                            },
+            tooltip_data=[
+                    {
+                        column: {'value': str(value), 'type': 'markdown'}
+                        for column, value in row.items()
+                    } for row in df2_filtered.to_dict('records')]
         )]
     else:
         return [html.Div([dbc.Col([dbc.Row([dbc.Col(layout3, width=True)])])])]
