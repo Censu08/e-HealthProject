@@ -110,7 +110,7 @@ tabs = html.Div([
     dcc.Tabs(id="tabs-styled-with-inline", value='tab-1', children=[
         dcc.Tab(label='Field overview', value='tab-1', style=tab_style, selected_style=tab_selected_style),
         dcc.Tab(label='Details per app', value='tab-2', style=tab_style, selected_style=tab_selected_style),
-        dcc.Tab(label='Papers per validated app', value='tab-3', style=tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Paper per app', value='tab-3', style=tab_style, selected_style=tab_selected_style),
         dcc.Tab(label='Similar apps per non-validated app', value='tab-4', style=tab_style, selected_style=tab_selected_style),
     ], style=tabs_styles),
     html.Div(id='tabs-content-inline')
@@ -361,7 +361,7 @@ def update_table_2(d1):
                                                   className="ms-1"), ],
                                        style={'color': 'white', 'backgroundColor': 'rgb(0, 179, 134)'},
                                        color="white")])]),
-                    html.Div([html.H3('For more detailed information on the potential papers, search them in tab n°3. Otherwise, check similar validated apps in tab n°4.')]),
+                    html.Div([html.H3('For more detailed information on the potential papers, search them in section 3. Otherwise, check similar validated apps in section 4.')]),
                     ]
     else:
         return [html.Div([html.H2('General details:')],
