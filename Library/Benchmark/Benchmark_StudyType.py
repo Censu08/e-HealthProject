@@ -3,9 +3,10 @@ import pandas as pd
 from pymed import PubMed
 from Library.Recognizer import ROOT_DIR
 
-def paper_search(PMID):
+
+def paper_search(pmid):
     pubmed = PubMed(tool='name_of_the_database', email='simonecensuales1998@gmail.com')
-    results = pubmed.query(PMID, max_results=1)
+    results = pubmed.query(pmid, max_results=1)
     article_list = []
     article_info = []
 
@@ -23,7 +24,7 @@ def paper_search(PMID):
             pubmed_id = article['pubmed_id'].partition('\n')[0]
             # Append article info to dictionary
             try:
-                article_info.append({u'PMID': PMID,
+                article_info.append({u'pmid': pmid,
                                      u'pubmed_id': pubmed_id,
                                      u'title': article['title'],
                                      u'keywords': article['keywords'],
@@ -35,7 +36,7 @@ def paper_search(PMID):
                 continue
     else:
         # Append article info to dictionary
-        article_info.append({u'PMID': "",
+        article_info.append({u'pmid': "",
                              u'pubmed_id': "",
                              u'title': "",
                              u'keywords': "",
@@ -51,19 +52,20 @@ def build_database_onlyname(df):
     paper_documented = []
     for i in range(len(df)):
         paper_documented.append(
-            [df.iloc[i]["PMID"]])
+            [df.iloc[i]["pmid"]])
     return paper_documented
 
 
 def search_all_paper():
-    df = pd.read_csv(r"" + ROOT_DIR + '/Sources/benchmark_studytype.csv', sep =";")
-    papers_PMID = build_database_onlyname(df)
+    df = pd.read_csv(r"" + ROOT_DIR + '/Sources/benchmark_studytype.csv', sep=";")
+    papers_pmid = build_database_onlyname(df)
     articles_pd = pd.DataFrame()
-    for PMID in papers_PMID:
+    for PMID in papers_pmid:
         article_df = paper_search(PMID)
-        if article_df.iloc[0]["PMID"] != "":
+        if article_df.iloc[0]["pmid"] != "":
             articles_pd = pd.concat([articles_pd, article_df])
     articles_pd.to_csv(r"" + ROOT_DIR + '/Sources/benchmark_studytypefinal.csv', index=False, header=True)
+
 
 # search_all_paper()
 
@@ -90,6 +92,7 @@ def meta_paper_creator(df):
         str6 = ""
     mega_string = mega_string + str1 + str2 + str3 + str4 + str5 + str6
     return mega_string
+
 
 def search_keyword(mega_string):
     if len(mega_string) < 1:
@@ -145,17 +148,18 @@ def search_keyword(mega_string):
                 break
     return points
 
+
 def benchmark_studytype():
     df = pd.read_csv(r"" + ROOT_DIR + '/Sources/benchmark_studytypefinal.csv', sep=",")
     df2 = pd.read_csv(r"" + ROOT_DIR + '/Sources/benchmark_studytype.csv', sep=";")
-    TP = 0   # "scientific" study type well found
-    TN = 0   # "other" study type well found
-    FP = 0   # "other" study type misclassified as "scientific" study type
-    FN = 0   # "scientific" study type misclassified as "other" study type
+    TP = 0  # "scientific" study type well found
+    TN = 0  # "other" study type well found
+    FP = 0  # "other" study type misclassified as "scientific" study type
+    FN = 0  # "scientific" study type misclassified as "other" study type
     for i in range(len(df)):
-        mega_string = meta_paper_creator(df.iloc[i,:])
+        mega_string = meta_paper_creator(df.iloc[i, :])
         points = search_keyword(mega_string)
-        score = max(points,key=points.count)
+        score = max(points, key=points.count)
         if score == df2.iloc[i]["Score"]:
             if score == 1:
                 TN += 1
@@ -177,6 +181,3 @@ def benchmark_studytype():
 
 
 benchmark_studytype()
-
-
-
