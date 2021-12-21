@@ -152,32 +152,20 @@ def search_keyword(mega_string):
 def benchmark_studytype():
     df = pd.read_csv(r"" + ROOT_DIR + '/Sources/benchmark_studytypefinal.csv', sep=",")
     df2 = pd.read_csv(r"" + ROOT_DIR + '/Sources/benchmark_studytype.csv', sep=";")
-    TP = 0  # "scientific" study type well found
-    TN = 0  # "other" study type well found
-    FP = 0  # "other" study type misclassified as "scientific" study type
-    FN = 0  # "scientific" study type misclassified as "other" study type
+    CC = 0 #correctly classified
+    INCDIFF=0 #incremental score's differences
     for i in range(len(df)):
         mega_string = meta_paper_creator(df.iloc[i, :])
         points = search_keyword(mega_string)
         score = max(points, key=points.count)
+        score2= df2.iloc[i]["Score"]
+        INCDIFF += abs(score-score2)
         if score == df2.iloc[i]["Score"]:
-            if score == 1:
-                TN += 1
-            else:
-                TP += 1
-        else:
-            if score <= 1:
-                FN += 1
-            else:
-                FP += 1
-    # Formulas to evaluate the performance
-    accuracy = (TP + TN) / (TP + TN + FP + FN)
-    sensitivity = TP / (TP + FN)
-    specificity = TN / (TN + FP)
-    # Results
-    print("Accuracy: ", round(accuracy * 100, 1), "%")
-    print("Sensitivity: ", round(sensitivity * 100, 1), "%")
-    print("Specificity: ", round(specificity * 100, 1), "%")
+                 CC +=1
+    accuracy = CC / len(df)
+    MAE=((INCDIFF)/len(df))/7
+    print("accuracy: ", round(accuracy * 100, 1), "%")
+    print("MAE: ", round(MAE * 100, 1), "%")
 
 
 benchmark_studytype()
