@@ -8,7 +8,7 @@ It contains 4 files:
   - Benchmark contains the files:
     - Benchmark_Game_Validation.py related to the performance of the first-part algorithm
     - Benchmark_Validator.py related to the performance of the second-part algorithm
-    - Benchmark_StudyType, which evaluates the performance of the second algorithm in terms of recognizing specific  study type
+    - Benchmark_StudyType, which evaluates the performance of the second-part algorithm in terms of recognizing specific  study type
   - Dashboard contains the "Menu.py", which is the code related to the html dashboard
 - Outputs: folder containig the output files of each section of the code
 - Reports: folder containing the presentation of the all project and the reports that describe decision-making process
