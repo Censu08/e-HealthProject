@@ -3,7 +3,7 @@
 
 This repository contains the E-Health project A of the Group 4, a.y. 2021/2022 (Politecnico of Milan).
 It contains 4 files:
-- Guidelines: file which contains the description of the process regading the composing of the algorithm;
+- Guidelines: folder which contains the description of the process regading the composing of the algorithm;
 - Library: folder containing benchmark and dashboard subfolders, as well as the "Recognizer.py" which is the  algorithm related to the first assignement of the project, and the "Validator.py" related to the second assignemnt
   - Benchmark contains the files:
     - Benchmark_Game_Validation.py related to the performance of the first-part algorithm
